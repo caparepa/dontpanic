@@ -4,8 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.h2g2.dontpanic.R;
+import com.h2g2.dontpanic.activities.base.BaseActivity;
 
-public class RegisterUserActivity extends AppCompatActivity {
+public class RegisterUserActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

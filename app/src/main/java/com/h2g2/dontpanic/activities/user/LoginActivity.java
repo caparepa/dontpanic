@@ -33,13 +33,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.h2g2.dontpanic.R;
+import com.h2g2.dontpanic.activities.base.BaseActivity;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends BaseActivity implements LoaderCallbacks<Cursor> {
 
     /**
      * Id to identity READ_CONTACTS permission request.

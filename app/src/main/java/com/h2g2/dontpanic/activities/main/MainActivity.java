@@ -14,8 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.h2g2.dontpanic.R;
+import com.h2g2.dontpanic.activities.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
