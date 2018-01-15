@@ -1,7 +1,6 @@
 package com.h2g2.dontpanic.activities.miscellaneous;
 
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
