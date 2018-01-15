@@ -16,6 +16,8 @@ import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
 import com.h2g2.dontpanic.activities.miscellaneous.PrivacyPolicyActivity;
 import com.h2g2.dontpanic.activities.miscellaneous.TermsConditionsActivity;
+import com.h2g2.dontpanic.activities.user.LoginActivity;
+import com.h2g2.dontpanic.activities.user.RegisterUserActivity;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -83,8 +85,10 @@ public class MainActivity extends BaseActivity
             navigateToActivity(TermsConditionsActivity.class);
         } else if (id == R.id.nav_register_account) {
             System.out.println("REGISTER");
+            navigateToActivity(RegisterUserActivity.class);
         } else if (id == R.id.nav_login) {
             System.out.println("LOGIN");
+            navigateToActivity(LoginActivity.class);
         } else if (id == R.id.nav_logout) {
             System.out.println("LOGOUT");
         }
