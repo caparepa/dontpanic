@@ -21,6 +21,7 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        showDelay();
     }
 
     private void setSplashTouchEvent(View view) {
@@ -51,6 +52,7 @@ public class SplashActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 navigateToActivity(MainActivity.class);
+                //TODO: check permissions aroudn here!
                 SplashActivity.this.finish();
             }
         }, secondsDelayed * 1000);

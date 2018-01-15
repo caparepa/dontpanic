@@ -14,18 +14,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activities.main.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".activities.base.BaseActivity" />
+        <activity android:name=".activities.main.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.base.BaseActivity" />
-        <activity android:name=".activities.main.SplashActivity" />
+        <activity
+            android:name=".activities.main.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.miscellaneous.HelpZendeskActivity" />
         <activity android:name=".activities.miscellaneous.PrivacyPolicyActivity" />
         <activity android:name=".activities.miscellaneous.TermsConditionsActivity" />
