@@ -1,6 +1,6 @@
-package com.h2g2.dontpanic.services.interfaces;
+package com.h2g2.dontpanic.services.abstracts;
 
-import com.h2g2.dontpanic.services.abstracts.Permission;
+import com.h2g2.dontpanic.services.interfaces.Permission;
 
 /**
  * Created by C. Serrano (cserrano@teravisiontech.com)
