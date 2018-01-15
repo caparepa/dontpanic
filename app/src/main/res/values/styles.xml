@@ -13,8 +13,36 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.PermissionTerm" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="fabThemeChannelMiniTop">
+        <item name="android:layout_width">@dimen/dimen_fab_mini</item>
+        <item name="android:layout_height">@dimen/dimen_fab_mini</item>
+    </style>
+
+    <style name="GralTextWithShadow" parent="@android:style/TextAppearance">
+        <!--<item name="android:shadowRadius">5</item>-->
+        <!--<item name="android:shadowDy">5</item>-->
+        <!--<item name="android:shadowColor">@color/colorShadowGralLetter</item>-->
+        <item name="android:textColor">@color/generalTextColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="GralLabelWithShadow.x2" parent="GralTextWithShadow">
+        <item name="android:textSize">@dimen/text_size_x2</item>
+    </style>
+
 </resources>
+
+

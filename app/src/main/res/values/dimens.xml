@@ -2,7 +2,158 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="nav_header_vertical_spacing">8dp</dimen>
-    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="minimalPadding">5dp</dimen>
+    <dimen name="geralPadding">12dp</dimen>
+
+    <dimen name="dimen_width_edittext_large">300dp</dimen>
+    <dimen name="dimen_width_edittext_medium">220dp</dimen>
+    <dimen name="dimen_width_edittext_small">150dp</dimen>
+
+    <dimen name="dimen_height_item_medium">36dp</dimen>
+    <!-- ICON ERROR DIMENS -->
+    <dimen name="dimen_height_item_error">27dp</dimen>
+
+
+    <dimen name="dimen_width_button_large">300dp</dimen>
+    <dimen name="dimen_width_button_medium">192dp</dimen>
+    <dimen name="dimen_width_button_small">85dp</dimen>
+
+    <dimen name="dimen_fab_xhdpi_center">75dp</dimen>
+    <dimen name="dimen_fab_xhdpi_center_icon">70dp</dimen>
+    <dimen name="dimen_fab_xhdpi_default">45dp</dimen>
+    <dimen name="dimen_fab_xhdpi_giant">100dp</dimen>
+    <dimen name="dimen_fab_mini">45dp</dimen>
+    <dimen name="dimen_fab_mini_gold">37dp</dimen>
+    <dimen name="dimen_fab_app_bar">30dp</dimen>
+
+    <dimen name="paddingTitleTop">60dp</dimen>
+    <dimen name="paddingTopBottomButton">10dp</dimen>
+    <dimen name="paddingTopBottomView">56sp</dimen>
+    <dimen name="paddingEndStart">32dp</dimen>
+    <dimen name="dimen_padding_button_top_bottom">4dp</dimen>
+
+
+    <dimen name="text_gral_title">20sp</dimen>
+    <dimen name="text_gral_content_size">16sp</dimen>
+    <dimen name="text_size_edittext">12sp</dimen>
+    <dimen name="dimen_text_size_button">14sp</dimen>
+
+
+    <dimen name="key_amount_size">8sp</dimen>
+    <dimen name="dimen_icon_energy_bar">20dp</dimen>
+    <dimen name="text_size_energy_value">@dimen/text_size_x3</dimen>
+
+    <dimen name="text_size_x1">22sp</dimen>
+    <dimen name="text_size_x2">16sp</dimen>
+    <dimen name="text_size_x3">14sp</dimen>
+
+    <dimen name="dimen_width_progress_bar">105dp</dimen>
+    <dimen name="dimen_heigth_progress_bar">10dp</dimen>
+
+    <!-- Dialog Values -->
+    <dimen name="dialog_title_size">16sp</dimen>
+    <dimen name="dialog_title_x2_lanes_size">18sp</dimen>
+    <dimen name="dialog_title_x3_lanes_size">16sp</dimen>
+    <dimen name="dialog_msg_size">16sp</dimen>
+    <dimen name="dialog_button_text_size">21sp</dimen>
+    <dimen name="margin_top_host">190dp</dimen>
+    <dimen name="min_height_dialog">400dp</dimen>
+    <dimen name="max_height_msg">190dp</dimen>
+    <dimen name="margin_top_msg1">0dp</dimen>
+    <dimen name="margin_top_msg2">10dp</dimen>
+    <dimen name="padding_msg1">13dp</dimen>
+
+    <dimen name="dimen_margin_top_button">10dp</dimen>
+    <dimen name="dimen_margin_bottom_button">32dp</dimen>
+    <dimen name="dimen_margin_left_button">40dp</dimen>
+    <dimen name="dimen_margin_right_button">40dp</dimen>
+    <dimen name="dimen_margin_top_from_icon">24dp</dimen>
+    <dimen name="dimen_forgot_pwd_size">160dp</dimen>
+
+    <dimen name="dimen_icon_login_width_height">150dp</dimen>
+    <dimen name="dimen_icon_register_width_height">70dp</dimen>
+    <dimen name="dimen_margin_text_below_mainicon">8dp</dimen>
+    <dimen name="margin_bottom_error">16dp</dimen>
+    <dimen name="margin_error_x_icon">4dp</dimen>
+    <dimen name="padding_error_x_icon">8dp</dimen>
+    <dimen name="margin_text_label_Item_blu">5dp</dimen>
+    <dimen name="margin_fab_end_view">16dp</dimen>
+    <dimen name="widthHeightBigCircleProfile">80dp</dimen>
+    <dimen name="marginEndStartBigCircleProfile">20dp</dimen>
+    <dimen name="dimen_mini_icon_profile">30dp</dimen>
+    <dimen name="margin_top_icon_circle">10dp</dimen>
+    <dimen name="margin_between_label_mini_icon">2dp</dimen>
+    <dimen name="margin_top_between_label_mini_icon">2dp</dimen>
+
+    <dimen name="textSizeBoldLabelStepsProfileTheme">16dp</dimen>
+    <dimen name="textSizeStepsQuantityToday">20sp</dimen>
+    <dimen name="dimen_avatar_profile">80dp</dimen>
+    <dimen name="margin_top_avatar_profile">21dp</dimen>
+    <dimen name="paddin_end_start">0dp</dimen>
+    <dimen name="marginStartEndDialog">42dp</dimen>
+    <dimen name="marginTopBottomDialogReward">40dp</dimen>
+    <dimen name="marginStartEndDialogReward">53dp</dimen>
+    <dimen name="textDimenMessageReward">12sp</dimen>
+    <dimen name="textSizeButtonDialogReward">14sp</dimen>
+    <dimen name="textSizeMiniumDialogReward">8sp</dimen>
+    <dimen name="textSizeTitleDialogReward">20sp</dimen>
+    <dimen name="marginTopBottomTextTitleDialogReward">10dp</dimen>
+
+    <dimen name="select_device_min_height">230dp</dimen>
+
+    <dimen name="channelMarginStartEnd">10dp</dimen>
+    <dimen name="channelMarginTopBottom">13dp</dimen>
+
+    <!-- DIMENS ONBOARDING-->
+
+    <dimen name="dimenIconOnBoardingWidthHeight">120dp</dimen>
+    <dimen name="paddingMiddleIconOnBoardingWidthHeight">42dp</dimen>
+    <dimen name="paddingArrowsOnBoardingWidthHeight">12dp</dimen>
+    <dimen name="dimenPaddingInsideIconOnboarding">25dp</dimen>
+
+    <!-- KEYSTORE ITEM -->
+    <dimen name="marginStartEndHeaderStoreKey">20dp</dimen>
+    <dimen name="dimenHeightKeyStoreItem">180dp</dimen>
+    <dimen name="dimenWidthKeyStoreItem">130dp</dimen>
+    <dimen name="text_quantity_keys">14sp</dimen>
+    <dimen name="text_amount_price_keys">20sp</dimen>
+    <dimen name="dimen_key_icon_quantity">15dp</dimen>
+    <dimen name="marginTopKeyStoreItem">5dp</dimen>
+    <dimen name="marginStartEndKeyStoreItem">5dp</dimen>
+    <dimen name="textTitleKeyStoreItem">13sp</dimen>
+
+    <!-- DIMENS SUMMARY DIALOG-->
+    <dimen name="marginTopBottomSummaryDialog">54dp</dimen>
+    <dimen name="marginStartEndSummaryDialog">36dp</dimen>
+    <dimen name="marginStartAvatarDialog">32dp</dimen>
+    <dimen name="paddingStartSummaryDialogAvatarView">28dp</dimen>
+    <dimen name="paddingEndSummaryDialogAvatarView">28dp</dimen>
+    <dimen name="paddingTopBottomSummaryDialog">18dp</dimen>
+    <dimen name="paddingStartEndSummaryDialogMainContent">16dp</dimen>
+
+    <dimen name="textUserNameSizeSummaryDialog">12sp</dimen>
+    <dimen name="textSizeLabelSummaryDialog">13sp</dimen>
+    <dimen name="textSizeValueSummaryDialog">14sp</dimen>
+
+    <dimen name="textSizeTitleSummaryDialog">15sp</dimen>
+    <dimen name="textSizeContentSummaryDialog">15sp</dimen>
+
+
+    <dimen name="dimenShapeAvatarSummaryDialog">130dp</dimen>
+    <dimen name="paddingBottomStepsPPSummaryDialog">8dp</dimen>
+    <dimen name="dimenIconStepsPPSummaryDialog">20dp</dimen>
+    <dimen name="marginStartUserNameSummaryDialog">8dp</dimen>
+    <dimen name="marginTextUsernameStartEnd">12dp</dimen>
+
+    <dimen name="textSizyPrivacyPolicyContent">8sp</dimen>
+    <dimen name="textSizePrivacyPolicy">16sp</dimen>
+    <dimen name="marginTopBottomGralDialog">36dp</dimen>
+    <dimen name="textSizeNonResource2ContinueContent">10sp</dimen>
+    <dimen name="dimenCloseDialogIcon">20dp</dimen>
+    <dimen name="textSizeUnlinkTracker">14sp</dimen>
+    <dimen name="textSizeReachedLastWPContent">11sp</dimen>
 </resources>
