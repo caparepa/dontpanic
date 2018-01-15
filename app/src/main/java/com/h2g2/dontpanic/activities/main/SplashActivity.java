@@ -39,7 +39,7 @@ public class SplashActivity extends BaseActivity {
         splashFadeRun=new Runnable() {
             @Override
             public void run() {
-                YoYo.with(Techniques.FadeInLeft).duration(2000).playOn(binding.splashInitText);
+                YoYo.with(Techniques.FadeInLeft).duration(2000).playOn(binding.dontPanicLogo);
                 System.out.println("splashLogoAnimation");
                 splashFadeIn.postDelayed(this,3000);
             }
@@ -53,6 +53,7 @@ public class SplashActivity extends BaseActivity {
             public void run() {
                 navigateToActivity(MainActivity.class);
                 //TODO: check permissions aroudn here!
+                splashLogoAnimation();
                 SplashActivity.this.finish();
             }
         }, secondsDelayed * 1000);
