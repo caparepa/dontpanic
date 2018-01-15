@@ -30,7 +30,7 @@
         <activity android:name=".activities.miscellaneous.PrivacyPolicyActivity" />
         <activity android:name=".activities.miscellaneous.TermsConditionsActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.user.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".activities.user.ProfileActivity" />
         <activity android:name=".activities.user.RegisterUserActivity"></activity>
