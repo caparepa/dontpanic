@@ -81,13 +81,15 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_terms_conditions) {
             System.out.println("TERMS AND CONDITIONS");
             navigateToActivity(TermsConditionsActivity.class);
-        } else if (id == R.id.nav_share) {
-            System.out.println("SHARE");
-        } else if (id == R.id.nav_send) {
-            System.out.println("SEND");
+        } else if (id == R.id.nav_register_account) {
+            System.out.println("REGISTER");
+        } else if (id == R.id.nav_login) {
+            System.out.println("LOGIN");
+        } else if (id == R.id.nav_logout) {
+            System.out.println("LOGOUT");
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
