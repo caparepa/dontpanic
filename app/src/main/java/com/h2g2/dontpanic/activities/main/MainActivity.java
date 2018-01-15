@@ -8,13 +8,14 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
+import com.h2g2.dontpanic.activities.miscellaneous.PrivacyPolicyActivity;
+import com.h2g2.dontpanic.activities.miscellaneous.TermsConditionsActivity;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -74,18 +75,16 @@ public class MainActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.nav_privacy_policy) {
+            System.out.println("PRIVACY POLICY");
+            navigateToActivity(PrivacyPolicyActivity.class);
+        } else if (id == R.id.nav_terms_conditions) {
+            System.out.println("TERMS AND CONDITIONS");
+            navigateToActivity(TermsConditionsActivity.class);
         } else if (id == R.id.nav_share) {
-
+            System.out.println("SHARE");
         } else if (id == R.id.nav_send) {
-
+            System.out.println("SEND");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
