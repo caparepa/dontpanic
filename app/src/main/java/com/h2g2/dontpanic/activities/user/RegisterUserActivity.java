@@ -11,6 +11,7 @@ import com.h2g2.dontpanic.activities.base.BaseActivity;
 import com.h2g2.dontpanic.databinding.ActivityRegisterUserBinding;
 import com.h2g2.dontpanic.models.database.AppDatabase;
 import com.h2g2.dontpanic.models.entity.User;
+import com.h2g2.dontpanic.services.abstracts.UserValidation;
 import com.h2g2.dontpanic.services.interfaces.ViewElement;
 
 import java.util.List;
@@ -20,9 +21,10 @@ public class RegisterUserActivity extends BaseActivity {
     ActivityRegisterUserBinding binding;
 
     private AppDatabase userDb;
-    private List<User> userList;
+    protected List<User> userList;
 
-    private Button mRegisterButton;
+    protected Button mRegisterButton;
+    protected UserValidation validation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +39,13 @@ public class RegisterUserActivity extends BaseActivity {
                 if(validateExistingUser()){
                     System.out.println("USER!");
                 }else{
-                    saveUserToDatabase();
+                    if(validation.validateEmail(getEmailText())){
+                        System.out.println("INVALID EMAIL!");
+                    }else{
+                        saveUserToDatabase();
+                    }
                     System.out.println("NO USER!");
                 }
-                getSavedUsers();
-
             }
         });
     }
@@ -102,4 +106,7 @@ public class RegisterUserActivity extends BaseActivity {
         return userDb.userDao().findByEmail(mail) != null;
     }
 
+    private boolean validateEmail(){
+        return validation.validateEmail(getEmailText());
+    }
 }
