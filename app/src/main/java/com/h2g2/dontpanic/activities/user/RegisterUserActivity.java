@@ -9,27 +9,33 @@ import android.widget.TextView;
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
 import com.h2g2.dontpanic.databinding.ActivityRegisterUserBinding;
+import com.h2g2.dontpanic.models.database.AppDatabase;
+import com.h2g2.dontpanic.models.entity.User;
 import com.h2g2.dontpanic.services.interfaces.ViewElement;
+
+import java.util.List;
 
 public class RegisterUserActivity extends BaseActivity {
 
     ActivityRegisterUserBinding binding;
 
+    private AppDatabase userDb;
+    private List<User> userList;
+
     private Button mRegisterButton;
-    private TextView mEmailField;
-    private TextView mPasswordField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register_user);
         setViewElements();
+        userDb = AppDatabase.getAppDatabase(this);
         mRegisterButton = findViewById(R.id.createUserButton);
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEmailText();
-                getPasswordText();
+                saveUserToDatabase();
+                getSavedUsers();
             }
         });
     }
@@ -59,16 +65,29 @@ public class RegisterUserActivity extends BaseActivity {
         elements.setUpBackButton();
     }
 
-    private void getEmailText()
+    private String getEmailText()
     {
-        String email = binding.editTextEmailAddress.getText().toString();
-        System.out.println(email);
+        return binding.editTextEmailAddress.getText().toString();
     }
 
-    private void getPasswordText()
+    private String getPasswordText()
     {
-        String password = binding.editTextUserPassword.getText().toString();
-        System.out.println(password);
+        return binding.editTextUserPassword.getText().toString();
     }
 
+    private void saveUserToDatabase(){
+
+        User user = new User();
+        user.setEmail(getEmailText());
+        user.setPassword(getPasswordText());
+
+        userDb = AppDatabase.getAppDatabase(this);
+        userDb.userDao().insertUser(user);
+    }
+
+    private void getSavedUsers(){
+
+        userList = userDb.userDao().getUsers();
+        System.out.println(userList);
+    }
 }
