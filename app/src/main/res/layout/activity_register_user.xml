@@ -39,12 +39,10 @@
                 android:id="@+id/relativeLayoutMailContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewLetsCreateAccount"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:paddingStart="@dimen/paddingEndStart"
+                android:layout_above="@+id/relativeLayoutPwdContent"
+                android:layout_toEndOf="@+id/relativeLayoutErrorView"
                 android:paddingEnd="@dimen/paddingEndStart"
-                >
+                android:paddingStart="@dimen/paddingEndStart">
 
                 <TextView
                     android:id="@+id/textViewMail"
@@ -65,7 +63,8 @@
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
                     android:textAlignment="center"
-                    android:textColor="@color/generalHintTextColor">
+                    android:textColor="@color/generalHintTextColor"
+                    android:textSize="14sp">
 
                     <requestFocus />
 
@@ -75,36 +74,35 @@
                     android:id="@+id/imageViewIconEmailError"
                     android:layout_width="@dimen/dimen_height_item_error"
                     android:layout_height="@dimen/dimen_height_item_error"
-                    android:layout_below="@+id/textViewMail"
-                    android:layout_alignTop="@+id/editTextEmailAddress"
                     android:layout_alignEnd="@+id/editTextEmailAddress"
+                    android:layout_alignTop="@+id/editTextEmailAddress"
+                    android:layout_below="@+id/textViewMail"
                     android:layout_margin="@dimen/margin_error_x_icon"
                     android:padding="@dimen/padding_error_x_icon"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/textViewHintTypeEmail"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_height_item_medium"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textViewMail"
                     android:gravity="center"
                     android:text="EMAIL"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_x3"
-                    android:layout_below="@+id/textViewMail"
-                    android:layout_alignParentStart="true" />
+                    android:visibility="gone" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutPwdContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayoutMailContent"
-                android:paddingStart="@dimen/paddingEndStart"
+                android:layout_above="@+id/buttonRegisterAccount"
+                android:layout_marginBottom="13dp"
+                android:layout_toEndOf="@+id/relativeLayoutErrorView"
                 android:paddingEnd="@dimen/paddingEndStart"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                >
+                android:paddingStart="@dimen/paddingEndStart">
 
                 <TextView
                     android:id="@+id/textViewPassword"
@@ -119,24 +117,24 @@
 
                 <EditText
                     android:id="@+id/editTextUserPassword"
-                    android:layout_below="@+id/textViewPassword"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_height_item_medium"
+                    android:layout_below="@+id/textViewPassword"
                     android:imeOptions="actionNext"
-                    android:textAlignment="center"
                     android:inputType="textWebPassword"
-                    android:textStyle="normal"
-                    />
+                    android:textAlignment="center"
+                    android:textStyle="normal" />
+
                 <ImageView
                     android:id="@+id/imageViewIconPassError"
                     android:layout_width="@dimen/dimen_height_item_error"
                     android:layout_height="@dimen/dimen_height_item_error"
-                    android:layout_below="@+id/textViewPassword"
-                    android:layout_alignTop="@+id/editTextUserPassword"
                     android:layout_alignEnd="@+id/editTextUserPassword"
+                    android:layout_alignTop="@+id/editTextUserPassword"
+                    android:layout_below="@+id/textViewPassword"
                     android:layout_margin="@dimen/margin_error_x_icon"
                     android:padding="@dimen/padding_error_x_icon"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/textViewHintTypeUrPwd"

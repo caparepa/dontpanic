@@ -28,7 +28,8 @@ public class RegisterUserActivity extends BaseActivity {
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("shit");
+                getEmailText();
+                getPasswordText();
             }
         });
     }
@@ -56,6 +57,18 @@ public class RegisterUserActivity extends BaseActivity {
         };
         elements.setUpViewText();
         elements.setUpBackButton();
+    }
+
+    private void getEmailText()
+    {
+        String email = binding.editTextEmailAddress.getText().toString();
+        System.out.println(email);
+    }
+
+    private void getPasswordText()
+    {
+        String password = binding.editTextUserPassword.getText().toString();
+        System.out.println(password);
     }
 
 }
