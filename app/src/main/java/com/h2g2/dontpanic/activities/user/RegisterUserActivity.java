@@ -34,8 +34,14 @@ public class RegisterUserActivity extends BaseActivity {
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveUserToDatabase();
+                if(validateExistingUser()){
+                    System.out.println("USER!");
+                }else{
+                    saveUserToDatabase();
+                    System.out.println("NO USER!");
+                }
                 getSavedUsers();
+
             }
         });
     }
@@ -80,14 +86,20 @@ public class RegisterUserActivity extends BaseActivity {
         User user = new User();
         user.setEmail(getEmailText());
         user.setPassword(getPasswordText());
-
-        userDb = AppDatabase.getAppDatabase(this);
         userDb.userDao().insertUser(user);
     }
 
     private void getSavedUsers(){
 
         userList = userDb.userDao().getUsers();
-        System.out.println(userList);
+        for (final User user : userList){
+            System.out.println(user.getEmail());
+        }
     }
+
+    private boolean validateExistingUser(){
+        String mail = getEmailText();
+        return userDb.userDao().findByEmail(mail) != null;
+    }
+
 }
