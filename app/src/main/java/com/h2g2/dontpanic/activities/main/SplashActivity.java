@@ -11,6 +11,8 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
 import com.h2g2.dontpanic.databinding.ActivitySplashBinding;
+import com.h2g2.dontpanic.models.database.AppDatabase;
+import com.h2g2.dontpanic.utils.DatabaseInitializer;
 
 public class SplashActivity extends BaseActivity {
 
@@ -22,13 +24,16 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
+
+        //create database if doesn't exist
+        DatabaseInitializer.populateAsync(AppDatabase.getAppDatabase(this));
         showDelay();
     }
 
     @Override
     public void onResume(){
         super.onResume();
-        splashLogoAnimation();
+        //splashLogoAnimation();
     }
 
     private void setSplashTouchEvent(View view) {

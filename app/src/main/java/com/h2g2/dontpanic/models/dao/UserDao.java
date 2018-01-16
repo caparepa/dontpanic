@@ -18,6 +18,7 @@ import java.util.List;
 @Dao
 public interface UserDao {
 
+    @Query("SELECT * FROM users")
     List<User> getUsers();
 
     @Query("SELECT * FROM users WHERE email = :email")
@@ -25,9 +26,6 @@ public interface UserDao {
 
     @Query("SELECT * FROM users WHERE email = :email AND password = :password")
     User findByEmailAndPassword(String email, String password);
-
-    @Query("SELECT * FROM users WHERE username = :userName")
-    User findByUsername(String userName);
 
     @Insert
     void insertUser(User user);

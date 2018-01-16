@@ -38,6 +38,7 @@
     <string name="title_activity_login">Log In</string>
 
     <!-- Strings related to login -->
+    <string name="title_register_user">Register User</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>

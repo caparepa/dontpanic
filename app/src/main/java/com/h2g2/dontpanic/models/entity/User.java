@@ -16,21 +16,18 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     private int uid;
 
-    @ColumnInfo(name = "username")
-    private String userName;
-
     @ColumnInfo(name = "email")
     private String email;
 
     @ColumnInfo(name = "password")
     private String password;
 
-    public String getUserName() {
-        return userName;
+    public int getUid() {
+        return uid;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public String getEmail() {

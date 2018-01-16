@@ -34,7 +34,6 @@ public class DatabaseInitializer {
 
     private static void populateWithTestData(AppDatabase db) {
         User user = new User();
-        user.setUserName("test");
         user.setEmail("test@test.com");
         user.setPassword("qwerty");
         addUser(db, user);

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="app.com.unicef.kidpower.activities.general.RegisterAccountActivity"
+    tools:context="com.h2g2.dontpanic.activities.user.RegisterUserActivity"
     app:layout_behavior="android.support.design.widget.AppBarLayout">
 
     <RelativeLayout
@@ -33,7 +33,6 @@
                 android:layout_below="@+id/relativeLayoutErrorView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="41dp"
-                android:text="REGISTER USER"
                 android:textColor="@color/defaultContentColor" />
 
             <RelativeLayout
@@ -152,62 +151,6 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/relativeLayoutBirthDayContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="@dimen/paddingEndStart"
-                android:paddingEnd="@dimen/paddingEndStart"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/relativeLayoutPwdContent">
-
-                <TextView
-                    android:id="@+id/textViewBirthday"
-                    style="@style/GralLabelWithShadow.x2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="4dp"
-                    android:text="BIRTHDAY"
-                    android:textColor="@color/defaultContentColor" />
-
-                <EditText
-                    android:id="@+id/editTextBirthDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_height_item_medium"
-                    android:layout_below="@+id/textViewBirthday"
-                    android:maxLength="4"
-                    android:focusable="false"
-                    android:textAlignment="center"
-                    android:descendantFocusability="beforeDescendants"
-                    android:imeOptions="actionGo"
-                    />
-
-                <ImageView
-                    android:id="@+id/imageViewIconBirthError"
-                    android:layout_width="@dimen/dimen_height_item_error"
-                    android:layout_height="@dimen/dimen_height_item_error"
-                    android:layout_below="@+id/textViewBirthday"
-                    android:layout_alignTop="@+id/editTextBirthDate"
-                    android:layout_alignEnd="@+id/editTextBirthDate"
-                    android:layout_margin="@dimen/margin_error_x_icon"
-                    android:padding="@dimen/padding_error_x_icon"
-                    android:visibility="gone"/>
-
-                <TextView
-                    android:id="@+id/textViewHintTypeUrBrithYear"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_height_item_medium"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/textViewBirthday"
-                    android:gravity="center"
-                    android:text="BIRTHDAY"
-                    android:textColor="@color/generalHintTextColor"
-                    android:textSize="@dimen/text_size_x3" />
-
-            </RelativeLayout>
-
             <LinearLayout
                 android:id="@+id/relativeLayoutErrorView"
                 android:layout_width="match_parent"
@@ -245,27 +188,29 @@
             <RelativeLayout
                 android:id="@+id/buttonRegisterAccount"
                 android:layout_width="@dimen/dimen_width_button_medium"
-                android:layout_marginBottom="12dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="143dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:paddingBottom="13dp"
                 android:paddingTop="13dp">
 
-                <TextView
-                    android:id="@+id/textCustomBtnProgress"
+                <Button
+                    android:id="@+id/createUserButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:text="create"
-                    android:textAllCaps="true"
+                    android:layout_marginEnd="70dp"
+                    android:layout_marginTop="39dp"
                     android:textColor="#000000"
                     android:textSize="@dimen/dimen_text_size_button"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:text="Register" />
 
                 <com.github.ybq.android.spinkit.SpinKitView
                     android:id="@+id/puntos_animados"
@@ -274,11 +219,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@+id/textCustomBtnProgress"
+                    android:layout_toEndOf="@+id/createUserButton"
                     android:visibility="invisible" />
 
 
             </RelativeLayout>
+
+
+
+
         </RelativeLayout>
 
 
