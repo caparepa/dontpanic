@@ -42,7 +42,6 @@ public class RegisterUserActivity extends BaseActivity implements
     ActivityRegisterUserBinding binding;
 
     private AppDatabase userDb;
-
     private RegisterUserTask mRegisterTask = null;
 
     protected TextView mEmailText;
@@ -111,7 +110,7 @@ public class RegisterUserActivity extends BaseActivity implements
         if(validateExistingUser()){
             mEmailText.setError(getString(R.string.error_user_exists));
             focusView = mEmailText;
-           cancel = true;
+            cancel = true;
         }
 
         if (cancel) {
