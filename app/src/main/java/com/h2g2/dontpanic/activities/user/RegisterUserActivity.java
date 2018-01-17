@@ -295,12 +295,11 @@ public class RegisterUserActivity extends BaseActivity implements
         protected Boolean doInBackground(Void... params) {
             //TODO: save user
             try {
-                saveUserToDatabase(mEmail, mPassword);
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 return false;
             }
-
+            saveUserToDatabase(mEmail, mPassword);
             return true;
         }
 
