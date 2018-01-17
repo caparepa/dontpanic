@@ -54,6 +54,11 @@ public class PrivacyPolicyActivity extends BaseActivity {
             public void setUpButtons() {
 
             }
+
+            @Override
+            public void setUpElements(){
+
+            }
         };
         elements.setUpViewText();
         elements.setUpBackButton();

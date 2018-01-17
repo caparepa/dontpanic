@@ -15,4 +15,6 @@ public interface ViewElement {
 
     public void setUpButtons();
 
+    public void setUpElements();
+
 }
