@@ -66,21 +66,7 @@ public class RegisterUserActivity extends BaseActivity implements
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(binding.editTextEmailAddress.getText().toString());
-                System.out.println(validateExistingUser());
-                if(validateExistingUser()){
-                    System.out.println("USER!");
-                }else{
-                    attemptRegister();
-                    /*if(isValidEmail(getEmailText())){
-                        System.out.println("VALID EMAIL!");
-                        mRegisterTask = new RegisterUserTask(getEmailText(),getPasswordText());
-                    }else{
-                        System.out.println("INVALID EMAIL!");
-                        mEmailText.setError("Invalid email!");
-                    }
-                    System.out.println("NO USER!");*/
-                }
+                attemptRegister();
             }
         });
     }
@@ -99,11 +85,13 @@ public class RegisterUserActivity extends BaseActivity implements
         String email = mEmailText.getText().toString();
         String password = mPasswordText.getText().toString();
 
+        System.out.println("Email: "+email+" Password: "+password);
+
         boolean cancel = false;
         View focusView = null;
-
+        System.out.println(TextUtils.isEmpty(password));
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(password)) {
             mPasswordText.setError(getString(R.string.error_no_password));
             focusView = mPasswordText;
             cancel = true;
@@ -118,6 +106,12 @@ public class RegisterUserActivity extends BaseActivity implements
             mEmailText.setError(getString(R.string.error_invalid_email));
             focusView = mEmailText;
             cancel = true;
+        }
+
+        if(validateExistingUser()){
+            mEmailText.setError(getString(R.string.error_user_exists));
+            focusView = mEmailText;
+           cancel = true;
         }
 
         if (cancel) {
