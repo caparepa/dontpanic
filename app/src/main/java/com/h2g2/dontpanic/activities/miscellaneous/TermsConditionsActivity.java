@@ -46,6 +46,16 @@ public class TermsConditionsActivity extends BaseActivity {
                     });
                 }
             }
+
+            @Override
+            public void setUpTextFields() {
+
+            }
+
+            @Override
+            public void setUpButtons() {
+
+            }
         };
         elements.setUpViewText();
         elements.setUpBackButton();

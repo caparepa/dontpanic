@@ -20,10 +20,6 @@ public abstract class UserValidation implements Validation {
         this._email = email;
     }
 
-    public boolean validateEmail(String email){
-        Pattern pattern = Validation.EMAIL_REGEX;
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
+
 
 }

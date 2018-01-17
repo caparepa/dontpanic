@@ -12,9 +12,12 @@ import com.h2g2.dontpanic.databinding.ActivityRegisterUserBinding;
 import com.h2g2.dontpanic.models.database.AppDatabase;
 import com.h2g2.dontpanic.models.entity.User;
 import com.h2g2.dontpanic.services.abstracts.UserValidation;
+import com.h2g2.dontpanic.services.interfaces.Validation;
 import com.h2g2.dontpanic.services.interfaces.ViewElement;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterUserActivity extends BaseActivity {
 
@@ -23,26 +26,35 @@ public class RegisterUserActivity extends BaseActivity {
     private AppDatabase userDb;
     protected List<User> userList;
 
+    protected TextView mEmailText;
+    protected TextView mPasswordText;
     protected Button mRegisterButton;
-    protected UserValidation validation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register_user);
-        setViewElements();
         userDb = AppDatabase.getAppDatabase(this);
+        setViewElements();
+        setUpRegisterButton();
+    }
+
+    private void setUpRegisterButton() {
         mRegisterButton = findViewById(R.id.createUserButton);
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println(binding.editTextEmailAddress.getText().toString());
+                System.out.println(validateExistingUser());
                 if(validateExistingUser()){
                     System.out.println("USER!");
                 }else{
-                    if(validation.validateEmail(getEmailText())){
-                        System.out.println("INVALID EMAIL!");
-                    }else{
+                    if(validateEmail(getEmailText())){
+                        System.out.println("VALID EMAIL!");
                         saveUserToDatabase();
+                    }else{
+                        System.out.println("INVALID EMAIL!");
+                        mEmailText.setError("Invalid email!");
                     }
                     System.out.println("NO USER!");
                 }
@@ -70,9 +82,21 @@ public class RegisterUserActivity extends BaseActivity {
                     });
                 }
             }
+
+            @Override
+            public void setUpTextFields() {
+                mEmailText = findViewById(R.id.editTextEmailAddress);
+                mPasswordText = findViewById(R.id.editTextUserPassword);
+            }
+
+            @Override
+            public void setUpButtons() {
+
+            }
         };
         elements.setUpViewText();
         elements.setUpBackButton();
+        elements.setUpTextFields();
     }
 
     private String getEmailText()
@@ -86,7 +110,6 @@ public class RegisterUserActivity extends BaseActivity {
     }
 
     private void saveUserToDatabase(){
-
         User user = new User();
         user.setEmail(getEmailText());
         user.setPassword(getPasswordText());
@@ -103,10 +126,13 @@ public class RegisterUserActivity extends BaseActivity {
 
     private boolean validateExistingUser(){
         String mail = getEmailText();
-        return userDb.userDao().findByEmail(mail) != null;
+        User user = userDb.userDao().findByEmail(mail);
+        return user != null;
     }
 
-    private boolean validateEmail(){
-        return validation.validateEmail(getEmailText());
+    public boolean validateEmail(String email){
+        Pattern pattern = Validation.EMAIL_REGEX;
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

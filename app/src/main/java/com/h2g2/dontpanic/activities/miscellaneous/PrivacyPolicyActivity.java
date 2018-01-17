@@ -44,6 +44,16 @@ public class PrivacyPolicyActivity extends BaseActivity {
                     });
                 }
             }
+
+            @Override
+            public void setUpTextFields() {
+
+            }
+
+            @Override
+            public void setUpButtons() {
+
+            }
         };
         elements.setUpViewText();
         elements.setUpBackButton();

@@ -11,4 +11,8 @@ public interface ViewElement {
 
     public void setUpBackButton();
 
+    public void setUpTextFields();
+
+    public void setUpButtons();
+
 }
