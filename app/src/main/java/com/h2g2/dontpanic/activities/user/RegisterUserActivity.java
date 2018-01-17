@@ -84,11 +84,8 @@ public class RegisterUserActivity extends BaseActivity implements
         String email = mEmailText.getText().toString();
         String password = mPasswordText.getText().toString();
 
-        System.out.println("Email: "+email+" Password: "+password);
-
         boolean cancel = false;
         View focusView = null;
-        System.out.println(TextUtils.isEmpty(password));
         // Check for a valid password, if the user entered one.
         if (TextUtils.isEmpty(password)) {
             mPasswordText.setError(getString(R.string.error_no_password));
@@ -126,9 +123,6 @@ public class RegisterUserActivity extends BaseActivity implements
         }
     }
 
-    /**
-     * Abstract stuff
-     */
     private void setViewElements(){
         ViewElement elements = new ViewElement() {
             @Override
@@ -186,18 +180,11 @@ public class RegisterUserActivity extends BaseActivity implements
         elements.setUpElements();
     }
 
-    /**
-     * Welp!
-     * @return String string
-     */
     private String getEmailText()
     {
         return binding.editTextEmailAddress.getText().toString();
     }
 
-    /**
-     * Save entitiy to Room db
-     */
     private void saveUserToDatabase(String email, String password){
         User user = new User();
         user.setEmail(email);
@@ -205,21 +192,12 @@ public class RegisterUserActivity extends BaseActivity implements
         userDb.userDao().insertUser(user);
     }
 
-    /**
-     *
-     * @return boolean
-     */
     private boolean validateExistingUser(){
         String mail = getEmailText();
         User user = userDb.userDao().findByEmail(mail);
         return user != null;
     }
 
-    /**
-     * Welp!
-     * @param email asd
-     * @return boolean
-     */
     public boolean isValidEmail(String email){
         Pattern pattern = Validation.EMAIL_REGEX;
         Matcher matcher = pattern.matcher(email);
@@ -236,9 +214,6 @@ public class RegisterUserActivity extends BaseActivity implements
         int IS_PRIMARY = 1;
     }
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
@@ -305,10 +280,6 @@ public class RegisterUserActivity extends BaseActivity implements
 
     }
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
     public class RegisterUserTask extends AsyncTask<Void, Void, Boolean> {
 
         private User mUser;

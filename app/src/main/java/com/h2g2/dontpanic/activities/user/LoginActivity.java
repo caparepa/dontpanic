@@ -35,6 +35,8 @@ import java.util.regex.*;
 
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
+import com.h2g2.dontpanic.models.database.AppDatabase;
+import com.h2g2.dontpanic.models.entity.User;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -66,6 +68,9 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     private View mProgressView;
     private View mLoginFormView;
 
+    private User mUser;
+    private AppDatabase userDb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +78,8 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
+
+        userDb = AppDatabase.getAppDatabase(this);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -302,6 +309,8 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
 
         private final String mEmail;
         private final String mPassword;
+        private User mUser;
+        private List<User> mUserList;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -319,7 +328,12 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
+            mUser = userDb.userDao().findByEmail(mEmail);
+            System.out.println(mUser.getEmail());
+
+            return mUser != null && mUser.getPassword().equals(mPassword);
+
+            /*for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
                     // Account exists, return true if the password matches.
@@ -328,7 +342,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             }
 
             // TODO: register the new account here.
-            return true;
+            return true;*/
         }
 
         @Override
