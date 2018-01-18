@@ -311,6 +311,7 @@ public class RegisterUserActivity extends BaseActivity implements
             } else {
                 /*mPasswordText.setError(getString(R.string.error_incorrect_password));
                 mPasswordText.requestFocus();*/
+                //TODO: show message, and then navigate to main activity
                 System.out.println("FUCK!");
             }
         }

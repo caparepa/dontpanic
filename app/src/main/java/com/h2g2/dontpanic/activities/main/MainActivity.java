@@ -1,8 +1,11 @@
 package com.h2g2.dontpanic.activities.main;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
@@ -18,11 +22,17 @@ import com.h2g2.dontpanic.activities.miscellaneous.PrivacyPolicyActivity;
 import com.h2g2.dontpanic.activities.miscellaneous.TermsConditionsActivity;
 import com.h2g2.dontpanic.activities.user.LoginActivity;
 import com.h2g2.dontpanic.activities.user.RegisterUserActivity;
+import com.h2g2.dontpanic.services.interfaces.SharedPreferencesConstants;
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, SharedPreferencesConstants {
 
     private static final String TAG = MainActivity.class.getName();
+
+    SharedPreferences appSettings;
+    protected TextView navHeaderUserTextView;
+    protected TextView navHeaderEmailTextView;
+    protected String loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +49,29 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        navHeaderUserTextView = findViewById(R.id.navHeaderUserTextView);
+        navHeaderEmailTextView = findViewById(R.id.navHeaderEmailTextView);
+
+        // Activity Context
+        Context context = MainActivity.this; // or getActivity(); in case of Fragments
+        SharedPreferences appSettings = context.getSharedPreferences(USER_PREFERENCES, Context.MODE_PRIVATE);
+
+        String email = appSettings.getString(PREF_EMAIL, "");
+        Boolean logged_in = appSettings.getBoolean(PREF_LOGGED_IN,false);
+        System.out.println("Mail "+email);
+        System.out.println("Logged in "+logged_in);
+        // Here we are passing a unique name identifier for preference and mode applicable
+
+        /*loggedUser = appSettings.getString("email", "");
+        if(loggedUser.isEmpty()){
+            navHeaderUserTextView.setText("");
+            navHeaderEmailTextView.setText("");
+        }else{
+            navHeaderUserTextView.setText(loggedUser);
+            navHeaderEmailTextView.setText(loggedUser);
+        }*/
+
     }
 
     @Override

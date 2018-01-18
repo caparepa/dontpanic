@@ -30,6 +30,8 @@ public class SplashActivity extends BaseActivity {
         showDelay();
     }
 
+
+
     @Override
     public void onResume(){
         super.onResume();
