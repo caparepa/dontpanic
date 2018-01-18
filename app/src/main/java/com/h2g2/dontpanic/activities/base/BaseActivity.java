@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.services.abstracts.PermissionBase;
 
 import java.util.ArrayList;
@@ -73,5 +72,9 @@ public class BaseActivity extends AppCompatActivity {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public void attemptLogout(){
+
     }
 }

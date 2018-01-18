@@ -4,6 +4,11 @@
     <string name="shared_email" translatable="false">email</string>
     <string name="session_user" translatable="false">session_user</string>
 
+    <!--Random-->
+    <string name="main_content_text_view">Main!</string>
+    <string name="main_content_logged_in">Main!</string>
+    <string name="main_content_logged_out">Main!</string>
+
     <!--App-->
     <string name="app_name">Don\'t Panic!</string>
 

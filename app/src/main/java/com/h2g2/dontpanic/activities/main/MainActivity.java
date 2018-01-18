@@ -1,7 +1,8 @@
 package com.h2g2.dontpanic.activities.main;
 
-import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.h2g2.dontpanic.R;
@@ -18,31 +21,41 @@ import com.h2g2.dontpanic.activities.miscellaneous.PrivacyPolicyActivity;
 import com.h2g2.dontpanic.activities.miscellaneous.TermsConditionsActivity;
 import com.h2g2.dontpanic.activities.user.LoginActivity;
 import com.h2g2.dontpanic.activities.user.RegisterUserActivity;
+import com.h2g2.dontpanic.databinding.ActivityMainBinding;
 import com.h2g2.dontpanic.models.entity.User;
+import com.h2g2.dontpanic.models.serializables.UserData;
 import com.h2g2.dontpanic.services.interfaces.SharedPreferencesConstants;
 import com.h2g2.dontpanic.utils.SharedPreferencesUtil;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, SharedPreferencesConstants {
 
-    private static final String TAG = MainActivity.class.getName();
-
-    SharedPreferences appSettings;
+    User mUser;
+    UserData mUserData;
 
     protected TextView navHeaderUser;
     protected TextView navHeaderEmail;
+    protected TextView mainSignalText;
 
-    User mUser;
-    NavigationView mHeaderView;
+    private DrawerLayout drawerLayout;
+    private NavigationView navView;
+    private Toolbar mToolbar;
+
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        drawerLayout = binding.drawerLayout;
+        navView = binding.navView;
+
+
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -56,6 +69,8 @@ public class MainActivity extends BaseActivity
         navHeaderEmail = navHeader.findViewById(R.id.nav_header_email_text_view);
 
         mUser = SharedPreferencesUtil.getUserDataPref(this).getUserEntity();
+
+        mainSignalText = navigationView.findViewById(R.id.mainSignalText);
 
         if(mUser != null){
             navHeaderUser.setText(mUser.getEmail());
@@ -118,7 +133,10 @@ public class MainActivity extends BaseActivity
             System.out.println("LOGIN");
             navigateToActivity(LoginActivity.class);
         } else if (id == R.id.nav_logout) {
-            System.out.println("LOGOUT");
+            mUser = SharedPreferencesUtil.getUserDataPref(this).getUserEntity();
+            mUserData = new UserData(false, mUser);
+            Boolean result = SharedPreferencesUtil.saveUserDataPref(mUserData,this);
+            System.out.println("LOGOUT " + result);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
