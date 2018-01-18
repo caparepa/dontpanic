@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
 import android.content.CursorLoader;
@@ -33,13 +32,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.*;
 
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
 import com.h2g2.dontpanic.models.database.AppDatabase;
 import com.h2g2.dontpanic.models.entity.User;
+import com.h2g2.dontpanic.models.serializables.UserData;
 import com.h2g2.dontpanic.services.interfaces.SharedPreferencesConstants;
+import com.h2g2.dontpanic.utils.SharedPreferencesUtil;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -59,6 +59,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     private View mProgressView;
     private View mLoginFormView;
 
+    private User mUser;
     private AppDatabase userDb;
 
     @Override
@@ -66,12 +67,12 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = findViewById(R.id.email);
         populateAutoComplete();
 
         userDb = AppDatabase.getAppDatabase(this);
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -83,7 +84,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +96,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         mProgressView = findViewById(R.id.login_progress);
 
         Context context = LoginActivity.this; // or getActivity(); in case of Fragments
+        context.getString(SHARED_FILE);
         loginSettings = context.getSharedPreferences(LOGIN_PREFERENCES, Context.MODE_PRIVATE);
     }
 
@@ -296,8 +298,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
 
         private final String mEmail;
         private final String mPassword;
-        private User mUser;
-        private List<User> mUserList;
+        //private User mUser;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -316,20 +317,14 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             }
 
             mUser = userDb.userDao().findByEmail(mEmail);
-            System.out.println(mUser != null ? mUser.getEmail() : "NO!");
+            UserData userData = new UserData(true, mUser);
 
-            return mUser != null && mUser.getPassword().equals(mPassword);
-
-            /*for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
+            if(mUser != null){
+                Boolean a = SharedPreferencesUtil.saveUserDataPref(userData,LoginActivity.this);
+                System.out.println("A "+ a);
             }
 
-            // TODO: register the new account here.
-            return true;*/
+            return mUser != null && mUser.getPassword().equals(mPassword);
         }
 
         @Override
@@ -338,11 +333,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             showProgress(false);
 
             if (success) {
-                loginSettings = getSharedPreferences(LOGIN_PREFERENCES, Context.MODE_PRIVATE);
-                loginSettings.edit().putString(PREF_EMAIL,mEmail).apply();
-                loginSettings.edit().putBoolean(PREF_LOGGED_IN,true).apply();
                 finish();
-                //TODO: navigate to main activity
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();

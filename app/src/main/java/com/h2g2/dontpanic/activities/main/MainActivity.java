@@ -1,12 +1,7 @@
 package com.h2g2.dontpanic.activities.main;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.h2g2.dontpanic.R;
@@ -22,7 +18,9 @@ import com.h2g2.dontpanic.activities.miscellaneous.PrivacyPolicyActivity;
 import com.h2g2.dontpanic.activities.miscellaneous.TermsConditionsActivity;
 import com.h2g2.dontpanic.activities.user.LoginActivity;
 import com.h2g2.dontpanic.activities.user.RegisterUserActivity;
+import com.h2g2.dontpanic.models.entity.User;
 import com.h2g2.dontpanic.services.interfaces.SharedPreferencesConstants;
+import com.h2g2.dontpanic.utils.SharedPreferencesUtil;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, SharedPreferencesConstants {
@@ -30,47 +28,42 @@ public class MainActivity extends BaseActivity
     private static final String TAG = MainActivity.class.getName();
 
     SharedPreferences appSettings;
-    protected TextView navHeaderUserTextView;
-    protected TextView navHeaderEmailTextView;
-    protected String loggedUser;
+
+    protected TextView navHeaderUser;
+    protected TextView navHeaderEmail;
+
+    User mUser;
+    NavigationView mHeaderView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        navHeaderUserTextView = findViewById(R.id.navHeaderUserTextView);
-        navHeaderEmailTextView = findViewById(R.id.navHeaderEmailTextView);
+        View navHeader = navigationView.getHeaderView(0);
+        navHeaderUser = navHeader.findViewById(R.id.nav_header_user_text_view);
+        navHeaderEmail = navHeader.findViewById(R.id.nav_header_email_text_view);
 
-        // Activity Context
-        Context context = MainActivity.this; // or getActivity(); in case of Fragments
-        SharedPreferences appSettings = context.getSharedPreferences(USER_PREFERENCES, Context.MODE_PRIVATE);
+        mUser = SharedPreferencesUtil.getUserDataPref(this).getUserEntity();
 
-        String email = appSettings.getString(PREF_EMAIL, "");
-        Boolean logged_in = appSettings.getBoolean(PREF_LOGGED_IN,false);
-        System.out.println("Mail "+email);
-        System.out.println("Logged in "+logged_in);
-        // Here we are passing a unique name identifier for preference and mode applicable
-
-        /*loggedUser = appSettings.getString("email", "");
-        if(loggedUser.isEmpty()){
-            navHeaderUserTextView.setText("");
-            navHeaderEmailTextView.setText("");
+        if(mUser != null){
+            navHeaderUser.setText(mUser.getEmail());
+            navHeaderEmail.setText(mUser.getEmail());
         }else{
-            navHeaderUserTextView.setText(loggedUser);
-            navHeaderEmailTextView.setText(loggedUser);
-        }*/
+            /*navHeaderUser.setText("HELLO");
+            navHeaderEmail.setText("HELLO");*/
+        }
 
     }
 

@@ -1,4 +1,10 @@
 <resources>
+    <!--Shared preferences-->
+    <string name="shared_pref_file" translatable="false">dont_panic_shp</string>
+    <string name="shared_email" translatable="false">email</string>
+    <string name="session_user" translatable="false">session_user</string>
+
+    <!--App-->
     <string name="app_name">Don\'t Panic!</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
