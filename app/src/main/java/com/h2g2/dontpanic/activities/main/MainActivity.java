@@ -61,8 +61,9 @@ public class MainActivity extends BaseActivity
         toggle.syncState();
 
         //Get header
-        mNavView.bringToFront();
         mNavView.setNavigationItemSelectedListener(MainActivity.this);
+        mNavView.bringToFront();
+        mDrawerLayout.requestLayout();
         mNavHeader = mNavView.getHeaderView(0);
 
         setNavHeaderText();
