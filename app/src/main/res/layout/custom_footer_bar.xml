@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
+
         android:id="@+id/contentBottomNavigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:baselineAligned="false">
 
-
-        <RelativeLayout
-            android:layout_width="1dp"
-            android:layout_height="@dimen/bottom_nav_bar_height"
-            android:layout_gravity="center"
-            android:gravity="center"/>
 
         <RelativeLayout
             android:id="@+id/fabavatarContainter"
@@ -26,7 +23,8 @@
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:id="@+id/frameLayout">
 
             </FrameLayout>
 
@@ -40,7 +38,7 @@
             android:gravity="center">
 
             <FrameLayout
-                android:id="@+id/fabProfile"
+                android:id="@+id/fabProfileText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -48,35 +46,20 @@
                     android:id="@+id/fabRutfs"
                     style="@style/fabThemeChannelMini"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:src="@drawable/rutf_icon_new"
+                    android:src="@drawable/ic_profile"
                     app:fabSize="mini"
                     app:backgroundTint="@color/colodBackgroundWhite"
                     app:elevation="6dp"/>
 
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/profileText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/fabProfile"
-                android:layout_alignTop="@+id/fabProfile"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:background="@drawable/current_waypoint"
-                android:clickable="false"
-                android:elevation="7dp"
-                android:gravity="center"
-                android:text=""
-                android:textColor="@color/md_white_1000"
-                android:textSize="@dimen/key_amount_size" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/frameStepsIn"
+            android:id="@+id/frameHomeLayout"
             android:layout_width="0dp"
             android:layout_height="@dimen/bottom_nav_bar_height"
-            android:layout_weight="0.3"
+            android:layout_weight="0.5"
             android:gravity="center_vertical"
             >
 
@@ -91,26 +74,11 @@
                     android:id="@+id/fabHome"
                     style="@style/fabThemeChannelMini"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_power_points_button"
+                    android:src="@drawable/ic_home"
                     app:backgroundTint="@color/colodBackgroundWhite"
                     app:elevation="6dp"
                     app:fabSize="mini" />
             </FrameLayout>
-
-            <TextView
-                android:id="@+id/homeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/frameHome"
-                android:layout_alignTop="@+id/frameHome"
-                android:layout_marginStart="0dp"
-                android:background="@drawable/current_waypoint"
-                android:clickable="false"
-                android:elevation="7dp"
-                android:gravity="center"
-                android:text="@string/textNonIntValue"
-                android:textColor="@color/md_white_1000"
-                android:textSize="@dimen/key_amount_size" />
 
         </RelativeLayout>
 
@@ -133,25 +101,11 @@
                     style="@style/fabThemeChannelMini"
                     android:layout_gravity="center"
                     app:backgroundTint="@color/colodBackgroundWhite"
-                    android:src="@mipmap/ic_power_points_button"
+                    android:src="@drawable/ic_question"
                     app:elevation="6dp"
                     app:fabSize="mini" />
-            </FrameLayout>
 
-            <TextView
-                android:id="@+id/pp_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/fabWhatever"
-                android:layout_alignTop="@+id/fabWhatever"
-                android:layout_marginStart="0dp"
-                android:background="@drawable/current_waypoint"
-                android:clickable="false"
-                android:elevation="7dp"
-                android:gravity="center"
-                android:text="@string/textNonIntValue"
-                android:textColor="@color/md_white_1000"
-                android:textSize="@dimen/key_amount_size" />
+            </FrameLayout>
 
         </RelativeLayout>
 

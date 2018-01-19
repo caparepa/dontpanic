@@ -27,6 +27,22 @@
             app:headerLayout="@layout/nav_header_main"
             app:menu="@menu/activity_main_drawer" />
 
+        <RelativeLayout
+            android:id="@+id/footerLayoutMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+            <include
+                android:id="@+id/includedFooterBar"
+                layout="@layout/custom_footer_bar"
+                android:layout_alignParentBottom="true"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+        </RelativeLayout>
+
+
     </android.support.v4.widget.DrawerLayout>
 
 </layout>
