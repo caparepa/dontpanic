@@ -4,6 +4,9 @@
     <string name="shared_email" translatable="false">email</string>
     <string name="session_user" translatable="false">session_user</string>
 
+    <!--UKP-->
+    <string name="textNonIntValue">0</string>
+
     <!--Random-->
     <string name="main_content_text_view">Main!</string>
     <string name="main_content_logged_in">Main!</string>

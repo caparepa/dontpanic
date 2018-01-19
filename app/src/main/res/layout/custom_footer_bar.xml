@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -28,24 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
 
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fabBottomElevation"
-                    style="@style/fabThemeChannelMini"
-                    android:layout_gravity="center"
-                    app:backgroundTint="#FFFFFFFF"
-                    app:elevation="6dp"
-                    app:fabSize="mini" />
             </FrameLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/fabavatar"
-                style="@style/fabThemeChannelMini"
-                android:layout_gravity="center"
-                app:elevation="6dp"
-                android:src="@mipmap/map_avatar_sample"
-                app:civ_border_color="@color/colodBackgroundWhite"
-                app:civ_border_width="1dp"
-                app:civ_fill_color="@color/colodBackgroundWhite" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -94,47 +78,38 @@
             android:layout_weight="0.3"
             android:gravity="center_vertical"
             >
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/fabStepsIn"
-                style="@style/fabThemeChannelCenter"
-                android:layout_width="match_parent"
-                android:layout_gravity="center"
-                android:maxWidth="@dimen/dimen_fab_xhdpi_center"
-                android:src="@drawable/apply_steps_button_red"
-                android:visibility="visible"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/fabStepsInIcon"
-                style="@style/fabThemeChannelCenterIcon"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:maxWidth="@dimen/dimen_fab_xhdpi_center_icon"
-                android:layout_gravity="center"
-                android:padding="7dp"
-                android:src="@drawable/apply_steps_button_icon"
-                android:visibility="visible"
-                />
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circle_arrows_step_button"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                style="@style/fabThemeChannelCenter"
-                android:layout_width="match_parent"
-                android:maxWidth="@dimen/dimen_fab_xhdpi_center"
-                android:layout_gravity="center"
-                android:src="@drawable/link_background_blue"
-                android:visibility="invisible"
-                />
-            <ImageView
-                android:id="@+id/circle_arrows_step_button_2"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                style="@style/fabThemeChannelCenter"
-                android:layout_width="match_parent"
-                android:maxWidth="@dimen/dimen_fab_xhdpi_center"
-                android:layout_gravity="center"
-                android:src="@drawable/arrows_icon"
-                android:visibility="invisible"
-                />
+            <FrameLayout
+                android:id="@+id/frameSteps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fabStepsPoints"
+                    style="@style/fabThemeChannelMini"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_power_points_button"
+                    app:backgroundTint="@color/colodBackgroundWhite"
+                    app:elevation="6dp"
+                    app:fabSize="mini" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/fabStepsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/frameSteps"
+                android:layout_alignTop="@+id/frameSteps"
+                android:layout_marginStart="0dp"
+                android:background="@drawable/current_waypoint"
+                android:clickable="false"
+                android:elevation="7dp"
+                android:gravity="center"
+                android:text="@string/textNonIntValue"
+                android:textColor="@color/md_white_1000"
+                android:textSize="@dimen/key_amount_size" />
 
         </RelativeLayout>
 
@@ -185,21 +160,6 @@
             android:layout_height="match_parent"
             android:layout_weight="0.25">
 
-            <TextView
-                android:id="@+id/key_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/frameFABKeys"
-                android:layout_alignTop="@+id/frameFABKeys"
-                android:layout_marginStart="0dp"
-                android:background="@drawable/current_waypoint"
-                android:clickable="false"
-                android:elevation="7dp"
-                android:gravity="center"
-                android:text="@string/textNonIntValue"
-                android:textColor="@color/md_white_1000"
-                android:textSize="@dimen/key_amount_size" />
-
             <FrameLayout
                 android:id="@+id/frameFABKeys"
                 android:layout_width="wrap_content"
@@ -207,15 +167,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true">
 
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fabMyKeys"
-                    style="@style/fabThemeChannelMini"
-                    android:layout_gravity="center"
-                    android:elevation="6dp"
-                    android:src="@mipmap/keys_button_icon"
-                    app:backgroundTint="@color/colodBackgroundWhite"
-                    app:fabSize="mini" />
             </FrameLayout>
         </RelativeLayout>
+
     </LinearLayout>
 </layout>

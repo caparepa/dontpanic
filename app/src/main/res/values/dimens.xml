@@ -156,4 +156,7 @@
     <dimen name="dimenCloseDialogIcon">20dp</dimen>
     <dimen name="textSizeUnlinkTracker">14sp</dimen>
     <dimen name="textSizeReachedLastWPContent">11sp</dimen>
+
+    <!--UKP-->
+    <dimen name="bottom_nav_bar_height">115dp</dimen>
 </resources>
