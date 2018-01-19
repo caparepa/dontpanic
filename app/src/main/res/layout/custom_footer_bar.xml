@@ -33,14 +33,14 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/fabRutfsContainter"
+            android:id="@+id/footerTabContainer"
             android:layout_width="0dp"
             android:layout_height="@dimen/bottom_nav_bar_height"
             android:layout_weight="0.25"
             android:gravity="center">
 
             <FrameLayout
-                android:id="@+id/frameFABRutfs"
+                android:id="@+id/fabProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -52,21 +52,22 @@
                     app:fabSize="mini"
                     app:backgroundTint="@color/colodBackgroundWhite"
                     app:elevation="6dp"/>
+
             </FrameLayout>
 
             <TextView
-                android:id="@+id/rutfs_amount"
+                android:id="@+id/profileText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/frameFABRutfs"
-                android:layout_alignTop="@+id/frameFABRutfs"
+                android:layout_alignStart="@+id/fabProfile"
+                android:layout_alignTop="@+id/fabProfile"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/current_waypoint"
                 android:clickable="false"
                 android:elevation="7dp"
                 android:gravity="center"
-                android:text="@string/textNonIntValue"
+                android:text=""
                 android:textColor="@color/md_white_1000"
                 android:textSize="@dimen/key_amount_size" />
         </RelativeLayout>
@@ -80,14 +81,14 @@
             >
 
             <FrameLayout
-                android:id="@+id/frameSteps"
+                android:id="@+id/frameHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true">
 
                 <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fabStepsPoints"
+                    android:id="@+id/fabHome"
                     style="@style/fabThemeChannelMini"
                     android:layout_gravity="center"
                     android:src="@mipmap/ic_power_points_button"
@@ -97,11 +98,11 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/fabStepsText"
+                android:id="@+id/homeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/frameSteps"
-                android:layout_alignTop="@+id/frameSteps"
+                android:layout_alignStart="@+id/frameHome"
+                android:layout_alignTop="@+id/frameHome"
                 android:layout_marginStart="0dp"
                 android:background="@drawable/current_waypoint"
                 android:clickable="false"
@@ -121,18 +122,18 @@
             android:gravity="center">
 
             <FrameLayout
-                android:id="@+id/frameFABPP"
+                android:id="@+id/fabWhatever"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true">
 
                 <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fabPowerPoints"
+                    android:id="@+id/whateverText"
                     style="@style/fabThemeChannelMini"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_power_points_button"
                     app:backgroundTint="@color/colodBackgroundWhite"
+                    android:src="@mipmap/ic_power_points_button"
                     app:elevation="6dp"
                     app:fabSize="mini" />
             </FrameLayout>
@@ -141,8 +142,8 @@
                 android:id="@+id/pp_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/frameFABPP"
-                android:layout_alignTop="@+id/frameFABPP"
+                android:layout_alignStart="@+id/fabWhatever"
+                android:layout_alignTop="@+id/fabWhatever"
                 android:layout_marginStart="0dp"
                 android:background="@drawable/current_waypoint"
                 android:clickable="false"
