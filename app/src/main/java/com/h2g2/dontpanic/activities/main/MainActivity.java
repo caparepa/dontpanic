@@ -11,12 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
+import com.h2g2.dontpanic.activities.miscellaneous.HelpZendeskActivity;
+import com.h2g2.dontpanic.activities.user.ProfileActivity;
 import com.h2g2.dontpanic.activities.miscellaneous.PrivacyPolicyActivity;
 import com.h2g2.dontpanic.activities.miscellaneous.TermsConditionsActivity;
 import com.h2g2.dontpanic.activities.user.LoginActivity;
@@ -25,6 +25,7 @@ import com.h2g2.dontpanic.databinding.ActivityMainBinding;
 import com.h2g2.dontpanic.models.entity.User;
 import com.h2g2.dontpanic.models.serializables.UserData;
 import com.h2g2.dontpanic.services.interfaces.SharedPreferencesConstants;
+import com.h2g2.dontpanic.services.interfaces.ViewElement;
 import com.h2g2.dontpanic.utils.SharedPreferencesUtil;
 
 public class MainActivity extends BaseActivity
@@ -80,6 +81,63 @@ public class MainActivity extends BaseActivity
             navHeaderEmail.setText("HELLO");*/
         }
 
+        ViewElement elements = new ViewElement() {
+            @Override
+            public void setUpViewText() {
+
+            }
+
+            @Override
+            public void setUpBackButton() {
+
+            }
+
+            @Override
+            public void setUpTextFields() {
+
+            }
+
+            @Override
+            public void setUpButtons() {
+                //Including FAB buttons
+                binding.includedFooterBar.fabProfileButton.setVisibility(View.VISIBLE);
+                if (binding.includedFooterBar.fabProfileButton.getVisibility() == View.VISIBLE) {
+                    binding.includedFooterBar.fabProfileButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            navigateToActivity(ProfileActivity.class);
+                        }
+                    });
+                }
+
+                binding.includedFooterBar.fabHomeButton.setVisibility(View.VISIBLE);
+                if (binding.includedFooterBar.fabHomeButton.getVisibility() == View.VISIBLE) {
+                    binding.includedFooterBar.fabHomeButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            navigateToActivity(MainActivity.class);
+                        }
+                    });
+                }
+
+                binding.includedFooterBar.fabHelpButton.setVisibility(View.VISIBLE);
+                if (binding.includedFooterBar.fabHelpButton.getVisibility() == View.VISIBLE) {
+                    binding.includedFooterBar.fabHelpButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            navigateToActivity(HelpZendeskActivity.class);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void setUpElements() {
+
+            }
+
+        };
+        elements.setUpButtons();
     }
 
     @Override

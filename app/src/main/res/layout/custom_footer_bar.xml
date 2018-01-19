@@ -13,7 +13,7 @@
 
 
         <RelativeLayout
-            android:id="@+id/fabavatarContainter"
+            android:id="@+id/fabAvatarContainter"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content">
 
                 <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fabRutfs"
+                    android:id="@+id/fabProfileButton"
                     style="@style/fabThemeChannelMini"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:src="@drawable/ic_profile"
@@ -71,7 +71,7 @@
                 android:layout_centerVertical="true">
 
                 <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fabHome"
+                    android:id="@+id/fabHomeButton"
                     style="@style/fabThemeChannelMini"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_home"
@@ -90,7 +90,7 @@
             android:gravity="center">
 
             <FrameLayout
-                android:id="@+id/fabWhatever"
+                android:id="@+id/fabHelpButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
