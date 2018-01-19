@@ -18,16 +18,20 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="option_settings">Settings</string>
 
     <string name="goto_terms_conditions">Terms and Conditions</string>
     <string name="goto_privacy_policy">Privacy Policy</string>
 
     <string name="action_help_zendesk">Help</string>
 
-    <string name="privacy_policy_title">PRIVACY POLICY</string>
-    <string name="terms_conditions_title">TERMS AND CONDITIONS</string>
-    <string name="privacy_policy_content">
+    <string name="title_login">LOGIN</string>
+    <string name="title_profile">PROFILE</string>
+    <string name="title_register_user">REGISTER USER</string>
+    <string name="title_privacy_policy">PRIVACY POLICY</string>
+    <string name="title_terms_conditions">TERMS AND CONDITIONS</string>
+
+    <string name="content_privacy_policy">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod mauris in leo convallis, sed malesuada dolor malesuada. Pellentesque tincidunt ornare ligula maximus scelerisque. Integer semper dignissim mi in congue. Etiam id urna eget enim dapibus iaculis. Etiam accumsan quis elit vitae tempor. Maecenas tempus est a dui congue eleifend. Nunc pharetra nec tortor lobortis porttitor. Cras finibus neque aliquam ex posuere congue. Praesent in nisi nulla. Aliquam erat volutpat. Quisque facilisis quam a ipsum placerat dignissim. Morbi at auctor ante, non maximus nisi. Morbi vulputate sapien tortor, ut tincidunt ante bibendum ac. Cras id blandit nibh.
 
         Nulla eu ornare eros. In tincidunt, nunc in ornare lobortis, augue ligula aliquam nulla, vitae tincidunt odio sem ut tellus. Vestibulum eu turpis non enim rutrum vulputate. Aliquam eget dolor tellus. Proin congue velit nulla, sed auctor purus porta sit amet. Maecenas pretium justo sed mollis cursus. Nam id augue sit amet sem fermentum interdum vel non tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ac sem et metus ornare luctus. Morbi quis luctus dolor. Phasellus aliquam, est tempus ultricies blandit, risus risus viverra nunc, sit amet tincidunt metus libero vitae nisl. Sed sollicitudin condimentum enim sed lobortis. Duis augue tortor, ultricies nec erat id, gravida dictum velit. Quisque euismod imperdiet ultrices. Nam tincidunt efficitur commodo.
@@ -38,7 +42,7 @@
 
         Nullam rutrum arcu ac viverra tempor. Curabitur lobortis urna quis tempus laoreet. Integer pulvinar, lacus ac blandit porttitor, nisi urna semper elit, nec suscipit massa tellus ultricies metus. Praesent ornare enim at libero cursus, nec mattis velit pretium. Quisque mollis, est eget accumsan volutpat, nisl turpis euismod felis, id sodales neque sapien in leo. Aliquam facilisis sollicitudin leo, ac imperdiet purus interdum non. Nullam quis ex vitae turpis iaculis bibendum et sed enim. Morbi mauris tellus, ultrices id sapien ac, consectetur facilisis nisl.
     </string>
-    <string name="terms_conditions_content">
+    <string name="content_terms_conditions">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod mauris in leo convallis, sed malesuada dolor malesuada. Pellentesque tincidunt ornare ligula maximus scelerisque. Integer semper dignissim mi in congue. Etiam id urna eget enim dapibus iaculis. Etiam accumsan quis elit vitae tempor. Maecenas tempus est a dui congue eleifend. Nunc pharetra nec tortor lobortis porttitor. Cras finibus neque aliquam ex posuere congue. Praesent in nisi nulla. Aliquam erat volutpat. Quisque facilisis quam a ipsum placerat dignissim. Morbi at auctor ante, non maximus nisi. Morbi vulputate sapien tortor, ut tincidunt ante bibendum ac. Cras id blandit nibh.
 
         Nulla eu ornare eros. In tincidunt, nunc in ornare lobortis, augue ligula aliquam nulla, vitae tincidunt odio sem ut tellus. Vestibulum eu turpis non enim rutrum vulputate. Aliquam eget dolor tellus. Proin congue velit nulla, sed auctor purus porta sit amet. Maecenas pretium justo sed mollis cursus. Nam id augue sit amet sem fermentum interdum vel non tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ac sem et metus ornare luctus. Morbi quis luctus dolor. Phasellus aliquam, est tempus ultricies blandit, risus risus viverra nunc, sit amet tincidunt metus libero vitae nisl. Sed sollicitudin condimentum enim sed lobortis. Duis augue tortor, ultricies nec erat id, gravida dictum velit. Quisque euismod imperdiet ultrices. Nam tincidunt efficitur commodo.
@@ -52,7 +56,6 @@
     <string name="title_activity_login">Log In</string>
 
     <!-- Strings related to login -->
-    <string name="title_register_user">Register User</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>

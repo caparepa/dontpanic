@@ -29,7 +29,7 @@ public class PrivacyPolicyActivity extends BaseActivity {
             @Override
             public void setUpViewText() {
                 TextView _textViewTitle = binding.includedAppBarTitle.textViewTitle;
-                _textViewTitle.setText(R.string.privacy_policy_title);
+                _textViewTitle.setText(R.string.title_privacy_policy);
             }
 
             @Override

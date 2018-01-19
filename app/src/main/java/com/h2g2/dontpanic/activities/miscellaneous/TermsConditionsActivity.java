@@ -31,7 +31,7 @@ public class TermsConditionsActivity extends BaseActivity {
             @Override
             public void setUpViewText() {
                 TextView _textViewTitle = binding.includedAppBarTitle.textViewTitle;
-                _textViewTitle.setText(R.string.terms_conditions_title);
+                _textViewTitle.setText(R.string.title_terms_conditions);
             }
 
             @Override

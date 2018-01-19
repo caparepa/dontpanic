@@ -60,14 +60,16 @@ public class MainActivity extends BaseActivity
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        //Get header
+        //Attach listener and get header
         mNavView.setNavigationItemSelectedListener(MainActivity.this);
-        mNavView.bringToFront();
-        mDrawerLayout.requestLayout();
         mNavHeader = mNavView.getHeaderView(0);
 
         setNavHeaderText();
         setUpViewElements();
+
+        //bring nav view to fron (z-index issue)
+        mNavView.bringToFront();
+        mDrawerLayout.requestLayout();
     }
 
     private void setNavHeaderText() {

@@ -29,7 +29,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="54dp"
-                android:text="@string/privacy_policy_title"
+                android:text="@string/title_privacy_policy"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
                 android:lineSpacingExtra="8sp"
                 android:maxLines="20"
                 android:scrollbars="vertical"
-                android:text="@string/terms_conditions_content"
+                android:text="@string/content_terms_conditions"
                 android:textAlignment="viewStart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
