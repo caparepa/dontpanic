@@ -2,7 +2,6 @@ package com.h2g2.dontpanic.activities.main;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -38,50 +37,52 @@ public class MainActivity extends BaseActivity
     protected TextView navHeaderEmail;
     protected TextView mainSignalText;
 
-    private DrawerLayout drawerLayout;
-    private NavigationView navView;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView mNavView;
     private Toolbar mToolbar;
+    private View mNavHeader;
 
     ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        drawerLayout = binding.drawerLayout;
-        navView = binding.navView;
 
+        mDrawerLayout = binding.drawerLayout;
+        mNavView = binding.navViewBar;
+        mToolbar = binding.includedAppBarMain.mainToolbar;
 
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        //Get header
+        mNavView.bringToFront();
+        mNavView.setNavigationItemSelectedListener(MainActivity.this);
+        mNavHeader = mNavView.getHeaderView(0);
 
-        View navHeader = navigationView.getHeaderView(0);
-        navHeaderUser = navHeader.findViewById(R.id.nav_header_user_text_view);
-        navHeaderEmail = navHeader.findViewById(R.id.nav_header_email_text_view);
+        setNavHeaderText();
+        setUpViewElements();
+    }
+
+    private void setNavHeaderText() {
+        navHeaderUser = mNavHeader.findViewById(R.id.nav_header_user_text_view);
+        navHeaderEmail = mNavHeader.findViewById(R.id.nav_header_email_text_view);
 
         mUser = SharedPreferencesUtil.getUserDataPref(this).getUserEntity();
-
-        mainSignalText = navigationView.findViewById(R.id.mainSignalText);
+        mainSignalText = mNavView.findViewById(R.id.mainSignalText);
 
         if(mUser != null){
             navHeaderUser.setText(mUser.getEmail());
             navHeaderEmail.setText(mUser.getEmail());
         }else{
-            /*navHeaderUser.setText("HELLO");
-            navHeaderEmail.setText("HELLO");*/
+            navHeaderUser.setText("HELLO");
+            navHeaderEmail.setText("HELLO");
         }
-
-        setUpViewElements();
     }
 
     private void setUpViewElements() {
@@ -137,7 +138,6 @@ public class MainActivity extends BaseActivity
 
             @Override
             public void setUpElements() {
-
             }
 
         };
@@ -146,9 +146,8 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -166,6 +165,8 @@ public class MainActivity extends BaseActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        System.out.println("OPTION SELECTED!");
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -176,11 +177,17 @@ public class MainActivity extends BaseActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        System.out.println("NAVIGATION SELECTED!");
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        item.setChecked(true);
+        mDrawerLayout.closeDrawers();
 
         if (id == R.id.nav_privacy_policy) {
             System.out.println("PRIVACY POLICY");
@@ -201,8 +208,7 @@ public class MainActivity extends BaseActivity
             System.out.println("LOGOUT " + result);
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }
