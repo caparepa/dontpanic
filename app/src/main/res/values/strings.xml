@@ -70,4 +70,8 @@
         completions."
     </string>
 
+    <!--Buttons-->
+    <string name="button_save">Save</string>
+    <string name="button_cancel">Cancel</string>
+
 </resources>

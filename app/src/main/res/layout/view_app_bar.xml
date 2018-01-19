@@ -24,7 +24,7 @@
             android:layout_marginTop="24dp"
             android:layout_centerHorizontal="true"
 
-            android:textColor="@color/colodBackgroundWhite"
+            android:textColor="@color/md_black_1000"
             android:textAllCaps="true"
             />
 

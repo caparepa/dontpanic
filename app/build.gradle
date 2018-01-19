@@ -59,6 +59,7 @@ repositories {
     maven { url "https://oss.sonatype.org/content/repositories/releases/" }
 }
 
+
 dependencies {
 
     compile "android.arch.persistence.room:runtime:1.0.0"
