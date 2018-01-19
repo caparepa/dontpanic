@@ -81,6 +81,10 @@ public class MainActivity extends BaseActivity
             navHeaderEmail.setText("HELLO");*/
         }
 
+        setUpViewElements();
+    }
+
+    private void setUpViewElements() {
         ViewElement elements = new ViewElement() {
             @Override
             public void setUpViewText() {
