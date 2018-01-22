@@ -206,9 +206,12 @@ public class MainActivity extends BaseActivity
 
         int id = item.getItemId();
 
+        //TODO: change if to switch statement!
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if(id == R.id.action_help){
+            navigateToActivity(HelpZendeskActivity.class);
         }
 
         return super.onOptionsItemSelected(item);
