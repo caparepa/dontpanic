@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
+import com.h2g2.dontpanic.activities.main.MainActivity;
 import com.h2g2.dontpanic.databinding.ActivityRegisterUserBinding;
 import com.h2g2.dontpanic.models.database.AppDatabase;
 import com.h2g2.dontpanic.models.entity.User;
@@ -310,6 +311,7 @@ public class RegisterUserActivity extends BaseActivity implements
         protected void onPostExecute(final Boolean success) {
             showProgress(false);
             if (success) {
+                navigateToActivity(MainActivity.class);
                 finish();
             } else {
                 /*mPasswordText.setError(getString(R.string.error_incorrect_password));

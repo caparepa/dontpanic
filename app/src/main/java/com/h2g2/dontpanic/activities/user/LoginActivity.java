@@ -35,6 +35,7 @@ import java.util.List;
 
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
+import com.h2g2.dontpanic.activities.main.MainActivity;
 import com.h2g2.dontpanic.models.database.AppDatabase;
 import com.h2g2.dontpanic.models.entity.User;
 import com.h2g2.dontpanic.models.serializables.UserData;
@@ -333,6 +334,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             showProgress(false);
 
             if (success) {
+                navigateToActivity(MainActivity.class);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));

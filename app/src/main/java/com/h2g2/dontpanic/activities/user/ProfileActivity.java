@@ -40,19 +40,18 @@ import java.util.regex.Pattern;
 public class ProfileActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor>,
         SharedPreferencesConstants {
 
-    SharedPreferences prefs;
     ActivityProfileBinding binding;
     RelativeLayout profileLayout;
+    SharedPreferences prefs;
     TextView _textViewTitle;
-    private Integer mUid;
-    private TextView mEmailText;
-    private TextView mPasswordText;
 
     private AppDatabase userDb;
-    private UpdateUserProfileTask mUpdateProfileTask;
-
     private User mUser;
     private UserData mUserData;
+    private UpdateUserProfileTask mUpdateProfileTask;
+
+    private TextView mEmailText;
+    private TextView mPasswordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,20 +60,18 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
         profileLayout = binding.profileRelativeLayout;
         userDb = AppDatabase.getAppDatabase(this);
 
-        getSharedPreferencesData();
         getUserData();
+        getSharedPreferencesData();
         setViewElements();
     }
 
-    //get user data for editing
     private void getUserData() {
         mUserData = SharedPreferencesUtil.getUserDataPref(ProfileActivity.this);
         mUser = mUserData.getUserEntity();
     }
 
-    //get shared preferences data
     private void getSharedPreferencesData() {
-        Context context = ProfileActivity.this; // or getActivity(); in case of Fragments
+        Context context = ProfileActivity.this;
         context.getString(SHARED_FILE);
         prefs = context.getSharedPreferences(LOGIN_PREFERENCES, Context.MODE_PRIVATE);
     }
@@ -107,13 +104,17 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
 
             @Override
             public void setUpInputFields() {
-                binding.editProfileEmail.setText(mUser.getEmail());
-                binding.editProfilePassword.setText(mUser.getPassword());
+                mEmailText = binding.editProfileEmail;
+                mPasswordText = binding.editProfilePassword;
+
+                if(mUser !=null){
+                    mEmailText.setText(mUser.getEmail());
+                    mPasswordText.setText(mUser.getPassword());
+                }
             }
 
             @Override
             public void setUpButtons() {
-                //Set cancel button to go to home
                 binding.cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -121,13 +122,16 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
                     }
                 });
 
-                //TODO: set save buton to overwrite values in database
-                binding.saveButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        System.out.println("SAVE ME!");
-                    }
-                });
+                if(mUser != null){
+                    binding.saveButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            attemptUpdate();
+                        }
+                    });
+                }else{
+
+                }
             }
 
             @Override
@@ -135,8 +139,8 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
 
             }
         };
-        elements.setUpBackButton();
         elements.setUpButtons();
+        elements.setUpBackButton();
         elements.setUpInputFields();
     }
 
@@ -194,7 +198,7 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
             // perform the user login attempt.
             showProgress(true);
             Integer uid = mUser.getUid();
-            mUpdateProfileTask = new ProfileActivity.UpdateUserProfileTask(uid, email, password);
+            mUpdateProfileTask = new ProfileActivity.UpdateUserProfileTask(mUser);
             mUpdateProfileTask.execute((Void) null);
         }
     }
@@ -275,16 +279,20 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
 
     }
 
+    private void updateUserData(User pUser){
+        System.out.println("CARAJO " + mEmailText.getText() + " " + mPasswordText.getText());
+        User user = userDb.userDao().findByUid(pUser.getUid());
+        user.setEmail(mEmailText.toString());
+        user.setPassword(mPasswordText.toString());
+        userDb.userDao().updateUser(user);
+    }
+
     public class UpdateUserProfileTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final Integer mUid;
-        private final String mEmail;
-        private final String mPassword;
+        private final User pUser;
 
-        UpdateUserProfileTask(Integer uid, String email, String password) {
-            mUid = uid;
-            mEmail = email;
-            mPassword = password;
+        UpdateUserProfileTask(User user) {
+            pUser = user;
         }
 
         @Override
@@ -295,14 +303,23 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
             } catch (InterruptedException e) {
                 return false;
             }
-            updateUserData(mUid, mEmail, mPassword);
-            return true;
+
+            updateUserData(pUser);
+            UserData userData = new UserData(true, pUser);
+
+            if(pUser != null){
+                System.out.println("pUser != null");
+                SharedPreferencesUtil.saveUserDataPref(userData,ProfileActivity.this);
+            }
+
+            return pUser != null;
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
             showProgress(false);
             if (success) {
+                navigateToActivity(MainActivity.class);
                 finish();
             } else {
                 /*mPasswordText.setError(getString(R.string.error_incorrect_password));
@@ -316,12 +333,5 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
         protected void onCancelled() {
             showProgress(false);
         }
-    }
-
-    private void updateUserData(Integer uid, String email, String password){
-        User user = userDb.userDao().findByUid(uid);
-        user.setEmail(email);
-        user.setPassword(password);
-        userDb.userDao().updateUser(user);
     }
 }
