@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.h2g2.dontpanic.models.entity.User;
 
@@ -27,6 +28,9 @@ public interface UserDao {
     @Query("SELECT * FROM users WHERE email = :email")
     User findByEmail(String email);
 
+    @Query("SELECT * FROM users WHERE uid = :uid")
+    User findByUid(Integer uid);
+
     @Query("SELECT * FROM users WHERE email = :email AND password = :password")
     User findByEmailAndPassword(String email, String password);
 
@@ -35,6 +39,9 @@ public interface UserDao {
 
     @Insert
     void inserUsers(User... users);
+
+    @Update
+    void updateUser(User user);
 
     @Delete()
     void deleteUser(User user);
