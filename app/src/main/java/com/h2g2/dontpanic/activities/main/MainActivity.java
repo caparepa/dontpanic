@@ -31,6 +31,7 @@ public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, SharedPreferencesConstants {
 
     User mUser;
+    Boolean mLoggedIn;
     UserData mUserData;
 
     MenuItem mItemRegister;
@@ -82,16 +83,17 @@ public class MainActivity extends BaseActivity
         navHeaderEmail = mNavHeader.findViewById(R.id.nav_header_email_text_view);
 
         mUser = SharedPreferencesUtil.getUserDataPref(this).getUserEntity();
+        mLoggedIn = SharedPreferencesUtil.getUserDataPref(this).getLoggedIn();
+
         mainSignalText = mNavView.findViewById(R.id.mainSignalText);
 
-        if(mUser != null){
+        if(mUser != null && mLoggedIn){
             navHeaderUser.setText(mUser.getEmail());
             navHeaderEmail.setText(mUser.getEmail());
         }else{
             navHeaderUser.setText(R.string.guest_user);
             navHeaderEmail.setText(R.string.guest_user);
         }
-        System.out.println("A "+navHeaderEmail);
     }
 
     private void setUpViewElements() {
@@ -180,8 +182,9 @@ public class MainActivity extends BaseActivity
         mItemRegister = binding.navViewBar.getMenu().findItem(R.id.nav_register_account);
         mItemLogin = binding.navViewBar.getMenu().findItem(R.id.nav_login);
         mItemLogout = binding.navViewBar.getMenu().findItem(R.id.nav_logout);
+        mLoggedIn = SharedPreferencesUtil.getUserDataPref(this).getLoggedIn();
 
-        if(mUser != null){
+        if(mUser != null && mLoggedIn){
             mItemRegister.setVisible(false);
             mItemLogin.setVisible(false);
             mItemLogout.setVisible(true);
@@ -193,8 +196,6 @@ public class MainActivity extends BaseActivity
 
         return true;
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -212,8 +213,6 @@ public class MainActivity extends BaseActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -241,6 +240,8 @@ public class MainActivity extends BaseActivity
             mUser = SharedPreferencesUtil.getUserDataPref(this).getUserEntity();
             mUserData = new UserData(false, mUser);
             Boolean result = SharedPreferencesUtil.saveUserDataPref(mUserData,this);
+            //TODO: set loader here!
+            setNavHeaderText();
             System.out.println("LOGOUT " + result);
         }
 
