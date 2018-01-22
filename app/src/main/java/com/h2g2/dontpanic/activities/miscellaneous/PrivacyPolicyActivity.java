@@ -51,6 +51,11 @@ public class PrivacyPolicyActivity extends BaseActivity {
             }
 
             @Override
+            public void setUpInputFields() {
+
+            }
+
+            @Override
             public void setUpButtons() {
 
             }

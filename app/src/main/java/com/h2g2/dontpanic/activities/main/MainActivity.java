@@ -83,8 +83,8 @@ public class MainActivity extends BaseActivity
             navHeaderUser.setText(mUser.getEmail());
             navHeaderEmail.setText(mUser.getEmail());
         }else{
-            navHeaderUser.setText("HELLO");
-            navHeaderEmail.setText("HELLO");
+            navHeaderUser.setText(R.string.guest_user);
+            navHeaderEmail.setText(R.string.guest_user);
         }
     }
 
@@ -102,6 +102,11 @@ public class MainActivity extends BaseActivity
 
             @Override
             public void setUpTextFields() {
+
+            }
+
+            @Override
+            public void setUpInputFields(){
 
             }
 

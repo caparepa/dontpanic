@@ -2,7 +2,6 @@ package com.h2g2.dontpanic.activities.user;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Loader;
@@ -70,8 +69,7 @@ public class RegisterUserActivity extends BaseActivity implements
         });
     }
 
-    private void attemptRegister()
-    {
+    private void attemptRegister() {
         if (mRegisterTask != null) {
             return;
         }
@@ -161,6 +159,11 @@ public class RegisterUserActivity extends BaseActivity implements
                         return false;
                     }
                 });
+            }
+
+            @Override
+            public void setUpInputFields() {
+
             }
 
             @Override

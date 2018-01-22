@@ -13,6 +13,8 @@ public interface ViewElement {
 
     public void setUpTextFields();
 
+    public void setUpInputFields();
+
     public void setUpButtons();
 
     public void setUpElements();

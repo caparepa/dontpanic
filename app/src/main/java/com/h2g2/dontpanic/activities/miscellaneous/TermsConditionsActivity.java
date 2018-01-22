@@ -53,6 +53,11 @@ public class TermsConditionsActivity extends BaseActivity {
             }
 
             @Override
+            public void setUpInputFields() {
+
+            }
+
+            @Override
             public void setUpButtons() {
 
             }
