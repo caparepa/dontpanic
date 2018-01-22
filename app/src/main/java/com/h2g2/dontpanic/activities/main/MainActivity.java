@@ -33,6 +33,11 @@ public class MainActivity extends BaseActivity
     User mUser;
     UserData mUserData;
 
+    MenuItem mItemRegister;
+    MenuItem mItemLogin;
+    MenuItem mItemLogout;
+
+
     protected TextView navHeaderUser;
     protected TextView navHeaderEmail;
     protected TextView mainSignalText;
@@ -86,6 +91,7 @@ public class MainActivity extends BaseActivity
             navHeaderUser.setText(R.string.guest_user);
             navHeaderEmail.setText(R.string.guest_user);
         }
+        System.out.println("A "+navHeaderEmail);
     }
 
     private void setUpViewElements() {
@@ -118,7 +124,11 @@ public class MainActivity extends BaseActivity
                     binding.includedFooterBar.fabProfileButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            navigateToActivity(ProfileActivity.class);
+                            if(mUser != null){
+                                navigateToActivity(ProfileActivity.class);
+                            }else{
+                                navigateToActivity(RegisterUserActivity.class);
+                            }
                         }
                     });
                 }
@@ -146,6 +156,7 @@ public class MainActivity extends BaseActivity
 
             @Override
             public void setUpElements() {
+
             }
 
         };
@@ -165,8 +176,25 @@ public class MainActivity extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        mItemRegister = binding.navViewBar.getMenu().findItem(R.id.nav_register_account);
+        mItemLogin = binding.navViewBar.getMenu().findItem(R.id.nav_login);
+        mItemLogout = binding.navViewBar.getMenu().findItem(R.id.nav_logout);
+
+        if(mUser != null){
+            mItemRegister.setVisible(false);
+            mItemLogin.setVisible(false);
+            mItemLogout.setVisible(true);
+        }else{
+            mItemRegister.setVisible(true);
+            mItemLogin.setVisible(true);
+            mItemLogout.setVisible(false);
+        }
+
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
