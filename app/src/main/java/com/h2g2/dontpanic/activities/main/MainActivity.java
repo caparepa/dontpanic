@@ -30,25 +30,24 @@ import com.h2g2.dontpanic.utils.SharedPreferencesUtil;
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, SharedPreferencesConstants {
 
-    User mUser;
+    ActivityMainBinding binding;
     Boolean mLoggedIn;
+
+    User mUser;
     UserData mUserData;
 
-    MenuItem mItemRegister;
-    MenuItem mItemLogin;
-    MenuItem mItemLogout;
-
+    protected MenuItem mItemRegister;
+    protected MenuItem mItemLogin;
+    protected MenuItem mItemLogout;
 
     protected TextView navHeaderUser;
     protected TextView navHeaderEmail;
     protected TextView mainSignalText;
 
-    private DrawerLayout mDrawerLayout;
-    private NavigationView mNavView;
-    private Toolbar mToolbar;
-    private View mNavHeader;
-
-    ActivityMainBinding binding;
+    protected DrawerLayout mDrawerLayout;
+    protected NavigationView mNavView;
+    protected Toolbar mToolbar;
+    protected View mNavHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +69,7 @@ public class MainActivity extends BaseActivity
         mNavView.setNavigationItemSelectedListener(MainActivity.this);
         mNavHeader = mNavView.getHeaderView(0);
 
+        getUserData();
         setNavHeaderText();
         setUpViewElements();
 
@@ -78,13 +78,14 @@ public class MainActivity extends BaseActivity
         mDrawerLayout.requestLayout();
     }
 
+    private void getUserData() {
+        mUser = SharedPreferencesUtil.getUserDataPref(this).getUserEntity();
+        mLoggedIn = SharedPreferencesUtil.getUserDataPref(this).getLoggedIn();
+    }
+
     private void setNavHeaderText() {
         navHeaderUser = mNavHeader.findViewById(R.id.nav_header_user_text_view);
         navHeaderEmail = mNavHeader.findViewById(R.id.nav_header_email_text_view);
-
-        mUser = SharedPreferencesUtil.getUserDataPref(this).getUserEntity();
-        mLoggedIn = SharedPreferencesUtil.getUserDataPref(this).getLoggedIn();
-
         mainSignalText = mNavView.findViewById(R.id.mainSignalText);
 
         if(mUser != null && mLoggedIn){
@@ -126,7 +127,7 @@ public class MainActivity extends BaseActivity
                     binding.includedFooterBar.fabProfileButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if(mUser != null){
+                            if(mUser != null && mLoggedIn){
                                 navigateToActivity(ProfileActivity.class);
                             }else{
                                 navigateToActivity(RegisterUserActivity.class);
@@ -182,7 +183,6 @@ public class MainActivity extends BaseActivity
         mItemRegister = binding.navViewBar.getMenu().findItem(R.id.nav_register_account);
         mItemLogin = binding.navViewBar.getMenu().findItem(R.id.nav_login);
         mItemLogout = binding.navViewBar.getMenu().findItem(R.id.nav_logout);
-        mLoggedIn = SharedPreferencesUtil.getUserDataPref(this).getLoggedIn();
 
         if(mUser != null && mLoggedIn){
             mItemRegister.setVisible(false);
