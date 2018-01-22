@@ -159,4 +159,7 @@
 
     <!--UKP-->
     <dimen name="bottom_nav_bar_height">115dp</dimen>
+
+    <!--DontPanicValue-->
+    <dimen name="profile_items_height">71dp</dimen>
 </resources>
