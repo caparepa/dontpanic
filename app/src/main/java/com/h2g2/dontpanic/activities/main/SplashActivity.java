@@ -17,8 +17,8 @@ import com.h2g2.dontpanic.utils.DatabaseInitializer;
 
 public class SplashActivity extends BaseActivity {
 
-    private Handler splashFadeIn = null;
-    private Runnable splashFadeRun = null;
+    protected Handler splashFadeIn = null;
+    protected Runnable splashFadeRun = null;
     ActivitySplashBinding binding;
 
     @Override
@@ -69,10 +69,5 @@ public class SplashActivity extends BaseActivity {
                 SplashActivity.this.finish();
             }
         }, secondsDelayed * 1000);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
