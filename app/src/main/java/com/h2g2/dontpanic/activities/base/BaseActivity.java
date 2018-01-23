@@ -73,10 +73,6 @@ public class BaseActivity extends AppCompatActivity {
             }
         };
 
-        try{
-            permission.checkPermissionList();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+        permission.checkPermissionList();
     }
 }

@@ -17,6 +17,7 @@ import com.h2g2.dontpanic.utils.DatabaseInitializer;
 
 public class SplashActivity extends BaseActivity {
 
+    protected int secondsDelayed = 3;
     protected Handler splashFadeIn = null;
     protected Runnable splashFadeRun = null;
     ActivitySplashBinding binding;
@@ -28,13 +29,15 @@ public class SplashActivity extends BaseActivity {
 
         //create database if doesn't exist
         DatabaseInitializer.populateAsync(AppDatabase.getAppDatabase(this));
-        showDelay();
+
+        //show animation
+        showDelay(secondsDelayed);
     }
 
     @Override
     public void onResume(){
         super.onResume();
-        //splashLogoAnimation();
+        splashLogoAnimation();
     }
 
     private void setSplashTouchEvent(View view) {
@@ -53,21 +56,20 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
                 YoYo.with(Techniques.FadeInLeft).duration(2000).playOn(binding.dontPanicLogo);
-                System.out.println("splashLogoAnimation");
                 splashFadeIn.postDelayed(this,3000);
             }
         };
         splashFadeIn.post(splashFadeRun);
     }
 
-    private void showDelay() {
-        int secondsDelayed = 3;
+    private void showDelay(int seconds) {
+
         new Handler().postDelayed(new Runnable() {
             public void run() {
+                splashLogoAnimation();
                 navigateToActivity(MainActivity.class);
-                //TODO: check permissions aroudn here!
                 SplashActivity.this.finish();
             }
-        }, secondsDelayed * 1000);
+        }, seconds * 1000);
     }
 }
