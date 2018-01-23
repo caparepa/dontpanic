@@ -12,6 +12,10 @@ import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
 import com.h2g2.dontpanic.databinding.ActivityHelpZendeskBinding;
 import com.h2g2.dontpanic.services.interfaces.ViewElement;
+import com.zendesk.sdk.model.access.AnonymousIdentity;
+import com.zendesk.sdk.model.access.Identity;
+import com.zendesk.sdk.network.impl.ZendeskConfig;
+import com.zendesk.sdk.support.SupportActivity;
 import com.zopim.android.sdk.api.ZopimChat;
 import com.zopim.android.sdk.prechat.ZopimChatActivity;
 
@@ -29,7 +33,16 @@ public class HelpZendeskActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(HelpZendeskActivity.this, R.layout.activity_help_zendesk);
 
         //init zendesk
-        ZopimChat.init("5Ql9NgVwNfaAFd4kP1U5EuQx86BAwep9");
+        /*ZopimChat.init("V8vJJVKzgBKxHA7vqmJqjTKwjtsawQap");*/
+        ZendeskConfig.INSTANCE.init(
+                this,
+                "https://cserrano-teravisiontech.zendesk.com",
+                "bb58c9f88aa0c0af8d855cc1c1e62d833fb006ada4824c25",
+                "mobile_sdk_client_54c6100edbc3e81f5809"
+        );
+        Identity identity = new AnonymousIdentity.Builder().build();
+        ZendeskConfig.INSTANCE.setIdentity(identity);
+
         setUpViewElements();
 
     }
@@ -74,7 +87,8 @@ public class HelpZendeskActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         //start chat
-                        startActivity(new Intent(getApplicationContext(), ZopimChatActivity.class));
+                        /*startActivity(new Intent(getApplicationContext(), ZopimChatActivity.class));*/
+                        new SupportActivity.Builder().show(HelpZendeskActivity.this);
                     }
                 });
             }

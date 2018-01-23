@@ -257,6 +257,8 @@ public class MainActivity extends BaseActivity
             //TODO: set loader here!
             setNavHeaderText();
             System.out.println("LOGOUT " + result);
+            navigateToActivity(MainActivity.class);
+            finish();
         }
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
