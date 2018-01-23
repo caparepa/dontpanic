@@ -33,20 +33,16 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegisterUserActivity extends BaseActivity implements
-        LoaderManager.LoaderCallbacks<Cursor> {
+public class RegisterUserActivity extends BaseActivity {
 
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
     ActivityRegisterUserBinding binding;
 
     private AppDatabase userDb;
     private RegisterUserTask mRegisterTask = null;
 
+    protected Button mRegisterButton;
     protected TextView mEmailText;
     protected TextView mPasswordText;
-    protected Button mRegisterButton;
 
     private View mRegisterFormView;
     private View mRegisterProgressView;
@@ -61,7 +57,7 @@ public class RegisterUserActivity extends BaseActivity implements
     }
 
     private void setUpRegisterButton() {
-        mRegisterButton = findViewById(R.id.createUserButton);
+        mRegisterButton = binding.registerButton;
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,11 +141,13 @@ public class RegisterUserActivity extends BaseActivity implements
 
             @Override
             public void setUpTextFields() {
-                mEmailText = findViewById(R.id.editTextEmailAddress);
-                mPasswordText = findViewById(R.id.editTextUserPassword);
-                /**
-                 * dunno what the fuck this does, but whatever
-                 */
+
+            }
+
+            @Override
+            public void setUpInputFields() {
+                mEmailText = binding.emailEditText;
+                mPasswordText = binding.passwordEditText;
                 mPasswordText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -163,30 +161,25 @@ public class RegisterUserActivity extends BaseActivity implements
             }
 
             @Override
-            public void setUpInputFields() {
-
-            }
-
-            @Override
             public void setUpButtons() {
 
             }
 
             @Override
             public void setUpElements() {
-                mRegisterFormView = findViewById(R.id.register_form);
-                mRegisterProgressView = findViewById(R.id.register_progress);
+                mRegisterFormView = binding.registerFormScroll;
+                mRegisterProgressView = binding.registerProgressBar;
             }
         };
-        elements.setUpViewText();
         elements.setUpBackButton();
-        elements.setUpTextFields();
+        elements.setUpViewText();
         elements.setUpElements();
+        elements.setUpInputFields();
     }
 
     private String getEmailText()
     {
-        return binding.editTextEmailAddress.getText().toString();
+        return binding.emailEditText.getText().toString();
     }
 
     private void saveUserToDatabase(String email, String password){
@@ -206,16 +199,6 @@ public class RegisterUserActivity extends BaseActivity implements
         Pattern pattern = Validation.EMAIL_REGEX;
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
-    }
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
     }
 
     private void showProgress(final boolean show) {
@@ -248,40 +231,6 @@ public class RegisterUserActivity extends BaseActivity implements
             mRegisterProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mRegisterFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
-    }
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), RegisterUserActivity.ProfileQuery.PROJECTION,
-
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                .CONTENT_ITEM_TYPE},
-
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            //emails.add(cursor.getString(LoginActivity.ProfileQuery.ADDRESS));
-            cursor.moveToNext();
-        }
-
-        //addEmailsToAutoComplete(emails);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
     }
 
     public class RegisterUserTask extends AsyncTask<Void, Void, Boolean> {

@@ -12,14 +12,6 @@
         android:layout_height="wrap_content"
         >
 
-        <ProgressBar
-            android:id="@+id/register_progress"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:visibility="gone" />
-
         <include android:id="@+id/includedAppBarTitle"
             layout="@layout/view_app_bar"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -27,216 +19,75 @@
             app:layout_constraintTop_toTopOf="parent"
             />
 
-        <RelativeLayout
-            android:id="@+id/relativeLayoutUsername"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:paddingTop="64dp"
+            android:orientation="vertical">
 
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/textViewLetsCreateAccount"
+            <ProgressBar
+                android:id="@+id/register_progress_bar"
+                style="?android:attr/progressBarStyleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayoutErrorView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="41dp"
-                android:textColor="@color/defaultContentColor" />
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
 
-            <RelativeLayout
-                android:id="@+id/relativeLayoutMailContent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/relativeLayoutPwdContent"
-                android:layout_toEndOf="@+id/relativeLayoutErrorView"
-                android:paddingEnd="@dimen/paddingEndStart"
-                android:paddingStart="@dimen/paddingEndStart">
-
-                <TextView
-                    android:id="@+id/textViewMail"
-                    style="@style/GralLabelWithShadow.x2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginBottom="8dp"
-                    android:text="EMAIL"
-                    tools:textColor="@color/defaultContentColor" />
-
-                <EditText
-                    android:id="@+id/editTextEmailAddress"
+                <ScrollView
+                    android:id="@+id/register_form_scroll"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_height_item_medium"
-                    android:layout_below="@+id/textViewMail"
-                    android:hint="EMAIL"
-                    android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
-                    android:textAlignment="center"
-                    android:textColor="@color/generalHintTextColor"
-                    android:textSize="14sp">
+                    android:layout_height="match_parent">
 
-                    <requestFocus />
+                    <LinearLayout
+                        android:id="@+id/register_form_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                </EditText>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/imageViewIconEmailError"
-                    android:layout_width="@dimen/dimen_height_item_error"
-                    android:layout_height="@dimen/dimen_height_item_error"
-                    android:layout_alignEnd="@+id/editTextEmailAddress"
-                    android:layout_alignTop="@+id/editTextEmailAddress"
-                    android:layout_below="@+id/textViewMail"
-                    android:layout_margin="@dimen/margin_error_x_icon"
-                    android:padding="@dimen/padding_error_x_icon"
-                    android:visibility="gone" />
+                            <EditText
+                                android:id="@+id/email_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/prompt_email"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1"
+                                android:singleLine="true"/>
 
-                <TextView
-                    android:id="@+id/textViewHintTypeEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_height_item_medium"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/textViewMail"
-                    android:gravity="center"
-                    android:text="EMAIL"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/text_size_x3"
-                    android:visibility="gone" />
-            </RelativeLayout>
+                        </android.support.design.widget.TextInputLayout>
 
-            <RelativeLayout
-                android:id="@+id/relativeLayoutPwdContent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/buttonRegisterAccount"
-                android:layout_marginBottom="13dp"
-                android:layout_toEndOf="@+id/relativeLayoutErrorView"
-                android:paddingEnd="@dimen/paddingEndStart"
-                android:paddingStart="@dimen/paddingEndStart">
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/textViewPassword"
-                    style="@style/GralLabelWithShadow.x2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="4dp"
-                    android:text="PASSWORD"
-                    android:textColor="@color/defaultContentColor" />
+                            <EditText
+                                android:id="@+id/password_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/prompt_password"
+                                android:inputType="textPassword"
+                                android:maxLines="1"
+                                android:singleLine="true"/>
 
-                <EditText
-                    android:id="@+id/editTextUserPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_height_item_medium"
-                    android:layout_below="@+id/textViewPassword"
-                    android:imeOptions="actionNext"
-                    android:inputType="textWebPassword"
-                    android:textAlignment="center"
-                    android:textStyle="normal" />
+                        </android.support.design.widget.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/imageViewIconPassError"
-                    android:layout_width="@dimen/dimen_height_item_error"
-                    android:layout_height="@dimen/dimen_height_item_error"
-                    android:layout_alignEnd="@+id/editTextUserPassword"
-                    android:layout_alignTop="@+id/editTextUserPassword"
-                    android:layout_below="@+id/textViewPassword"
-                    android:layout_margin="@dimen/margin_error_x_icon"
-                    android:padding="@dimen/padding_error_x_icon"
-                    android:visibility="gone" />
+                        <Button
+                            android:id="@+id/register_button"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/action_register"
+                            android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textViewHintTypeUrPwd"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_height_item_medium"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/textViewPassword"
-                    android:gravity="center"
-                    android:text="PASSWORD"
-                    android:textColor="@color/generalHintTextColor"
-                    android:textSize="@dimen/text_size_x3" />
+                    </LinearLayout>
 
-            </RelativeLayout>
+                </ScrollView>
 
-            <LinearLayout
-                android:id="@+id/relativeLayoutErrorView"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_height_item_medium"
-                android:background="@color/redColorBackground"
-                android:layout_above="@+id/buttonRegisterAccount"
-                android:layout_marginBottom="@dimen/margin_bottom_error"
-                android:visibility="gone"
-                >
-
-                <TextView
-                    android:id="@+id/textViewErrorMessage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textAllCaps="true"
-                    android:textColor="#000000"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:visibility="visible"
-                    android:text="hola"
-                    />
-            </LinearLayout>
-            <ImageView
-                android:id="@+id/imageViewArrows"
-                android:layout_width="@dimen/dimen_icon_register_width_height"
-                android:layout_height="@dimen/dimen_icon_register_width_height"
-                android:padding="10dp"
-                android:layout_centerHorizontal="true"
-                android:visibility="gone"
-                android:layout_above="@+id/relativeLayoutErrorView"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"/>
-
-            <RelativeLayout
-                android:id="@+id/buttonRegisterAccount"
-                android:layout_width="@dimen/dimen_width_button_medium"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="143dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:paddingBottom="13dp"
-                android:paddingTop="13dp">
-
-                <Button
-                    android:id="@+id/createUserButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="70dp"
-                    android:layout_marginTop="39dp"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/dimen_text_size_button"
-                    android:textStyle="bold"
-                    android:textAllCaps="true"
-                    android:text="Register" />
-
-                <com.github.ybq.android.spinkit.SpinKitView
-                    android:id="@+id/puntos_animados"
-                    style="@style/SpinKitView.Small.ThreeBounce"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@+id/createUserButton"
-                    android:visibility="invisible" />
-
-
-            </RelativeLayout>
-
-
-
-
-        </RelativeLayout>
-
+        </LinearLayout>
 
     </RelativeLayout>
 

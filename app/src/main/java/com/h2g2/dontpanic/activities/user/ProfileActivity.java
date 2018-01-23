@@ -37,8 +37,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ProfileActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor>,
-        SharedPreferencesConstants {
+public class ProfileActivity extends BaseActivity implements SharedPreferencesConstants {
 
     ActivityProfileBinding binding;
     RelativeLayout profileLayout;
@@ -203,7 +202,7 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
         }
     }
 
-    private interface ProfileQuery {
+    /*private interface ProfileQuery {
         String[] PROJECTION = {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
                 ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
@@ -211,7 +210,7 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
 
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
-    }
+    }*/
 
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -245,7 +244,7 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
         }
     }
 
-    @Override
+    /*@Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
                 // Retrieve data rows for the device user's 'profile' contact.
@@ -277,7 +276,7 @@ public class ProfileActivity extends BaseActivity implements LoaderManager.Loade
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
-    }
+    }*/
 
     private void updateUserData(User pUser){
         System.out.println("CARAJO " + mEmailText.getText() + " " + mPasswordText.getText());
