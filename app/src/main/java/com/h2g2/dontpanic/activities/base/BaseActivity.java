@@ -3,6 +3,7 @@ package com.h2g2.dontpanic.activities.base;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -45,13 +46,18 @@ public class BaseActivity extends AppCompatActivity {
 
                 permissionList.add(Manifest.permission.ACCESS_COARSE_LOCATION);
                 permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
-                permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-                permissionList.add(Manifest.permission.CAMERA);
+                permissionList.add(Manifest.permission.ACCESS_NETWORK_STATE);
                 permissionList.add(Manifest.permission.BLUETOOTH);
                 permissionList.add(Manifest.permission.BLUETOOTH_ADMIN);
                 permissionList.add(Manifest.permission.BLUETOOTH_PRIVILEGED);
-                permissionList.add(Manifest.permission.ACCESS_NETWORK_STATE);
+                permissionList.add(Manifest.permission.CAMERA);
+                permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+                permissionList.add(Manifest.permission.GET_ACCOUNTS);
+                permissionList.add(Manifest.permission.READ_CONTACTS);
+                permissionList.add(Manifest.permission.INTERNET);
+                permissionList.add(Manifest.permission.VIBRATE);
+                permissionList.add(Manifest.permission.READ_PHONE_STATE);
 
                 return permissionList;
             }
@@ -72,9 +78,5 @@ public class BaseActivity extends AppCompatActivity {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-    }
-
-    public void attemptLogout(){
-
     }
 }

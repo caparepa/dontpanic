@@ -3,6 +3,7 @@ package com.h2g2.dontpanic.activities.main;
 import android.databinding.DataBindingUtil;
 import android.os.Handler;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -29,8 +30,6 @@ public class SplashActivity extends BaseActivity {
         DatabaseInitializer.populateAsync(AppDatabase.getAppDatabase(this));
         showDelay();
     }
-
-
 
     @Override
     public void onResume(){
@@ -70,5 +69,10 @@ public class SplashActivity extends BaseActivity {
                 SplashActivity.this.finish();
             }
         }, secondsDelayed * 1000);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

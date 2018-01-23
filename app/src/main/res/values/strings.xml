@@ -77,4 +77,9 @@
     <string name="button_cancel">Cancel</string>
     <string name="chat_button">Chat help!</string>
 
+    <!--Dialog messages-->
+    <string name="dialog_exit_title">Exit?</string>
+    <string name="dialog_exit_app">Do you really want to exit the app?</string>
+
+
 </resources>
