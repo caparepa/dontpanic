@@ -6,18 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
 import com.h2g2.dontpanic.databinding.ActivityHelpZendeskBinding;
+import com.h2g2.dontpanic.services.interfaces.ViewElement;
 import com.zopim.android.sdk.api.ZopimChat;
 import com.zopim.android.sdk.prechat.ZopimChatActivity;
 
 public class HelpZendeskActivity extends BaseActivity {
 
     ActivityHelpZendeskBinding binding;
-
     Button mChatButton;
+    TextView _textViewTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +30,62 @@ public class HelpZendeskActivity extends BaseActivity {
 
         //init zendesk
         ZopimChat.init("5Ql9NgVwNfaAFd4kP1U5EuQx86BAwep9");
+        setUpViewElements();
 
-        mChatButton = binding.chatButton;
-        mChatButton.setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void setUpViewElements()
+    {
+        ViewElement elements = new ViewElement() {
             @Override
-            public void onClick(View v) {
-                //start chat
-                startActivity(new Intent(getApplicationContext(), ZopimChatActivity.class));
+            public void setUpViewText() {
+                _textViewTitle = binding.includedAppBarTitle.textViewTitle;
+                _textViewTitle.setText(R.string.title_help_zendesk);
             }
-        });
+
+            @Override
+            public void setUpBackButton() {
+                binding.includedAppBarTitle.fabBackButton.setVisibility(View.VISIBLE);
+                if (binding.includedAppBarTitle.fabBackButton.getVisibility() == View.VISIBLE) {
+                    binding.includedAppBarTitle.fabBackButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            System.out.println("SHIT");
+                            onBackPressed();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void setUpTextFields() {
+
+            }
+
+            @Override
+            public void setUpInputFields() {
+
+            }
+
+            @Override
+            public void setUpButtons() {
+                mChatButton = binding.chatButton;
+                mChatButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //start chat
+                        startActivity(new Intent(getApplicationContext(), ZopimChatActivity.class));
+                    }
+                });
+            }
+
+            @Override
+            public void setUpElements() {
+
+            }
+        };
+        elements.setUpBackButton();
+        elements.setUpViewText();
+        elements.setUpButtons();
     }
 }

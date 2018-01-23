@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -36,10 +37,12 @@ import java.util.List;
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
 import com.h2g2.dontpanic.activities.main.MainActivity;
+import com.h2g2.dontpanic.databinding.ActivityLoginBinding;
 import com.h2g2.dontpanic.models.database.AppDatabase;
 import com.h2g2.dontpanic.models.entity.User;
 import com.h2g2.dontpanic.models.serializables.UserData;
 import com.h2g2.dontpanic.services.interfaces.SharedPreferencesConstants;
+import com.h2g2.dontpanic.services.interfaces.ViewElement;
 import com.h2g2.dontpanic.utils.SharedPreferencesUtil;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -48,6 +51,8 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends BaseActivity implements LoaderCallbacks<Cursor>, SharedPreferencesConstants {
+
+    ActivityLoginBinding binding;
 
     private static final int REQUEST_READ_CONTACTS = 0;
     private UserLoginTask mAuthTask = null;
@@ -67,6 +72,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         // Set up the login form.
         mEmailView = findViewById(R.id.email);
         populateAutoComplete();
@@ -99,6 +105,53 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         Context context = LoginActivity.this; // or getActivity(); in case of Fragments
         context.getString(SHARED_FILE);
         loginSettings = context.getSharedPreferences(LOGIN_PREFERENCES, Context.MODE_PRIVATE);
+
+        setUpViewElements();
+
+    }
+
+    private void setUpViewElements()
+    {
+        ViewElement elements = new ViewElement() {
+            @Override
+            public void setUpViewText() {
+
+            }
+
+            @Override
+            public void setUpBackButton() {
+                binding.includedAppBarTitle.fabBackButton.setVisibility(View.VISIBLE);
+                if (binding.includedAppBarTitle.fabBackButton.getVisibility() == View.VISIBLE) {
+                    binding.includedAppBarTitle.fabBackButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            onBackPressed();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void setUpTextFields() {
+
+            }
+
+            @Override
+            public void setUpInputFields() {
+
+            }
+
+            @Override
+            public void setUpButtons() {
+
+            }
+
+            @Override
+            public void setUpElements() {
+
+            }
+        };
+        elements.setUpBackButton();
     }
 
     private void populateAutoComplete() {
