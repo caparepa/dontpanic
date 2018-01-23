@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+
+        android:id="@+id/contentBottomNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+
+
+        <RelativeLayout
+            android:id="@+id/fabAvatarContainter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="0.25">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/frameLayout">
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/footerTabContainer"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bottom_nav_bar_height"
+            android:layout_weight="0.25"
+            android:gravity="center">
+
+            <FrameLayout
+                android:id="@+id/fabProfileText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fabProfileButton"
+                    style="@style/fabThemeChannelMini"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:src="@drawable/ic_profile"
+                    app:fabSize="mini"
+                    app:backgroundTint="@color/colodBackgroundWhite"
+                    app:elevation="6dp"/>
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/frameHomeLayout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bottom_nav_bar_height"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
+            >
+
+            <FrameLayout
+                android:id="@+id/frameHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fabHomeButton"
+                    style="@style/fabThemeChannelMini"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_home"
+                    app:backgroundTint="@color/colodBackgroundWhite"
+                    app:elevation="6dp"
+                    app:fabSize="mini" />
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fabPowerPointsContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center">
+
+            <FrameLayout
+                android:id="@+id/fabHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/whateverText"
+                    style="@style/fabThemeChannelMini"
+                    android:layout_gravity="center"
+                    app:backgroundTint="@color/colodBackgroundWhite"
+                    android:src="@drawable/ic_question"
+                    app:elevation="6dp"
+                    app:fabSize="mini" />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fabKeysContainter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25">
+
+            <FrameLayout
+                android:id="@+id/frameFABKeys"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+
+            </FrameLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

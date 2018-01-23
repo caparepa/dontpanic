@@ -1,0 +1,33 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.FloatingActionButton
+            style="@style/fabThemeChannelMiniTop"
+            android:id="@+id/fabBackButton"
+            android:src="@mipmap/ic_app_bar_back_button"
+            android:layout_marginTop="@dimen/channelMarginTopBottom"
+            android:layout_marginStart="@dimen/channelMarginStartEnd"
+            android:layout_marginBottom="5dp"
+            app:backgroundTint="@color/colodBackgroundWhite"
+            app:fabSize="mini"
+            android:visibility="visible"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            style="@style/GralLabelWithShadow.x2"
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_centerHorizontal="true"
+
+            android:textColor="@color/md_black_1000"
+            android:textAllCaps="true"
+            />
+
+    </RelativeLayout>
+
+</layout>

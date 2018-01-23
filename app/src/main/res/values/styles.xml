@@ -1,5 +1,17 @@
 <resources>
 
+    <!--No Title-->
+    <style name="GeneralNoTitle" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:windowNoTitle">true</item>   <!-- //this -->
+    </style>
+
+    <style name="GeneralFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -13,8 +25,59 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.PermissionTerm" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="fabThemeChannelMiniTop">
+        <item name="android:layout_width">@dimen/dimen_fab_mini</item>
+        <item name="android:layout_height">@dimen/dimen_fab_mini</item>
+    </style>
+
+    <style name="GralTextWithShadow" parent="@android:style/TextAppearance">
+        <!--<item name="android:shadowRadius">5</item>-->
+        <!--<item name="android:shadowDy">5</item>-->
+        <!--<item name="android:shadowColor">@color/colorShadowGralLetter</item>-->
+        <item name="android:textColor">@color/generalTextColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="GralLabelWithShadow.x2" parent="GralTextWithShadow">
+        <item name="android:textSize">@dimen/text_size_x2</item>
+    </style>
+
+    <!--UKP-->
+    <style name="fabThemeChannelMini">
+        <item name="android:layout_width">@dimen/dimen_fab_mini</item>
+        <item name="android:layout_height">@dimen/dimen_fab_mini</item>
+        <item name="android:maxWidth">@dimen/dimen_fab_mini</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+    </style>
+
+    <style name="fabThemeChannelCenter">
+        <item name="android:layout_width">@dimen/dimen_fab_xhdpi_center</item>
+        <item name="android:layout_height">@dimen/dimen_fab_xhdpi_center</item>
+        <item name="android:maxWidth">@dimen/dimen_fab_xhdpi_default</item>
+    </style>
+
+    <style name="fabThemeChannelCenterIcon">
+        <item name="android:layout_width">@dimen/dimen_fab_xhdpi_center_icon</item>
+        <item name="android:layout_height">@dimen/dimen_fab_xhdpi_center_icon</item>
+        <item name="android:maxWidth">@dimen/dimen_fab_xhdpi_default</item>
+    </style>
+
 </resources>
+
+

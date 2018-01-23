@@ -1,8 +1,85 @@
 <resources>
-    <string name="app_name">dontpanic</string>
+    <!--Shared preferences-->
+    <string name="shared_pref_file" translatable="false">dont_panic_shp</string>
+    <string name="shared_email" translatable="false">email</string>
+    <string name="session_user" translatable="false">session_user</string>
+
+    <!--UKP-->
+    <string name="textNonIntValue">0</string>
+
+    <!--Random-->
+    <string name="main_content_text_view">Main!</string>
+    <string name="main_content_logged_in">Main!</string>
+    <string name="main_content_logged_out">Main!</string>
+
+    <!--App-->
+    <string name="app_name">Don\'t Panic!</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="option_settings">Settings</string>
+    <string name="option_help">Help Zendesk</string>
+
+    <string name="goto_terms_conditions">Terms and Conditions</string>
+    <string name="goto_privacy_policy">Privacy Policy</string>
+
+    <string name="action_help_zendesk">Help</string>
+
+    <string name="title_login">LOGIN</string>
+    <string name="title_profile">EDIT PROFILE</string>
+    <string name="title_register_user">REGISTER USER</string>
+    <string name="title_privacy_policy">PRIVACY POLICY</string>
+    <string name="title_terms_conditions">TERMS AND CONDITIONS</string>
+
+    <string name="content_privacy_policy">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod mauris in leo convallis, sed malesuada dolor malesuada. Pellentesque tincidunt ornare ligula maximus scelerisque. Integer semper dignissim mi in congue. Etiam id urna eget enim dapibus iaculis. Etiam accumsan quis elit vitae tempor. Maecenas tempus est a dui congue eleifend. Nunc pharetra nec tortor lobortis porttitor. Cras finibus neque aliquam ex posuere congue. Praesent in nisi nulla. Aliquam erat volutpat. Quisque facilisis quam a ipsum placerat dignissim. Morbi at auctor ante, non maximus nisi. Morbi vulputate sapien tortor, ut tincidunt ante bibendum ac. Cras id blandit nibh.
+
+        Nulla eu ornare eros. In tincidunt, nunc in ornare lobortis, augue ligula aliquam nulla, vitae tincidunt odio sem ut tellus. Vestibulum eu turpis non enim rutrum vulputate. Aliquam eget dolor tellus. Proin congue velit nulla, sed auctor purus porta sit amet. Maecenas pretium justo sed mollis cursus. Nam id augue sit amet sem fermentum interdum vel non tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ac sem et metus ornare luctus. Morbi quis luctus dolor. Phasellus aliquam, est tempus ultricies blandit, risus risus viverra nunc, sit amet tincidunt metus libero vitae nisl. Sed sollicitudin condimentum enim sed lobortis. Duis augue tortor, ultricies nec erat id, gravida dictum velit. Quisque euismod imperdiet ultrices. Nam tincidunt efficitur commodo.
+
+        Fusce fermentum quis erat et dignissim. Proin imperdiet nisi in ex pharetra lacinia. Mauris malesuada eros sed nisl pretium, non iaculis magna maximus. Quisque et erat nisl. Maecenas id orci et enim congue dignissim. Donec tempus maximus turpis, ut molestie urna viverra et. Sed at purus non justo euismod imperdiet ut ac leo. Pellentesque sed sollicitudin arcu. Nullam porta erat nec diam luctus vulputate. Fusce accumsan eros non dui faucibus, id rhoncus lectus pharetra. Nam interdum, odio quis placerat placerat, tellus lacus convallis augue, sit amet viverra purus nibh eget massa. Phasellus tortor tellus, lobortis et vehicula in, blandit vitae nibh. Praesent felis nibh, maximus nec luctus quis, cursus vel dolor. Nam cursus congue dui sit amet posuere.
+
+        Morbi turpis tellus, euismod eget dolor id, ultrices gravida sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse potenti. Nullam eu semper quam. Nullam non ligula lacus. Integer a est aliquam, ornare nisi in, viverra diam. Aliquam nec efficitur leo. In vestibulum turpis eu diam tempor, vel posuere tellus vehicula. Cras sit amet velit nisi. Donec porttitor, diam et dignissim volutpat, mi dolor eleifend libero, non consectetur enim quam nec lacus. Curabitur nec gravida est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam ac metus commodo, tincidunt nunc vel, iaculis ex. Morbi efficitur rhoncus pulvinar.
+
+        Nullam rutrum arcu ac viverra tempor. Curabitur lobortis urna quis tempus laoreet. Integer pulvinar, lacus ac blandit porttitor, nisi urna semper elit, nec suscipit massa tellus ultricies metus. Praesent ornare enim at libero cursus, nec mattis velit pretium. Quisque mollis, est eget accumsan volutpat, nisl turpis euismod felis, id sodales neque sapien in leo. Aliquam facilisis sollicitudin leo, ac imperdiet purus interdum non. Nullam quis ex vitae turpis iaculis bibendum et sed enim. Morbi mauris tellus, ultrices id sapien ac, consectetur facilisis nisl.
+    </string>
+    <string name="content_terms_conditions">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod mauris in leo convallis, sed malesuada dolor malesuada. Pellentesque tincidunt ornare ligula maximus scelerisque. Integer semper dignissim mi in congue. Etiam id urna eget enim dapibus iaculis. Etiam accumsan quis elit vitae tempor. Maecenas tempus est a dui congue eleifend. Nunc pharetra nec tortor lobortis porttitor. Cras finibus neque aliquam ex posuere congue. Praesent in nisi nulla. Aliquam erat volutpat. Quisque facilisis quam a ipsum placerat dignissim. Morbi at auctor ante, non maximus nisi. Morbi vulputate sapien tortor, ut tincidunt ante bibendum ac. Cras id blandit nibh.
+
+        Nulla eu ornare eros. In tincidunt, nunc in ornare lobortis, augue ligula aliquam nulla, vitae tincidunt odio sem ut tellus. Vestibulum eu turpis non enim rutrum vulputate. Aliquam eget dolor tellus. Proin congue velit nulla, sed auctor purus porta sit amet. Maecenas pretium justo sed mollis cursus. Nam id augue sit amet sem fermentum interdum vel non tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ac sem et metus ornare luctus. Morbi quis luctus dolor. Phasellus aliquam, est tempus ultricies blandit, risus risus viverra nunc, sit amet tincidunt metus libero vitae nisl. Sed sollicitudin condimentum enim sed lobortis. Duis augue tortor, ultricies nec erat id, gravida dictum velit. Quisque euismod imperdiet ultrices. Nam tincidunt efficitur commodo.
+
+        Fusce fermentum quis erat et dignissim. Proin imperdiet nisi in ex pharetra lacinia. Mauris malesuada eros sed nisl pretium, non iaculis magna maximus. Quisque et erat nisl. Maecenas id orci et enim congue dignissim. Donec tempus maximus turpis, ut molestie urna viverra et. Sed at purus non justo euismod imperdiet ut ac leo. Pellentesque sed sollicitudin arcu. Nullam porta erat nec diam luctus vulputate. Fusce accumsan eros non dui faucibus, id rhoncus lectus pharetra. Nam interdum, odio quis placerat placerat, tellus lacus convallis augue, sit amet viverra purus nibh eget massa. Phasellus tortor tellus, lobortis et vehicula in, blandit vitae nibh. Praesent felis nibh, maximus nec luctus quis, cursus vel dolor. Nam cursus congue dui sit amet posuere.
+
+        Morbi turpis tellus, euismod eget dolor id, ultrices gravida sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse potenti. Nullam eu semper quam. Nullam non ligula lacus. Integer a est aliquam, ornare nisi in, viverra diam. Aliquam nec efficitur leo. In vestibulum turpis eu diam tempor, vel posuere tellus vehicula. Cras sit amet velit nisi. Donec porttitor, diam et dignissim volutpat, mi dolor eleifend libero, non consectetur enim quam nec lacus. Curabitur nec gravida est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam ac metus commodo, tincidunt nunc vel, iaculis ex. Morbi efficitur rhoncus pulvinar.
+
+        Nullam rutrum arcu ac viverra tempor. Curabitur lobortis urna quis tempus laoreet. Integer pulvinar, lacus ac blandit porttitor, nisi urna semper elit, nec suscipit massa tellus ultricies metus. Praesent ornare enim at libero cursus, nec mattis velit pretium. Quisque mollis, est eget accumsan volutpat, nisl turpis euismod felis, id sodales neque sapien in leo. Aliquam facilisis sollicitudin leo, ac imperdiet purus interdum non. Nullam quis ex vitae turpis iaculis bibendum et sed enim. Morbi mauris tellus, ultrices id sapien ac, consectetur facilisis nisl.
+    </string>
+    <string name="title_activity_login">Log In</string>
+
+    <!-- Strings related to login -->
+    <string name="guest_user">Guest</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_no_password">Please enter a password!</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="error_user_exists">User already exists</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!--Buttons-->
+    <string name="button_save">Save</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="chat_button">Chat help!</string>
+
+    <!--Dialog messages-->
+    <string name="dialog_exit_title">Exit?</string>
+    <string name="dialog_exit_app">Do you really want to exit the app?</string>
+
+
 </resources>
