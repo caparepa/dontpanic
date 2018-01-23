@@ -219,9 +219,7 @@ public class MainActivity extends BaseActivity
 
         //TODO: change if to switch statement!
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }else if(id == R.id.action_help){
+        if(id == R.id.action_help){
             navigateToActivity(HelpZendeskActivity.class);
         }
 
