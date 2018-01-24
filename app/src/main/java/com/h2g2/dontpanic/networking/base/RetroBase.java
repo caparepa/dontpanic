@@ -29,16 +29,14 @@ public class RetroBase implements Urls {
         //client.interceptors().add(interceptor);
         retrofit = new Retrofit.Builder().client(new OkHttpClient.Builder()
                 .addInterceptor(interceptor).build()).addConverterFactory(ScalarsConverterFactory
-                .create().create()).baseUrl(Urls.baseUrl).build();
+                .create().create()).baseUrl(Urls.BASE_URL).build();
     }
     protected class Interceptor implements okhttp3.Interceptor {
         @Override
         public Response intercept(Chain chain) throws IOException {
             if (NetworkValidator.isNetworkAvailable(mActivity)==false){
                 throw new IOException();
-                // SnackBar.makeMsg(getString(R.string.error_network), loginBinding.container );
-                // Toast.makeText(mActivity.getApplicationContext(),mActivity.getString(R.string.error_network),Toast.LENGTH_LONG).canAnimate();
-                //SnackBar.makeMsg(mActivity.getString(R.string.error_network),new View(mActivity));
+
             }
             Request request = chain.request();
             return chain.proceed(request);

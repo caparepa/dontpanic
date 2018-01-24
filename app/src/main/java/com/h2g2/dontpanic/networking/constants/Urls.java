@@ -7,5 +7,5 @@ package com.h2g2.dontpanic.networking.constants;
  */
 public interface Urls {
 
-    String baseUrl = "https://api.ukp.io/api/v1/";
+    String BASE_URL = "https://api.ukp.io/api/v1/";
 }

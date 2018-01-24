@@ -2,10 +2,13 @@ package com.h2g2.dontpanic.activities.user;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,9 +19,14 @@ import android.widget.TextView;
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
 import com.h2g2.dontpanic.activities.main.MainActivity;
+import com.h2g2.dontpanic.bean.RegistryBean;
 import com.h2g2.dontpanic.databinding.ActivityRegisterUserBinding;
 import com.h2g2.dontpanic.models.database.AppDatabase;
 import com.h2g2.dontpanic.models.entity.User;
+import com.h2g2.dontpanic.networking.handler.UserAccountHandler;
+import com.h2g2.dontpanic.networking.handler.response.ResponseRegisterHandler;
+import com.h2g2.dontpanic.networking.utils.NetworkValidator;
+import com.h2g2.dontpanic.networking.utils.RequestResponseHandler;
 import com.h2g2.dontpanic.services.interfaces.Validation;
 import com.h2g2.dontpanic.services.interfaces.ViewElement;
 
@@ -28,11 +36,17 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RegisterUserActivity extends BaseActivity {
 
     ActivityRegisterUserBinding binding;
 
     private static final DateFormat dtf = new SimpleDateFormat("yyyy");
+    private static final Boolean USER_REGISTERED = false;
 
     private AppDatabase userDb;
     private RegisterUserTask mRegisterTask = null;
@@ -45,11 +59,20 @@ public class RegisterUserActivity extends BaseActivity {
     private View mRegisterFormView;
     private View mRegisterProgressView;
 
+    protected UserAccountHandler networkHandler;
+    protected RequestResponseHandler requestResponseHandler;
+    protected ResponseRegisterHandler responseRegisterHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register_user);
         userDb = AppDatabase.getAppDatabase(this);
+
+        networkHandler = new UserAccountHandler(this);
+        responseRegisterHandler = new ResponseRegisterHandler(this);
+        requestResponseHandler = new RequestResponseHandler();
+
         setUpViewElements();
     }
 
@@ -62,6 +85,11 @@ public class RegisterUserActivity extends BaseActivity {
 
     private void attemptRegister() {
         if (mRegisterTask != null) {
+            return;
+        }
+
+        if (!NetworkValidator.isNetworkAvailable(getApplicationContext())) {
+            showErrorMessage(getString(R.string.error_no_connection), "");
             return;
         }
 
@@ -165,7 +193,6 @@ public class RegisterUserActivity extends BaseActivity {
                         }
                         return false;
                     }
-
                 });
             }
 
@@ -193,6 +220,7 @@ public class RegisterUserActivity extends BaseActivity {
         elements.setUpButtons();
     }
 
+    @NonNull
     private String getEmailText()
     {
         return binding.emailEditText.getText().toString();
@@ -203,6 +231,18 @@ public class RegisterUserActivity extends BaseActivity {
         user.setEmail(email);
         user.setPassword(password);
         userDb.userDao().insertUser(user);
+    }
+
+    private void showErrorMessage(String _eMessage, String item) {
+        new AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage(_eMessage)
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        //finishAndRemoveTask ();
+                    }
+                }).create().show();
     }
 
     private boolean validateExistingUser(){
@@ -249,6 +289,10 @@ public class RegisterUserActivity extends BaseActivity {
         }
     }
 
+    private boolean checkCredentials(){
+        return false;
+    }
+
     public class RegisterUserTask extends AsyncTask<Void, Void, Boolean> {
 
         private User mUser;
@@ -270,7 +314,14 @@ public class RegisterUserActivity extends BaseActivity {
             } catch (InterruptedException e) {
                 return false;
             }
-            saveUserToDatabase(mEmail, mPassword);
+            //saveUserToDatabase(mEmail, mPassword);
+            RegistryBean bean = new RegistryBean(
+                    binding.emailEditText.getText().toString(),
+                    binding.passwordEditText.getText().toString(),
+                    binding.birthdateEditText.getText().toString()
+            );
+            responseRegisterHandler.mBean = bean;
+            networkHandler.register(callback, requestResponseHandler.requestGetJsonStringFromPojo(bean));
             return true;
         }
 
@@ -293,4 +344,23 @@ public class RegisterUserActivity extends BaseActivity {
             showProgress(false);
         }
     }
+
+    Callback<ResponseBody> callback = new Callback<ResponseBody>(){
+        @Override
+        public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+            responseRegisterHandler.processResponse(response);
+        }
+        @Override
+        public void onFailure(Call<ResponseBody> call, Throwable t) {
+            /*stopAnimationProgressOnArrows();
+            hideAnimatedDots();
+            changeTextBtn(getString(R.string.btnTextCreate));
+            enableEdittext();
+            binding.buttonRegisterAccount.setClickable(true);*/
+            //show error alert here
+            System.out.println("HELLO! ASKLDJLASDSADAS!");
+        }
+    };
+
+
 }

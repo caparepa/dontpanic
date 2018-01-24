@@ -75,4 +75,8 @@ public class BaseActivity extends AppCompatActivity {
 
         permission.checkPermissionList();
     }
+
+    public void logOut(){
+
+    }
 }

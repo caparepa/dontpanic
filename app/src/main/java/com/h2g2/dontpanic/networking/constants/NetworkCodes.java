@@ -7,13 +7,13 @@ package com.h2g2.dontpanic.networking.constants;
  */
 public interface NetworkCodes {
 
-    int success = 200;
-    int allreadyRegistered = 500;
-    int errorCode = 422;
-    int badRequest = 400;
-    int unauthorized = 401;
-    int notFound = 404;
-    int successCreated = 201;
-    int unable = 409;
+    int CODE_SUCCESS = 200;
+    int CODE_ALREADY_REGISTERED = 500;
+    int CODE_ERROR = 422;
+    int CODE_BAD_REQUEST = 400;
+    int CODE_UNAUTHORIZED = 401;
+    int CODE_NOT_FOUND = 404;
+    int CODE_SUCCESS_CREATED = 201;
+    int CODE_UNABLE = 409;
 
 }

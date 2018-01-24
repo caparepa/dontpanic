@@ -86,5 +86,7 @@
     <string name="dialog_exit_title">Exit?</string>
     <string name="dialog_exit_app">Do you really want to exit the app?</string>
 
+    <!--Errors-->
+    <string name="error_no_connection">Please check your internet connection.</string>
 
 </resources>
