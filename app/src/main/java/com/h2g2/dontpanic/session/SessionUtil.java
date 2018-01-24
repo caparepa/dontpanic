@@ -15,15 +15,10 @@ import org.json.JSONObject;
  * Teravision Technologies
  * Date: 2018/01/23
  */
-public abstract class SessionUtil {
+public abstract class SessionUtil implements SessionConstants {
 
     public static User user;
 
-    public static boolean comesFromPush;
-
-    static {
-        comesFromPush = false;
-    }
     public SessionUtil() {
     }
 
