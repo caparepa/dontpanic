@@ -2,16 +2,10 @@ package com.h2g2.dontpanic.activities.user;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.LoaderManager;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -28,8 +22,9 @@ import com.h2g2.dontpanic.models.entity.User;
 import com.h2g2.dontpanic.services.interfaces.Validation;
 import com.h2g2.dontpanic.services.interfaces.ViewElement;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,12 +32,15 @@ public class RegisterUserActivity extends BaseActivity {
 
     ActivityRegisterUserBinding binding;
 
+    private static final DateFormat dtf = new SimpleDateFormat("yyyy");
+
     private AppDatabase userDb;
     private RegisterUserTask mRegisterTask = null;
 
     protected Button mRegisterButton;
     protected TextView mEmailText;
     protected TextView mPasswordText;
+    protected TextView mBirthDateText;
 
     private View mRegisterFormView;
     private View mRegisterProgressView;
@@ -52,18 +50,14 @@ public class RegisterUserActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register_user);
         userDb = AppDatabase.getAppDatabase(this);
-        setViewElements();
-        setUpRegisterButton();
+        setUpViewElements();
     }
 
-    private void setUpRegisterButton() {
-        mRegisterButton = binding.registerButton;
-        mRegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                attemptRegister();
-            }
-        });
+    private boolean validateYear(String year){
+        Date now = new Date();
+        int currentYear = Integer.valueOf(dtf.format(now));
+        int valueYear = Integer.valueOf(year);
+        return (valueYear >= 1900 && valueYear <= currentYear);
     }
 
     private void attemptRegister() {
@@ -74,10 +68,12 @@ public class RegisterUserActivity extends BaseActivity {
         // Reset errors.
         mEmailText.setError(null);
         mPasswordText.setError(null);
+        mBirthDateText.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmailText.getText().toString();
         String password = mPasswordText.getText().toString();
+        String year = mBirthDateText.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -99,6 +95,16 @@ public class RegisterUserActivity extends BaseActivity {
             cancel = true;
         }
 
+        if (TextUtils.isEmpty(year)){
+            mBirthDateText.setError(getString(R.string.error_field_required));
+            focusView = mEmailText;
+            cancel = true;
+        }else if(!validateYear(year)){
+            mBirthDateText.setError(getString(R.string.error_invalid_year));
+            focusView = mBirthDateText;
+            cancel = true;
+        }
+
         if(validateExistingUser()){
             mEmailText.setError(getString(R.string.error_user_exists));
             focusView = mEmailText;
@@ -113,12 +119,12 @@ public class RegisterUserActivity extends BaseActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mRegisterTask = new RegisterUserActivity.RegisterUserTask(email, password);
+            mRegisterTask = new RegisterUserActivity.RegisterUserTask(email, password, year);
             mRegisterTask.execute((Void) null);
         }
     }
 
-    private void setViewElements(){
+    private void setUpViewElements(){
         ViewElement elements = new ViewElement() {
             @Override
             public void setUpViewText() {
@@ -147,8 +153,10 @@ public class RegisterUserActivity extends BaseActivity {
             @Override
             public void setUpInputFields() {
                 mEmailText = binding.emailEditText;
+                mBirthDateText = binding.birthdateEditText;
                 mPasswordText = binding.passwordEditText;
-                mPasswordText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+                mBirthDateText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                         if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
@@ -157,12 +165,19 @@ public class RegisterUserActivity extends BaseActivity {
                         }
                         return false;
                     }
+
                 });
             }
 
             @Override
             public void setUpButtons() {
-
+                mRegisterButton = binding.registerButton;
+                mRegisterButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        attemptRegister();
+                    }
+                });
             }
 
             @Override
@@ -175,6 +190,7 @@ public class RegisterUserActivity extends BaseActivity {
         elements.setUpViewText();
         elements.setUpElements();
         elements.setUpInputFields();
+        elements.setUpButtons();
     }
 
     private String getEmailText()
@@ -238,10 +254,12 @@ public class RegisterUserActivity extends BaseActivity {
         private User mUser;
         private final String mEmail;
         private final String mPassword;
+        private final String mYear;
 
-        RegisterUserTask(String email, String password) {
+        RegisterUserTask(String email, String password, String year) {
             mEmail = email;
             mPassword = password;
+            mYear = year;
         }
 
         @Override

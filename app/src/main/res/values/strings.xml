@@ -74,6 +74,9 @@
         completions."
     </string>
 
+    <!--Strings related to register-->
+    <string name="error_invalid_year">Invalid date! You\'re either too old or from the future!</string>
+
     <!--Buttons-->
     <string name="button_save">Save</string>
     <string name="button_cancel">Cancel</string>

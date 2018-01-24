@@ -52,10 +52,29 @@
                                 android:id="@+id/email_edit_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="15dip"
                                 android:hint="@string/prompt_email"
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
-                                android:singleLine="true"/>
+                                android:singleLine="true" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            app:passwordToggleEnabled="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/password_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/password_label"
+                                android:layout_margin="15dip"
+                                android:hint="Password"
+                                android:inputType="textPassword"
+                                android:maxLines="1"
+                                android:singleLine="true" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -64,13 +83,18 @@
                             android:layout_height="wrap_content">
 
                             <EditText
-                                android:id="@+id/password_edit_text"
+                                android:id="@+id/birthdate_edit_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/prompt_password"
-                                android:inputType="textPassword"
+                                android:layout_below="@+id/password_edit_text"
+                                android:layout_margin="15dip"
+                                android:hint="Birthdate (year)"
+                                android:inputType="number"
                                 android:maxLines="1"
-                                android:singleLine="true"/>
+                                android:maxLength="4"
+                                android:singleLine="true"
+                                android:textAlignment="center"
+                                android:imeOptions="actionGo" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -79,6 +103,7 @@
                             style="?android:textAppearanceSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="15dip"
                             android:layout_marginTop="16dp"
                             android:text="@string/action_register"
                             android:textStyle="bold" />
