@@ -6,4 +6,6 @@ package com.h2g2.dontpanic.networking.constants;
  * Date: 2018/01/23
  */
 public interface Urls {
+
+    String baseUrl = "https://api.ukp.io/api/v1/";
 }
