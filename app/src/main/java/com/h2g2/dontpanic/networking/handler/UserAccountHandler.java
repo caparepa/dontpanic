@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
 import com.h2g2.dontpanic.networking.base.RetroBase;
-import com.h2g2.dontpanic.networking.interfaces.UserAccount;
+import com.h2g2.dontpanic.networking.interfaces.User;
 import com.h2g2.dontpanic.session.SessionUtil;
 
 import okhttp3.ResponseBody;
@@ -17,11 +17,11 @@ import retrofit2.Callback;
  * Date: 2018/01/23
  */
 public class UserAccountHandler extends RetroBase {
-    private UserAccount routes;
+    private User routes;
 
     public UserAccountHandler(AppCompatActivity appCompatActivity) {
         super(appCompatActivity);
-        routes = retrofit.create(UserAccount.class);
+        routes = retrofit.create(User.class);
     }
     public void register(Callback<ResponseBody> callBack, String bean){
         Call<ResponseBody> call = routes.register(bean);

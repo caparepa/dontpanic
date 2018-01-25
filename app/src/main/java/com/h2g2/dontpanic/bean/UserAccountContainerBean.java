@@ -1,6 +1,6 @@
 package com.h2g2.dontpanic.bean;
 
-import com.h2g2.dontpanic.networking.interfaces.UserAccount;
+import com.h2g2.dontpanic.networking.interfaces.User;
 
 /**
  * Created by C. Serrano (cserrano@teravisiontech.com)
@@ -8,19 +8,19 @@ import com.h2g2.dontpanic.networking.interfaces.UserAccount;
  * Date: 2018/01/24
  */
 public class UserAccountContainerBean {
-    private UserAccount account;
+    private User account;
     private String token;
 
-    public UserAccountContainerBean(UserAccount account, String token) {
+    public UserAccountContainerBean(User account, String token) {
         this.account = account;
         this.token = token;
     }
 
-    public UserAccount getAccount() {
+    public User getAccount() {
         return account;
     }
 
-    public void setAccount(UserAccount account) {
+    public void setAccount(User account) {
         this.account = account;
     }
 

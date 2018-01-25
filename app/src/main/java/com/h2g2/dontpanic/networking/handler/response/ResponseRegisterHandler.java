@@ -1,5 +1,6 @@
 package com.h2g2.dontpanic.networking.handler.response;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -10,11 +11,9 @@ import com.h2g2.dontpanic.bean.AccountContainerBean;
 import com.h2g2.dontpanic.bean.RegistryBean;
 import com.h2g2.dontpanic.bean.ResponseDefaultBean;
 import com.h2g2.dontpanic.bean.ResponseGenericBean;
-import com.h2g2.dontpanic.bean.UserAccountContainerBean;
 import com.h2g2.dontpanic.bean.data.Data;
 import com.h2g2.dontpanic.networking.constants.NetworkCodes;
 import com.h2g2.dontpanic.networking.utils.RequestResponseHandler;
-import com.h2g2.dontpanic.utils.DialogUtil;
 import com.h2g2.dontpanic.utils.SharedPreferencesUtil;
 
 import java.io.IOException;
@@ -56,15 +55,14 @@ public class ResponseRegisterHandler extends ResponseBaseHandler implements Netw
             if (response.code() == CODE_SUCCESS_CREATED) {
                 if (response.body() != null) {
                     body = response.body().string();
-                    System.out.println(body);
+                    System.out.println("body: "+body);
 
-                    final Type responseType = new TypeToken<ResponseGenericBean<UserAccountContainerBean>>() {
+                    final Type responseType = new TypeToken<ResponseGenericBean<AccountContainerBean>>() {
                     }.getType();
 
                     final String finalBody = body;
 
                     //TODO: ALERT REGISTRATION COMPLETE
-
                     ResponseGenericBean<AccountContainerBean> resp = new Gson().fromJson(finalBody,responseType);
                     Data data = new Data();
                     data.setAccount(resp.getData().getAccount());

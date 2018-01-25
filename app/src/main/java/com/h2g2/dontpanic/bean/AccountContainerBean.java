@@ -1,7 +1,6 @@
 package com.h2g2.dontpanic.bean;
 
 import com.h2g2.dontpanic.bean.data.Account;
-import com.h2g2.dontpanic.networking.interfaces.UserAccount;
 
 /**
  * Created by C. Serrano (cserrano@teravisiontech.com)

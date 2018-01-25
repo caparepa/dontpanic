@@ -14,7 +14,7 @@ import retrofit2.http.Path;
  * Teravision Technologies
  * Date: 2018/01/23
  */
-public interface UserAccount {
+public interface User {
 
     String USER_ACCOUNT_REGISTER="account/register";
     String USER_ACCOUNT_LOGIN="account/login";
