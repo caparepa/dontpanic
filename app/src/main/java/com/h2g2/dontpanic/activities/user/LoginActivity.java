@@ -30,6 +30,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,13 +38,23 @@ import java.util.List;
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
 import com.h2g2.dontpanic.activities.main.MainActivity;
+import com.h2g2.dontpanic.bean.RegistryBean;
 import com.h2g2.dontpanic.databinding.ActivityLoginBinding;
 import com.h2g2.dontpanic.models.database.AppDatabase;
 import com.h2g2.dontpanic.models.entity.User;
 import com.h2g2.dontpanic.models.serializables.UserData;
+import com.h2g2.dontpanic.networking.handler.UserAccountHandler;
+import com.h2g2.dontpanic.networking.handler.response.ResponseLoginHandler;
+import com.h2g2.dontpanic.networking.utils.NetworkValidator;
+import com.h2g2.dontpanic.networking.utils.RequestResponseHandler;
 import com.h2g2.dontpanic.services.interfaces.SharedPreferencesConstants;
 import com.h2g2.dontpanic.services.interfaces.ViewElement;
 import com.h2g2.dontpanic.utils.SharedPreferencesUtil;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -65,6 +76,11 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
     protected View mLoginFormView;
     protected Button mEmailSignInButton;
 
+    protected UserAccountHandler networkHandler;
+    protected RequestResponseHandler requestResponseHandler;
+    protected ResponseLoginHandler responseLoginHandler;
+
+
     protected User mUser;
     protected AppDatabase userDb;
 
@@ -75,9 +91,12 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         userDb = AppDatabase.getAppDatabase(this);
 
+        networkHandler = new UserAccountHandler(this);
+        requestResponseHandler = new RequestResponseHandler();
+        responseLoginHandler = new ResponseLoginHandler(LoginActivity.this);
+
         mEmailView = binding.email;
         //populateAutoComplete();
-
 
         mPasswordEditText= binding.password;
         mPasswordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -153,6 +172,14 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
     }
 
     private void attemptLogin() {
+
+        if (NetworkValidator.isNetworkAvailable(getApplicationContext())==false){
+            //Utils.showNonInternetWarning(LogInActivity.this);
+            //TODO: SHOW NO INTERNET ALET HERE!
+            System.out.println("NO INTERNET!");
+            return;
+        }
+
         if (mAuthTask != null) {
             return;
         }
@@ -268,6 +295,9 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
                 return false;
             }
 
+            RegistryBean bean = new RegistryBean(mEmail, mPassword);
+            networkHandler.logIn(callback,requestResponseHandler.requestGetJsonStringFromPojo(bean));
+
             mUser = userDb.userDao().findByEmail(mEmail);
             UserData userData = new UserData(true, mUser);
 
@@ -299,5 +329,30 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
             showProgress(false);
         }
     }
+
+    /**
+     * TODO: set alerts instead of toasts!
+     */
+    Callback<ResponseBody> callback = new Callback<ResponseBody>() {
+        @Override
+        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            if (response!=null) {
+                responseLoginHandler.processResponse(response);
+                binding.emailSignInButton.setEnabled(true);
+                binding.emailSignInButton.setClickable(true);
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+                binding.emailSignInButton.setEnabled(true);
+                binding.emailSignInButton.setClickable(true);
+            }
+        }
+        @Override
+        public void onFailure(Call<ResponseBody> call, Throwable t) {
+            Toast.makeText(LoginActivity.this,"Try again, later",Toast.LENGTH_LONG).show();
+            binding.emailSignInButton.setEnabled(true);
+            binding.emailSignInButton.setClickable(true);
+        }
+    };
 }
 

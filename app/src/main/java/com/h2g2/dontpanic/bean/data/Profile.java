@@ -2,6 +2,8 @@ package com.h2g2.dontpanic.bean.data;
 
 import android.util.Log;
 
+import com.h2g2.dontpanic.bean.RegisterBandBean;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
@@ -32,6 +34,7 @@ public class Profile implements Serializable {
     private boolean is_child;
     private int total_rutf;
     private  int total_badges;
+    private List<RegisterBandBean> trackers;
 
     public Profile() {
 
@@ -224,5 +227,13 @@ public class Profile implements Serializable {
 
     public void setTotal_badges(int total_badges) {
         this.total_badges = total_badges;
+    }
+
+    public List<RegisterBandBean> getTrackers() {
+        return trackers;
+    }
+
+    public void setTrackers(List<RegisterBandBean> trackers) {
+        this.trackers = trackers;
     }
 }
