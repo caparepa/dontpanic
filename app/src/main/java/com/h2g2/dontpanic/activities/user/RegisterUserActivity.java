@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -49,13 +48,13 @@ public class RegisterUserActivity extends BaseActivity {
     private static final Boolean USER_REGISTERED = false;
 
     private AppDatabase userDb;
-    private RegisterUserTask mRegisterTask = null;
+
+    protected Boolean isResponseOk;
 
     protected Button mRegisterButton;
     public TextView mEmailText;
     public TextView mPasswordText;
     public TextView mBirthDateText;
-
     private View mRegisterFormView;
     private View mRegisterProgressView;
 
@@ -84,12 +83,9 @@ public class RegisterUserActivity extends BaseActivity {
     }
 
     private void attemptRegister() {
-        if (mRegisterTask != null) {
-            return;
-        }
 
         if (!NetworkValidator.isNetworkAvailable(getApplicationContext())) {
-            showMessageAlert(getString(R.string.error_no_connection), "");
+            showMessageAlert(getString(R.string.error_no_connection), "", false);
             return;
         }
 
@@ -242,16 +238,40 @@ public class RegisterUserActivity extends BaseActivity {
         userDb.userDao().insertUser(user);
     }
 
-    public void showMessageAlert(String title, String message) {
-        new AlertDialog.Builder(this)
+    public void showMessageAlert(String title, String message, Boolean isOk) {
+        isResponseOk = isOk;
+        AlertDialog mAlertDialog = new AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(message)
-                .setNegativeButton(android.R.string.no, null)
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        redirect();
+                    }
+                })
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        //finishAndRemoveTask ();
+                        redirect();
                     }
-                }).create().show();
+                }).create();
+
+        mAlertDialog.show();
+        mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                redirect();
+            }
+        });
+    }
+
+    /**
+     * if the register response doesn't have errors (true)
+     */
+    private void redirect() {
+        if(isResponseOk){
+            navigateToActivity(MainActivity.class);
+            finish();
+        }
     }
 
     private boolean validateExistingUser(){
@@ -302,71 +322,16 @@ public class RegisterUserActivity extends BaseActivity {
         return false;
     }
 
-    public class RegisterUserTask extends AsyncTask<Void, Void, Boolean> {
-
-        private User mUser;
-        private final String mEmail;
-        private final String mPassword;
-        private final String mYear;
-
-        RegisterUserTask(String email, String password, String year) {
-            mEmail = email;
-            mPassword = password;
-            mYear = year;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-            //saveUserToDatabase(mEmail, mPassword);
-            RegistryBean bean = new RegistryBean(mEmail,mPassword,mYear);
-            responseRegisterHandler.mBean = bean;
-            networkHandler.register(callback, requestResponseHandler.requestGetJsonStringFromPojo(bean));
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            showProgress(false);
-            if (success) {
-                navigateToActivity(MainActivity.class);
-                finish();
-            } else {
-                /*mPasswordText.setError(getString(R.string.error_incorrect_password));
-                mPasswordText.requestFocus();*/
-                //TODO: show message, and then navigate to main activity
-                System.out.println("FUCK!");
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            showProgress(false);
-        }
-    }
-
     Callback<ResponseBody> callback = new Callback<ResponseBody>(){
         @Override
         public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
             responseRegisterHandler.processResponse(response);
-            //TODO: SHOW ALERT?
         }
         @Override
         public void onFailure(Call<ResponseBody> call, Throwable t) {
             showProgress(false);
-            /*stopAnimationProgressOnArrows();
-            hideAnimatedDots();
-            changeTextBtn(getString(R.string.btnTextCreate));
-            enableEdittext();
-            binding.buttonRegisterAccount.setClickable(true);*/
-            //TODO: show error alert here
-            System.out.println("MIERDA");
+            showMessageAlert("Error", t.getMessage(), false);
         }
     };
-
 
 }
