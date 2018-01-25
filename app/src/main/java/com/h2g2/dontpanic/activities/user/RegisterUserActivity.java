@@ -52,9 +52,9 @@ public class RegisterUserActivity extends BaseActivity {
     private RegisterUserTask mRegisterTask = null;
 
     protected Button mRegisterButton;
-    protected TextView mEmailText;
-    protected TextView mPasswordText;
-    protected TextView mBirthDateText;
+    public TextView mEmailText;
+    public TextView mPasswordText;
+    public TextView mBirthDateText;
 
     private View mRegisterFormView;
     private View mRegisterProgressView;
@@ -89,7 +89,7 @@ public class RegisterUserActivity extends BaseActivity {
         }
 
         if (!NetworkValidator.isNetworkAvailable(getApplicationContext())) {
-            showErrorMessage(getString(R.string.error_no_connection), "");
+            showMessageAlert(getString(R.string.error_no_connection), "");
             return;
         }
 
@@ -123,6 +123,8 @@ public class RegisterUserActivity extends BaseActivity {
             cancel = true;
         }
 
+        //validate password
+
         if (TextUtils.isEmpty(year)){
             mBirthDateText.setError(getString(R.string.error_field_required));
             focusView = mEmailText;
@@ -147,8 +149,15 @@ public class RegisterUserActivity extends BaseActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mRegisterTask = new RegisterUserActivity.RegisterUserTask(email, password, year);
-            mRegisterTask.execute((Void) null);
+
+            RegistryBean bean = new RegistryBean(email,password,year);
+            responseRegisterHandler.mBean = bean;
+            System.out.println(requestResponseHandler.requestGetJsonStringFromPojo(bean));
+
+            networkHandler.register(callback, requestResponseHandler.requestGetJsonStringFromPojo(bean));
+
+            /*mRegisterTask = new RegisterUserActivity.RegisterUserTask(email, password, year);
+            mRegisterTask.execute((Void) null);*/
         }
     }
 
@@ -233,10 +242,10 @@ public class RegisterUserActivity extends BaseActivity {
         userDb.userDao().insertUser(user);
     }
 
-    private void showErrorMessage(String _eMessage, String item) {
+    public void showMessageAlert(String title, String message) {
         new AlertDialog.Builder(this)
-                .setTitle("Error")
-                .setMessage(_eMessage)
+                .setTitle(title)
+                .setMessage(message)
                 .setNegativeButton(android.R.string.no, null)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -257,7 +266,7 @@ public class RegisterUserActivity extends BaseActivity {
         return matcher.matches();
     }
 
-    private void showProgress(final boolean show) {
+    public void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
@@ -308,18 +317,13 @@ public class RegisterUserActivity extends BaseActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            //TODO: save user
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 return false;
             }
             //saveUserToDatabase(mEmail, mPassword);
-            RegistryBean bean = new RegistryBean(
-                    binding.emailEditText.getText().toString(),
-                    binding.passwordEditText.getText().toString(),
-                    binding.birthdateEditText.getText().toString()
-            );
+            RegistryBean bean = new RegistryBean(mEmail,mPassword,mYear);
             responseRegisterHandler.mBean = bean;
             networkHandler.register(callback, requestResponseHandler.requestGetJsonStringFromPojo(bean));
             return true;
@@ -349,16 +353,18 @@ public class RegisterUserActivity extends BaseActivity {
         @Override
         public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
             responseRegisterHandler.processResponse(response);
+            //TODO: SHOW ALERT?
         }
         @Override
         public void onFailure(Call<ResponseBody> call, Throwable t) {
+            showProgress(false);
             /*stopAnimationProgressOnArrows();
             hideAnimatedDots();
             changeTextBtn(getString(R.string.btnTextCreate));
             enableEdittext();
             binding.buttonRegisterAccount.setClickable(true);*/
-            //show error alert here
-            System.out.println("HELLO! ASKLDJLASDSADAS!");
+            //TODO: show error alert here
+            System.out.println("MIERDA");
         }
     };
 

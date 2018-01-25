@@ -78,6 +78,17 @@
         <item name="android:maxWidth">@dimen/dimen_fab_xhdpi_default</item>
     </style>
 
+    <!--Dialogs-->
+    <style name="DialogTheme" parent="android:Theme.Dialog">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <!-- No backgrounds, titles or window float -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
 </resources>
 
 

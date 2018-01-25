@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<layout-->
+<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:tools="http://schemas.android.com/tools">-->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent">
+
+    <RelativeLayout
+        android:id="@+id/belowView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBelowBackground"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:id="@+id/layoutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/dialog_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/marginTopBottomSummaryDialog"
+            android:layout_marginBottom="@dimen/marginTopBottomSummaryDialog"
+            android:layout_marginEnd="@dimen/marginStartEndSummaryDialog"
+            android:layout_marginStart="@dimen/marginStartEndSummaryDialog"
+
+            android:orientation="vertical"
+            android:paddingStart="@dimen/paddingStartEndSummaryDialogMainContent"
+            android:paddingEnd="@dimen/paddingStartEndSummaryDialogMainContent"
+            android:paddingTop="@dimen/paddingTopBottomSummaryDialog"
+            android:paddingBottom="@dimen/paddingTopBottomSummaryDialog"
+            tools:ignore="UselessParent">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+
+                <TextView
+                    android:id="@+id/dialogMainTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top|center_horizontal"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/dialog_title_x2_lanes_size"
+                    android:textColor="@color/dialog_title" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/dialogMainText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/textSizeReachedLastWPContent"
+                    android:textColor="@color/dialog_title"
+                    android:lineSpacingExtra="5sp"
+                    tools:ignore="RtlCompat" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/viweContentBottomButtons"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/viewContentSingleButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible">
+
+                    <Button
+                        android:id="@+id/dialogButtonSingle"
+                        />
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/viewContentDoubleLandButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/dialogButtonFirst"
+                        android:layout_marginEnd="5dp"
+                        />
+
+                    <Button
+                        android:id="@+id/dialogButtonSecond"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
+
+    <!--</layout>-->
