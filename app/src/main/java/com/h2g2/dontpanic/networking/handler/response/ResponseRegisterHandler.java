@@ -1,6 +1,5 @@
 package com.h2g2.dontpanic.networking.handler.response;
 
-import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -72,8 +71,7 @@ public class ResponseRegisterHandler extends ResponseBaseHandler implements Netw
                     //TODO: save user data to shared pref!
                     System.out.println(data);
                     regAct.showProgress(false);
-                    regAct.showMessageAlert("Account created", resp.getMessage());
-
+                    regAct.showMessageAlert("Account created", resp.getMessage(), true);
                 }
             }
             if (response.code() == CODE_ERROR) {
@@ -81,13 +79,7 @@ public class ResponseRegisterHandler extends ResponseBaseHandler implements Netw
                     body = response.errorBody().string();
                 String error = response.message();
                 regAct.showProgress(false);
-                regAct.showMessageAlert("Error", error);
-
-                /*((RegisterUserActivity)activity).stopAnimationProgressOnArrows();
-                ((RegisterUserActivity)activity).hideAnimatedDots();
-                ((RegisterUserActivity)activity).changeTextBtn(activity.getString(R.string.btnTextCreate));
-                ((RegisterUserActivity)activity).binding.buttonRegisterAccount.setClickable(true);*/
-                //TODO: enable edit text
+                regAct.showMessageAlert("Error", error, false);
             }
             if (response.code() == CODE_BAD_REQUEST) {
                 if (response.errorBody() != null){
@@ -96,15 +88,13 @@ public class ResponseRegisterHandler extends ResponseBaseHandler implements Netw
                 }
                 System.out.println("body: " + body);
                 ResponseDefaultBean resp = new Gson().fromJson(body, ResponseDefaultBean.class);
-                regAct.showMessageAlert("Error", resp.getMessage());
-                System.out.println("error: " + resp.getError());
-                System.out.println("message: " + resp.getMessage());
+                regAct.showMessageAlert("Error", resp.getMessage(), false);
+
                 if (resp.getMessage().contains("email") && resp.getMessage().contains("registered")){
                     regAct.mEmailText.setError(resp.getMessage());
                 }else if(resp.getMessage().contains("password") && resp.getMessage().contains("invalid")){
                     regAct.mPasswordText.setError(resp.getMessage());
                 }
-
             }
             Log.d("", "");
         } catch (IOException e) {
