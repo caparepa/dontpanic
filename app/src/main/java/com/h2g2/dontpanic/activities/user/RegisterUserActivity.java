@@ -22,7 +22,7 @@ import com.h2g2.dontpanic.bean.RegistryBean;
 import com.h2g2.dontpanic.databinding.ActivityRegisterUserBinding;
 import com.h2g2.dontpanic.models.database.AppDatabase;
 import com.h2g2.dontpanic.models.entity.User;
-import com.h2g2.dontpanic.networking.handler.UserAccountHandler;
+import com.h2g2.dontpanic.networking.handler.AccountHandler;
 import com.h2g2.dontpanic.networking.handler.response.ResponseRegisterHandler;
 import com.h2g2.dontpanic.networking.utils.NetworkValidator;
 import com.h2g2.dontpanic.networking.utils.RequestResponseHandler;
@@ -58,7 +58,7 @@ public class RegisterUserActivity extends BaseActivity {
     private View mRegisterFormView;
     private View mRegisterProgressView;
 
-    protected UserAccountHandler networkHandler;
+    protected AccountHandler networkHandler;
     protected RequestResponseHandler requestResponseHandler;
     protected ResponseRegisterHandler responseRegisterHandler;
 
@@ -68,7 +68,7 @@ public class RegisterUserActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register_user);
         userDb = AppDatabase.getAppDatabase(this);
 
-        networkHandler = new UserAccountHandler(this);
+        networkHandler = new AccountHandler(this);
         responseRegisterHandler = new ResponseRegisterHandler(this);
         requestResponseHandler = new RequestResponseHandler();
 

@@ -17,7 +17,10 @@ import com.h2g2.dontpanic.bean.ResponseDefaultError;
 import com.h2g2.dontpanic.bean.data.Data;
 import com.h2g2.dontpanic.networking.base.CallbackBase;
 import com.h2g2.dontpanic.networking.constants.NetworkCodes;
+import com.h2g2.dontpanic.networking.handler.AvatarHandler;
+import com.h2g2.dontpanic.networking.handler.ChannelHandler;
 import com.h2g2.dontpanic.session.SessionUtil;
+import com.h2g2.dontpanic.utils.SharedPreferencesUtil;
 
 import org.json.JSONObject;
 
@@ -76,6 +79,59 @@ public class ResponseLoginHandler implements NetworkCodes {
                                     tracker.setProfile_id(data.getProfile().getId());
                                     trackerHandler.processTracker(data.getProfile().getTrackers().get(0));
                                 }
+
+                                final AvatarHandler avatarHandler = new AvatarHandler(activity);
+                                CallbackBase callbackBase = new CallbackBase((BaseActivity)activity) {
+                                    @Override
+                                    public void onResponseCore(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        ResponseAvatarHandler responseAvatarHandler = new ResponseAvatarHandler(activity);
+                                        responseAvatarHandler.processResponseLogin(response, (BaseActivity)activity, data.getProfile());
+                                    }
+
+                                    @Override
+                                    public void onRetryResponse() {
+                                        avatarHandler.getAvatars(this, activity);
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                    }
+                                };
+                                avatarHandler.getAvatars(callbackBase, activity);
+
+                                /*final ChannelHandler channelHandler = new ChannelHandler(activity);
+                                CallbackBase callback = new CallbackBase((BaseActivity) activity) {
+                                    @Override
+                                    public void onResponseCore(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        ResponseChannelHandler responseChannelHandler = new ResponseChannelHandler((BaseActivity) activity, false);
+                                        responseChannelHandler.avatarId= SharedPreferencesUtil.getUserDataInfoPref(activity).getProfile().getAvatar_id()+"";
+                                        Log.d("wawa", "AVATAR ID: "+responseChannelHandler.avatarId);
+                                        responseChannelHandler.processResponse(response);
+                                        Log.d("","");
+*//*
+                                Intent intent = new Intent(activity, ChannelPagerActivity.class);
+                                //Intent intent = new Intent(activity, ProfileActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK );
+                                intent.putExtra("json",body);
+                                activity.startActivity(intent);
+                                activity.finish();
+*//*
+                                    }
+
+                                    @Override
+                                    public void onRetryResponse() {
+                                        channelHandler.getChannels(this,activity);
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        ((BaseActivity)activity).dismissDialog();
+                                        Log.d("","");
+
+                                    }
+                                };
+                                channelHandler.getChannels(callback,activity);*/
                             }else{
                                 //((BaseActivity) activity).dismissDialog();
                                 //Toast.makeText(activity,"No profile completed",Toast.LENGTH_LONG).show();

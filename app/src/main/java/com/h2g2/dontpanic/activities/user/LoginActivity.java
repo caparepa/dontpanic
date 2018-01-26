@@ -6,36 +6,23 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.activities.base.BaseActivity;
@@ -44,21 +31,17 @@ import com.h2g2.dontpanic.bean.RegistryBean;
 import com.h2g2.dontpanic.databinding.ActivityLoginBinding;
 import com.h2g2.dontpanic.models.database.AppDatabase;
 import com.h2g2.dontpanic.models.entity.User;
-import com.h2g2.dontpanic.models.serializables.UserData;
-import com.h2g2.dontpanic.networking.handler.UserAccountHandler;
+import com.h2g2.dontpanic.networking.handler.AccountHandler;
 import com.h2g2.dontpanic.networking.handler.response.ResponseLoginHandler;
 import com.h2g2.dontpanic.networking.utils.NetworkValidator;
 import com.h2g2.dontpanic.networking.utils.RequestResponseHandler;
 import com.h2g2.dontpanic.services.interfaces.SharedPreferencesConstants;
 import com.h2g2.dontpanic.services.interfaces.ViewElement;
-import com.h2g2.dontpanic.utils.SharedPreferencesUtil;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
@@ -79,7 +62,7 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
     protected View mLoginFormView;
     protected Button mEmailSignInButton;
 
-    protected UserAccountHandler networkHandler;
+    protected AccountHandler networkHandler;
     protected RequestResponseHandler requestResponseHandler;
     protected ResponseLoginHandler responseLoginHandler;
 
@@ -94,7 +77,7 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         userDb = AppDatabase.getAppDatabase(this);
 
-        networkHandler = new UserAccountHandler(this);
+        networkHandler = new AccountHandler(this);
         requestResponseHandler = new RequestResponseHandler();
         responseLoginHandler = new ResponseLoginHandler(LoginActivity.this);
 

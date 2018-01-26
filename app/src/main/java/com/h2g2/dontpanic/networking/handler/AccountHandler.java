@@ -16,10 +16,10 @@ import retrofit2.Callback;
  * Teravision Technologies
  * Date: 2018/01/23
  */
-public class UserAccountHandler extends RetroBase {
+public class AccountHandler extends RetroBase {
     private User routes;
 
-    public UserAccountHandler(AppCompatActivity appCompatActivity) {
+    public AccountHandler(AppCompatActivity appCompatActivity) {
         super(appCompatActivity);
         routes = retrofit.create(User.class);
     }

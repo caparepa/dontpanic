@@ -1,4 +1,4 @@
-package com.h2g2.dontpanic.bean.data;
+package com.h2g2.dontpanic.bean;
 
 import com.h2g2.dontpanic.bean.RegisterBandBean;
 

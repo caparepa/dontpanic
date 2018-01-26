@@ -1,4 +1,4 @@
-package com.h2g2.dontpanic.networking.handler.response;
+package com.h2g2.dontpanic.networking.handler;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;

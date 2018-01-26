@@ -11,7 +11,7 @@ import com.h2g2.dontpanic.bean.ResponseDefaultError;
 import com.h2g2.dontpanic.bean.ResponseGenericBean;
 import com.h2g2.dontpanic.bean.data.Data;
 import com.h2g2.dontpanic.bean.data.Profile;
-import com.h2g2.dontpanic.bean.data.RegisterBandResponseBean;
+import com.h2g2.dontpanic.bean.RegisterBandResponseBean;
 import com.h2g2.dontpanic.bean.tracker.ListTrackerDataBean;
 import com.h2g2.dontpanic.utils.SharedPreferencesUtil;
 
