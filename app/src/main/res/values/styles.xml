@@ -1,7 +1,7 @@
 <resources>
 
     <!--No Title-->
-    <style name="GeneralNoTitle" parent="Theme.AppCompat.Light.NoActionBar" >
+    <style name="GeneralNoTitle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>   <!-- //this -->
     </style>
 
