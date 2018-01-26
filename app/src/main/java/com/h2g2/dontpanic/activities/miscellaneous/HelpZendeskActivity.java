@@ -36,9 +36,9 @@ public class HelpZendeskActivity extends BaseActivity {
         /*ZopimChat.init("V8vJJVKzgBKxHA7vqmJqjTKwjtsawQap");*/
         ZendeskConfig.INSTANCE.init(
                 this,
-                "https://cserrano-teravisiontech.zendesk.com",
-                "bb58c9f88aa0c0af8d855cc1c1e62d833fb006ada4824c25",
-                "mobile_sdk_client_54c6100edbc3e81f5809"
+                "https://cserrano-teravisiontechhelp.zendesk.com",
+                "aeef0fd8640d67064c4f819970e1a3e4a70da1694ba2bfe1",
+                "mobile_sdk_client_d9d81110c76023d6729d"
         );
         Identity identity = new AnonymousIdentity.Builder().build();
         ZendeskConfig.INSTANCE.setIdentity(identity);
@@ -47,8 +47,7 @@ public class HelpZendeskActivity extends BaseActivity {
 
     }
 
-    private void setUpViewElements()
-    {
+    private void setUpViewElements() {
         ViewElement elements = new ViewElement() {
             @Override
             public void setUpViewText() {
