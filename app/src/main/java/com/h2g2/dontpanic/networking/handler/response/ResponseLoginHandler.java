@@ -146,11 +146,12 @@ public class ResponseLoginHandler implements NetworkCodes {
                             System.out.println(data.getAccount().toString());
                             logAct.showMessageAlert("Wat", "wat", true);
                         } else {
-                            //body = response.errorBody().toString();
-                            String body = response.message();
-                            //Toast.makeText(activity,"No profile completed",Toast.LENGTH_LONG).show();
                             logAct.showProgress(false);
-                            logAct.showMessageAlert("Error", body, false);
+                            logAct.showMessageAlert(
+                                    "Login successful! But...",
+                                    "You don't have a completed profile! Please make one, welp!",
+                                    true
+                            );
                         }
                     }
                 }
@@ -160,7 +161,7 @@ public class ResponseLoginHandler implements NetworkCodes {
                     logAct.showProgress(false);
                     logAct.showMessageAlert("You have no profiles!", "Please, fill your profile, or whatever!", true);
                     //TODO: alert!
-                }else{
+                } else {
                     logAct.showProgress(false);
                     logAct.showMessageAlert("Error", "Shite! Unknow error!", true);
                 }
