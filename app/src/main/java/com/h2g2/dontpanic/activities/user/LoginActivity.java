@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
@@ -20,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -68,6 +70,7 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
 
     private static final int REQUEST_READ_CONTACTS = 0;
     private UserLoginTask mAuthTask = null;
+    protected Boolean isResponseOk;
 
     // UI references.
     protected AutoCompleteTextView mEmailView;
@@ -173,9 +176,9 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
 
     private void attemptLogin() {
 
-        if (NetworkValidator.isNetworkAvailable(getApplicationContext())==false){
+        if (!NetworkValidator.isNetworkAvailable(getApplicationContext())){
             //Utils.showNonInternetWarning(LogInActivity.this);
-            //TODO: SHOW NO INTERNET ALET HERE!
+            //TODO: SHOW NO INTERNET ALERT HERE!
             System.out.println("NO INTERNET!");
             return;
         }
@@ -221,8 +224,10 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            /*mAuthTask = new UserLoginTask(email, password);
+            mAuthTask.execute((Void) null);*/
+            RegistryBean bean = new RegistryBean(email,password);
+            networkHandler.logIn(callback,requestResponseHandler.requestGetJsonStringFromPojo(bean));
         }
     }
 
@@ -236,8 +241,44 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
         return password.length() > 4;
     }
 
+    public void showMessageAlert(String title, String message, Boolean isOk) {
+        isResponseOk = isOk;
+        AlertDialog mAlertDialog = new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        redirect();
+                    }
+                })
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        redirect();
+                    }
+                }).create();
+
+        mAlertDialog.show();
+        mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                redirect();
+            }
+        });
+    }
+
+    /**
+     * if the register response doesn't have errors (true)
+     */
+    private void redirect() {
+        if(isResponseOk){
+            navigateToActivity(MainActivity.class);
+            finish();
+        }
+    }
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
+    public void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
@@ -298,13 +339,13 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
             RegistryBean bean = new RegistryBean(mEmail, mPassword);
             networkHandler.logIn(callback,requestResponseHandler.requestGetJsonStringFromPojo(bean));
 
-            mUser = userDb.userDao().findByEmail(mEmail);
+            /*mUser = userDb.userDao().findByEmail(mEmail);
             UserData userData = new UserData(true, mUser);
 
             if(mUser != null){
                 Boolean a = SharedPreferencesUtil.saveUserDataPref(userData,LoginActivity.this);
                 System.out.println("A "+ a);
-            }
+            }*/
 
             return mUser != null && mUser.getPassword().equals(mPassword);
         }
