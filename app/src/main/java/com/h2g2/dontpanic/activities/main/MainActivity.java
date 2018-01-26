@@ -23,6 +23,8 @@ import com.h2g2.dontpanic.activities.miscellaneous.PrivacyPolicyActivity;
 import com.h2g2.dontpanic.activities.miscellaneous.TermsConditionsActivity;
 import com.h2g2.dontpanic.activities.user.LoginActivity;
 import com.h2g2.dontpanic.activities.user.RegisterUserActivity;
+import com.h2g2.dontpanic.bean.data.Account;
+import com.h2g2.dontpanic.bean.data.Data;
 import com.h2g2.dontpanic.databinding.ActivityMainBinding;
 import com.h2g2.dontpanic.models.entity.User;
 import com.h2g2.dontpanic.models.serializables.UserData;
@@ -38,6 +40,9 @@ public class MainActivity extends BaseActivity
 
     User mUser;
     UserData mUserData;
+
+    Data beanData;
+    Account beanAccount;
 
     protected MenuItem mItemRegister;
     protected MenuItem mItemLogin;
@@ -82,6 +87,10 @@ public class MainActivity extends BaseActivity
     }
 
     private void getUserData() {
+
+        beanData = SharedPreferencesUtil.getUserDataInfoPref(this);
+        beanAccount = beanData.getAccount();
+
         mUser = SharedPreferencesUtil.getUserDataPref(this).getUserEntity();
         mLoggedIn = SharedPreferencesUtil.getUserDataPref(this).getLoggedIn();
     }
@@ -91,13 +100,21 @@ public class MainActivity extends BaseActivity
         navHeaderEmail = mNavHeader.findViewById(R.id.nav_header_email_text_view);
         mainSignalText = mNavView.findViewById(R.id.mainSignalText);
 
-        if(mUser != null && mLoggedIn){
+        if(beanAccount != null && beanData.getToken() != null){
+            navHeaderUser.setText(beanAccount.getEmail());
+            navHeaderEmail.setText(beanAccount.getEmail());
+        }else{
+            navHeaderUser.setText(R.string.guest_user);
+            navHeaderEmail.setText(R.string.guest_user);
+        }
+
+        /*if(mUser != null && mLoggedIn){
             navHeaderUser.setText(mUser.getEmail());
             navHeaderEmail.setText(mUser.getEmail());
         }else{
             navHeaderUser.setText(R.string.guest_user);
             navHeaderEmail.setText(R.string.guest_user);
-        }
+        }*/
     }
 
     private void setUpViewElements() {
@@ -195,7 +212,7 @@ public class MainActivity extends BaseActivity
         mItemLogin = binding.navViewBar.getMenu().findItem(R.id.nav_login);
         mItemLogout = binding.navViewBar.getMenu().findItem(R.id.nav_logout);
 
-        if(mUser != null && mLoggedIn){
+        if(beanAccount != null && beanData.getToken() != null){
             mItemRegister.setVisible(false);
             mItemLogin.setVisible(false);
             mItemLogout.setVisible(true);
