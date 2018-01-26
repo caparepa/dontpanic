@@ -36,6 +36,8 @@ import retrofit2.Response;
 public class ResponseLoginHandler implements NetworkCodes {
     private AppCompatActivity activity;
     private String body;
+    private LoginActivity logAct;
+
     public ResponseLoginHandler(AppCompatActivity activity) {
         this.activity = activity;
     }
@@ -43,44 +45,45 @@ public class ResponseLoginHandler implements NetworkCodes {
     public void processResponse(Response<ResponseBody> response) {
         body = "";
 
+        logAct = ((LoginActivity) activity);
         try {
-            LoginActivity logAct = ((LoginActivity)activity);
             if (response.code() == CODE_ALREADY_REGISTERED || response.code() == CODE_ERROR) {
                 //((BaseActivity) activity).dismissDialog();
-                if (response.errorBody() != null){
+                if (response.errorBody() != null) {
                     body = response.errorBody().string();
-                    ResponseDefaultError resp = new Gson().fromJson(body,ResponseDefaultError.class);
+                    ResponseDefaultError resp = new Gson().fromJson(body, ResponseDefaultError.class);
                     //TODO: show alert
                 }
-            }else if (response.code() == CODE_SUCCESS) {
+            } else if (response.code() == CODE_SUCCESS) {
                 if (response.body() != null)
                     body = response.body().string();
-                ResponseDefaultBean resp = new Gson().fromJson(body,ResponseDefaultBean.class);
+                ResponseDefaultBean resp = new Gson().fromJson(body, ResponseDefaultBean.class);
                 //PurchaseBean data = new Gson().fromJson(body,PurchaseBean.class);
-                if (resp!=null && resp.getStatus()!=null){
+                if (resp != null && resp.getStatus() != null) {
                     logAct.showProgress(false);
-                    if (resp.getStatus()==CODE_SUCCESS){
+                    if (resp.getStatus() == CODE_SUCCESS) {
 
                         //savePreferences(activity,resp.getData().getToken());
-                        SessionUtil.login(body,activity);
+                        SessionUtil.login(body, activity);
                         //((BaseActivity)activity).showDialog();
+                        Data userData = SharedPreferencesUtil.getUserDataInfoPref(logAct);
 
                         JSONObject jsonObject = new JSONObject(body);
-                        final Data data = new Gson().fromJson(jsonObject.getString("data").toString(),Data.class);
+                        final Data data = new Gson().fromJson(jsonObject.getString("data").toString(), Data.class);
 
-                        if(data.getProfiles()!=null && data.getProfiles().size()>0){
+                        if (data.getProfiles() != null && data.getProfiles().size() > 0) {
 
-                            if(data.getProfile().getTrackers()!=null){
+                            if (data.getProfile().getTrackers() != null) {
 
                                 data.setCurrentProfile(data.getProfile());
-                                if(data.getProfile().getTrackers().size()>0){
-                                    ResponseTrackerHandler trackerHandler = new ResponseTrackerHandler((BaseActivity)activity);
+                                if (data.getProfile().getTrackers().size() > 0) {
+                                    ResponseTrackerHandler trackerHandler = new ResponseTrackerHandler((BaseActivity) activity);
                                     RegisterBandBean tracker = data.getProfile().getTrackers().get(0);
                                     tracker.setProfile_id(data.getProfile().getId());
                                     trackerHandler.processTracker(data.getProfile().getTrackers().get(0));
                                 }
 
-                                final AvatarHandler avatarHandler = new AvatarHandler(activity);
+                                /*final AvatarHandler avatarHandler = new AvatarHandler(activity);
                                 CallbackBase callbackBase = new CallbackBase((BaseActivity)activity) {
                                     @Override
                                     public void onResponseCore(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -100,7 +103,7 @@ public class ResponseLoginHandler implements NetworkCodes {
                                 };
                                 avatarHandler.getAvatars(callbackBase, activity);
 
-                                /*final ChannelHandler channelHandler = new ChannelHandler(activity);
+                                final ChannelHandler channelHandler = new ChannelHandler(activity);
                                 CallbackBase callback = new CallbackBase((BaseActivity) activity) {
                                     @Override
                                     public void onResponseCore(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -109,14 +112,13 @@ public class ResponseLoginHandler implements NetworkCodes {
                                         Log.d("wawa", "AVATAR ID: "+responseChannelHandler.avatarId);
                                         responseChannelHandler.processResponse(response);
                                         Log.d("","");
-*//*
-                                Intent intent = new Intent(activity, ChannelPagerActivity.class);
-                                //Intent intent = new Intent(activity, ProfileActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK );
-                                intent.putExtra("json",body);
-                                activity.startActivity(intent);
-                                activity.finish();
-*//*
+
+                                        Intent intent = new Intent(activity, ChannelPagerActivity.class);
+                                        //Intent intent = new Intent(activity, ProfileActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK );
+                                        intent.putExtra("json",body);
+                                        activity.startActivity(intent);
+                                        activity.finish();
                                     }
 
                                     @Override
@@ -132,30 +134,41 @@ public class ResponseLoginHandler implements NetworkCodes {
                                     }
                                 };
                                 channelHandler.getChannels(callback,activity);*/
-                            }else{
+                            } else {
                                 //((BaseActivity) activity).dismissDialog();
                                 //Toast.makeText(activity,"No profile completed",Toast.LENGTH_LONG).show();
                                 //TODO: SHOW ALERT!
                             }
-                        }else{
-                            body = response.errorBody().toString();
+                            logAct.showProgress(false);
+                            logAct.showMessageAlert("Login successful!", "", true);
+                        } else if (data.getProfiles() == null) {
+                            logAct.showProgress(false);
+                            System.out.println(data.getAccount().toString());
+                            logAct.showMessageAlert("Wat", "wat", true);
+                        } else {
+                            //body = response.errorBody().toString();
+                            String body = response.message();
                             //Toast.makeText(activity,"No profile completed",Toast.LENGTH_LONG).show();
-                            logAct.showMessageAlert("Error",body,false);
+                            logAct.showProgress(false);
+                            logAct.showMessageAlert("Error", body, false);
                         }
                     }
                 }
-            }else{
+            } else {
                 //((BaseActivity) activity).dismissDialog();
-                if (response.errorBody() != null){
+                if (response.errorBody() != null) {
                     logAct.showProgress(false);
-                    body = response.errorBody().toString();
+                    logAct.showMessageAlert("You have no profiles!", "Please, fill your profile, or whatever!", true);
                     //TODO: alert!
-                    /*((LoginActivity) activity).showErrorIcon(body, "");
-                    ((LoginActivity) activity).showLogin();*/
+                }else{
+                    logAct.showProgress(false);
+                    logAct.showMessageAlert("Error", "Shite! Unknow error!", true);
                 }
             }
-        }catch (Exception e){
-            Log.e("Login Error",e.getMessage());
+        } catch (Exception e) {
+            Log.e("Login Error", e.getMessage());
+            logAct.showProgress(false);
+            logAct.showMessageAlert("Login error", e.getMessage(), true);
             //TODO: alert!
         }
     }
