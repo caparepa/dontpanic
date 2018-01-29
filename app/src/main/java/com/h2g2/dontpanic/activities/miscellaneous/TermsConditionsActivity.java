@@ -29,7 +29,7 @@ public class TermsConditionsActivity extends BaseActivity {
     {
         ViewElement elements = new ViewElement() {
             @Override
-            public void setUpViewText() {
+            public void setUpViewTitle() {
                 TextView _textViewTitle = binding.includedAppBarTitle.textViewTitle;
                 _textViewTitle.setText(R.string.title_terms_conditions);
             }
@@ -67,7 +67,7 @@ public class TermsConditionsActivity extends BaseActivity {
 
             }
         };
-        elements.setUpViewText();
+        elements.setUpViewTitle();
         elements.setUpBackButton();
     }
 }

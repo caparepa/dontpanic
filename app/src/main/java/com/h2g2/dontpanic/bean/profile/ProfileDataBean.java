@@ -7,9 +7,12 @@ import com.h2g2.dontpanic.bean.data.Profile;
  * Teravision Technologies
  * Date: 2018/01/26
  */
-public class ProfileDataBean {
+public class ProfileDataBean extends Profile {
 
     private Profile profile;
+
+    public ProfileDataBean() {
+    }
 
     public ProfileDataBean(Profile profile) {
         this.profile = profile;

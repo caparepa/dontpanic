@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.h2g2.dontpanic.R;
 import com.h2g2.dontpanic.bean.data.Data;
 import com.h2g2.dontpanic.models.serializables.UserData;
 import com.h2g2.dontpanic.services.interfaces.SharedPreferencesConstants;
@@ -80,5 +81,16 @@ public class SharedPreferencesUtil implements SharedPreferencesConstants {
         boolean done = prefs.edit().remove(key).commit();
         return done;
     }
+    public static void saveInfoPref(Object mObject, Context mContext, String patron) {
+        Gson gson = new Gson();
+        String longString = ERROR_STRING;
+        if(mObject!=null){
+            longString = gson.toJson(mObject);
+        }
+        String nameFile = mContext.getString(SHARED_FILE);
+        SharedPreferences prefs = mContext.getSharedPreferences(nameFile, mContext.MODE_PRIVATE);
+        prefs.edit().putString(patron, longString).commit();
+    }
+
 
 }

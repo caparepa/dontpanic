@@ -160,7 +160,7 @@ public class RegisterUserActivity extends BaseActivity {
     private void setUpViewElements(){
         ViewElement elements = new ViewElement() {
             @Override
-            public void setUpViewText() {
+            public void setUpViewTitle() {
                 TextView _textViewTitle = binding.includedAppBarTitle.textViewTitle;
                 _textViewTitle.setText(R.string.title_register_user);
             }
@@ -219,7 +219,7 @@ public class RegisterUserActivity extends BaseActivity {
             }
         };
         elements.setUpBackButton();
-        elements.setUpViewText();
+        elements.setUpViewTitle();
         elements.setUpElements();
         elements.setUpInputFields();
         elements.setUpButtons();

@@ -117,7 +117,7 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
     private void setUpViewElements() {
         ViewElement elements = new ViewElement() {
             @Override
-            public void setUpViewText() {
+            public void setUpViewTitle() {
 
             }
 

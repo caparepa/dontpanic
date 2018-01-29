@@ -1,8 +1,6 @@
 package com.h2g2.dontpanic.activities.miscellaneous;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,8 +14,6 @@ import com.zendesk.sdk.model.access.AnonymousIdentity;
 import com.zendesk.sdk.model.access.Identity;
 import com.zendesk.sdk.network.impl.ZendeskConfig;
 import com.zendesk.sdk.support.SupportActivity;
-import com.zopim.android.sdk.api.ZopimChat;
-import com.zopim.android.sdk.prechat.ZopimChatActivity;
 
 public class HelpZendeskActivity extends BaseActivity {
 
@@ -50,7 +46,7 @@ public class HelpZendeskActivity extends BaseActivity {
     private void setUpViewElements() {
         ViewElement elements = new ViewElement() {
             @Override
-            public void setUpViewText() {
+            public void setUpViewTitle() {
                 _textViewTitle = binding.includedAppBarTitle.textViewTitle;
                 _textViewTitle.setText(R.string.title_help_zendesk);
             }
@@ -98,7 +94,7 @@ public class HelpZendeskActivity extends BaseActivity {
             }
         };
         elements.setUpBackButton();
-        elements.setUpViewText();
+        elements.setUpViewTitle();
         elements.setUpButtons();
     }
 }

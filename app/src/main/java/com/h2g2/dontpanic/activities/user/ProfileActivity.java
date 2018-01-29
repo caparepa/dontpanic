@@ -78,7 +78,7 @@ public class ProfileActivity extends BaseActivity implements SharedPreferencesCo
     private void setViewElements() {
         ViewElement elements = new ViewElement() {
             @Override
-            public void setUpViewText() {
+            public void setUpViewTitle() {
                 _textViewTitle = binding.includedAppBarTitle.textViewTitle;
                 _textViewTitle.setText(R.string.title_profile);
             }
@@ -202,16 +202,6 @@ public class ProfileActivity extends BaseActivity implements SharedPreferencesCo
         }
     }
 
-    /*private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }*/
-
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
@@ -243,40 +233,6 @@ public class ProfileActivity extends BaseActivity implements SharedPreferencesCo
             mEmailText.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-
-    /*@Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileActivity.ProfileQuery.PROJECTION,
-
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                .CONTENT_ITEM_TYPE},
-
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            //emails.add(cursor.getString(LoginActivity.ProfileQuery.ADDRESS));
-            cursor.moveToNext();
-        }
-
-        //addEmailsToAutoComplete(emails);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
-    }*/
 
     private void updateUserData(User pUser){
         System.out.println("CARAJO " + mEmailText.getText() + " " + mPasswordText.getText());

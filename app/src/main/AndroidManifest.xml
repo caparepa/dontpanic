@@ -57,6 +57,8 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".activities.user.ProfileActivity" />
         <activity android:name=".activities.user.RegisterUserActivity" />
+        <activity android:name=".activities.user.ProfileDetailActivity" />
+        <activity android:name=".activities.user.SelectProfileActivity"></activity>
     </application>
 
 </manifest>

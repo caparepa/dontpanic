@@ -27,7 +27,7 @@ public class PrivacyPolicyActivity extends BaseActivity {
     private void setViewElements() {
         ViewElement elements = new ViewElement() {
             @Override
-            public void setUpViewText() {
+            public void setUpViewTitle() {
                 TextView _textViewTitle = binding.includedAppBarTitle.textViewTitle;
                 _textViewTitle.setText(R.string.title_privacy_policy);
             }
@@ -65,7 +65,7 @@ public class PrivacyPolicyActivity extends BaseActivity {
 
             }
         };
-        elements.setUpViewText();
+        elements.setUpViewTitle();
         elements.setUpBackButton();
     }
 }

@@ -3,8 +3,12 @@
     <string name="shared_pref_file" translatable="false">dont_panic_shp</string>
     <string name="shared_email" translatable="false">email</string>
     <string name="session_user" translatable="false">session_user</string>
+    <string name="tutorial_cleared" translatable="false">tutorial_cleared</string>
+    <string name="change_profile" translatable="false">change_profile</string>
+    <string name="visited_profile" translatable="false">visited_profile</string>
+    <string name="unicef_channel" translatable="false">unicef_channel</string>
+    <string name="unicef_avatar" translatable="false">daavatar</string>
 
-    <!--UKP-->
     <string name="textNonIntValue">0</string>
 
     <!--Random-->

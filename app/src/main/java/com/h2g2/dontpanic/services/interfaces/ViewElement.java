@@ -7,7 +7,7 @@ package com.h2g2.dontpanic.services.interfaces;
  */
 public interface ViewElement {
 
-    public void setUpViewText();
+    public void setUpViewTitle();
 
     public void setUpBackButton();
 

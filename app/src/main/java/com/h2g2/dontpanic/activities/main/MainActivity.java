@@ -120,7 +120,7 @@ public class MainActivity extends BaseActivity
     private void setUpViewElements() {
         ViewElement elements = new ViewElement() {
             @Override
-            public void setUpViewText() {
+            public void setUpViewTitle() {
 
             }
 
