@@ -23,6 +23,7 @@ import com.h2g2.dontpanic.activities.miscellaneous.PrivacyPolicyActivity;
 import com.h2g2.dontpanic.activities.miscellaneous.TermsConditionsActivity;
 import com.h2g2.dontpanic.activities.user.LoginActivity;
 import com.h2g2.dontpanic.activities.user.RegisterUserActivity;
+import com.h2g2.dontpanic.activities.user.SelectProfileActivity;
 import com.h2g2.dontpanic.bean.data.Account;
 import com.h2g2.dontpanic.bean.data.Data;
 import com.h2g2.dontpanic.databinding.ActivityMainBinding;
@@ -259,6 +260,9 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_terms_conditions) {
             System.out.println("TERMS AND CONDITIONS");
             navigateToActivity(TermsConditionsActivity.class);
+        } else if (id == R.id.nav_select_profile) {
+            System.out.println("SELECT PROFILE");
+            navigateToActivity(SelectProfileActivity.class);
         } else if (id == R.id.nav_register_account) {
             System.out.println("REGISTER");
             navigateToActivity(RegisterUserActivity.class);

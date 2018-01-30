@@ -319,6 +319,7 @@ public class LoginActivity extends BaseActivity implements SharedPreferencesCons
                 return false;
             }
 
+            //TODO: when logging in, disable back button!
             RegistryBean bean = new RegistryBean(mEmail, mPassword);
             networkHandler.logIn(callback,requestResponseHandler.requestGetJsonStringFromPojo(bean));
 

@@ -53,6 +53,8 @@ public class ResponseLoginHandler implements NetworkCodes {
                     body = response.errorBody().string();
                     ResponseDefaultError resp = new Gson().fromJson(body, ResponseDefaultError.class);
                     //TODO: show alert
+                    logAct.showProgress(false);
+                    logAct.showMessageAlert("Login Error", response.message(),false);
                 }
             } else if (response.code() == CODE_SUCCESS) {
                 if (response.body() != null)
