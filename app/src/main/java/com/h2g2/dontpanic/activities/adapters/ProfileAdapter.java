@@ -23,14 +23,12 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView profileName;
-        public TextView profileId;
-        public TextView profileEnergy;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
             profileName =  itemView.findViewById(R.id.item_profile_name);
-            profileEnergy =  itemView.findViewById(R.id.item_profile_energy);
-            profileId =  itemView.findViewById(R.id.item_profile_id);
+
         }
     }
 
@@ -49,8 +47,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         System.out.println(position);
         Profile profile = profiles.get(position);
         holder.profileName.setText(profile.getName());
-        holder.profileId.setText(profile.getId());
-        holder.profileEnergy.setText(profile.getEnergy());
+
     }
 
     @Override

@@ -1,7 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:padding="6dip">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_profile_name"
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Example application"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <!--<TextView
+        android:id="@+id/item_profile_name"
+        android:layout_width="159dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="Example application"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:contentDescription="TODO"
+        android:src="@mipmap/ic_launcher" />-->
+
+</LinearLayout>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/row_padding_vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/row_padding_vertical"
     android:padding="6dip" >
 
     <ImageView
@@ -17,18 +71,6 @@
     <TextView
         android:id="@+id/item_profile_name"
         android:layout_width="fill_parent"
-        android:layout_height="26dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/icon"
-        android:ellipsize="marquee"
-        android:singleLine="true"
-        android:text="Description"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/item_profile_energy"
-        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/item_profile_name"
         android:layout_alignParentRight="true"
@@ -39,18 +81,5 @@
         android:text="Example application"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/item_profile_id"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/item_profile_energy"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/icon"
-        android:gravity="center_vertical"
-        android:text="Example application"
-        android:textSize="16sp" />
-
 </RelativeLayout>
-
+-->

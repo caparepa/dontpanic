@@ -92,6 +92,7 @@ public class MainActivity extends BaseActivity
         beanData = SharedPreferencesUtil.getUserDataInfoPref(this);
         beanAccount = beanData.getAccount();
 
+
         mUser = SharedPreferencesUtil.getUserDataPref(this).getUserEntity();
         mLoggedIn = SharedPreferencesUtil.getUserDataPref(this).getLoggedIn();
     }
