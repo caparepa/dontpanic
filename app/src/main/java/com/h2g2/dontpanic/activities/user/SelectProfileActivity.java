@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -81,7 +82,6 @@ public class SelectProfileActivity extends BaseActivity implements
         profiles = beanData.getProfiles();
 
         setUpElements();
-        setDataOnView();
     }
 
     public void setUpElements() {
@@ -150,9 +150,24 @@ public class SelectProfileActivity extends BaseActivity implements
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                System.out.println("onInterceptTouchEvent@setdataOnView@SelectProfileActivity");
+                return false;
+            }
 
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+                System.out.println("onTouchEvent@setdataOnView@SelectProfileActivity");
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+                System.out.println("onRequestDisallowInterceptTouchEvent@setdataOnView@SelectProfileActivity");
+            }
+        });
         recyclerView.setAdapter(profileAdapter);
         profileAdapter.notifyDataSetChanged();
-
     }
 }

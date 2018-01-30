@@ -8,88 +8,78 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include android:id="@+id/included_app_bar_title"
+        <include
+            android:id="@+id/included_app_bar_title"
             layout="@layout/view_app_bar"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/select_profile_linear_layout"
-            android:layout_below="@+id/included_app_bar_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_below="@+id/included_app_bar_title"
             android:gravity="center"
+            android:orientation="vertical"
             android:weightSum="8">
 
+
             <RelativeLayout
-                android:id="@+id/current_profile_relative_layout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3">
-
-
-                <TextView
-                    android:id="@+id/current_profile_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="33dp"
-                    android:text="TextView"
-                    tools:text="Name:" />
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
 
                 <TextView
-                    android:id="@+id/current_profile_id"
+                    android:id="@+id/profile_name_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/current_profile_name"
-                    android:layout_centerVertical="true"
-                    android:text="TextView"
-                    tools:text="Profile Id:" />
+                    android:text="name" />
 
                 <TextView
-                    android:id="@+id/current_profile_energy"
+                    android:id="@+id/profile_id_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/current_profile_id"
-                    android:layout_below="@+id/current_profile_id"
-                    android:layout_marginTop="25dp"
-                    android:text="Profile Energy:" />
+                    android:layout_below="@+id/profile_name_label"
+                    android:text="id" />
 
                 <TextView
-                    android:id="@+id/current_profile_id_val"
+                    android:id="@+id/profile_energy_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/current_profile_name"
-                    android:layout_centerHorizontal="true"
-                    android:text="TextView" />
+                    android:layout_below="@+id/profile_id_label"
+                    android:text="energy" />
 
                 <TextView
-                    android:id="@+id/current_profile_name_val"
+                    android:id="@+id/profile_name_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/current_profile_id_val"
-                    android:layout_alignTop="@+id/current_profile_id"
-                    android:text="TextView" />
+                    android:layout_toEndOf="@+id/profile_name_label"
+                    android:text="value" />
 
                 <TextView
-                    android:id="@+id/current_profile_energy_val"
+                    android:id="@+id/profile_id_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/current_profile_energy"
-                    android:layout_alignEnd="@+id/current_profile_name_val"
-                    android:text="TextView" />
+                    android:layout_below="@+id/profile_name_value"
+                    android:layout_toEndOf="@+id/profile_id_label"
+                    android:text="value" />
+
+                <TextView
+                    android:id="@+id/profile_energy_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_id_value"
+                    android:layout_toEndOf="@+id/profile_energy_label"
+                    android:text="value" />
+
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_profiles_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5">
+                android:layout_weight="6">
 
             </android.support.v7.widget.RecyclerView>
 
